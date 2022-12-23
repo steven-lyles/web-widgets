@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+  <title>Indicator Progress</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    body {
+      background: black;
+      font: 400 22px/1.5 "Roboto", sans-serif;
+      color     : #88ccff;
+      margin    : 15px;
+      overflow  : hidden;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .control-button {
+      height: 20px;
+      width: 80px;
+      border-radius: 5px;
+      background: #5588ff;
+      text-align: center;
+      margin-right: 5px;
+      font-size: 0.6em;
+      cursor: pointer;
+      color: black;
+    }
+    .percent-input {
+      width: 40px;
+      height: 10px;
+      margin-left: 5px;
+    }
+    .percent {
+      font-size: 0.6em;
+    }
+  </style>
+</head>
+<body>
+<!-- ===================== -->
+<!-- Progress Bar Examples -->
+<!-- ===================== -->
+
+<div class="button-container">
+  <div class="control-button" id="button-progress-horz-continuous-reset">RESET</div>
+  <div class="control-button" id="button-progress-horz-continuous-increment">PROGRESS</div>
+  <input type="number" name="percent_horz_continuous_progress" id="percent_horz_continuous_progress"
+         min="1" max="100" step="1" value="50" class="percent-input">
+  <div class="percent">&nbsp;%</div>
+</div>
+<br>
+<!-- Continuous progress bar container -->
+<div id="progress-horz-continuous-container"></div>
+<br>
+
+<br>
+<div class="button-container">
+  <div class="control-button" id="button-meter-horz-reset">RESET</div>
+  <div class="control-button" id="button-meter-horz-increment">PROGRESS</div>
+  <input type="number" name="percent_vert_meter" id="percent_horz_meter"
+         min="1" max="100" step="1" value="50" class="percent-input">
+  <div class="percent">&nbsp;%</div>
+</div>
+<br>
+<!-- Segmented progress bar container -->
+<div id="meter-horz-segmented-container"></div>
+<br>
+<br>
+
+<!-- Include the indicator widget script -->
+<script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+<script>
+
+  // Progress bar continuous attributes
+  var progress_horz_continuous_content =
+    {
+      "width_px"     : 10, // horizontal dimension
+      "height_px"    : 10, // vertical dimension
+      "spacer_px"    : 0,  // distance between indicators (height for vertical, width for horizontal)
+      "num_sections" : 40,
+      "orientation"  : "row", // column or row
+      "type"         : "continuous", // continuous or discrete
+      "color_scheme" : "single", // single or multiple (NOTE: multiple only available for type discrete)
+      "color"        :
+        {
+          "background" : "#A7A7A7", // this color shows through holes in cover plate
+          "indicator"  : "#2255ff", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container; only black or white will provide full opacity
+        },
+      "transition_time" : 1000 // indicator transition time in seconds
+    };
+
+  // Instance (Progress bar continuous)
+  var progress_horz_continuous = new IndicatorMeter("progress-horz-continuous-container", progress_horz_continuous_content);
+
+  // Meter Horizontal Attributes (aka TurboList Aft/Forward)
+  var meter_horz_content =
+    {
+      "width_px"     : 10, // horizontal dimension
+      "height_px"    : 60, // vertical dimension
+      "spacer_px"    : 5,  // distance between indicators (height for vertical, width for horizontal)
+      "num_sections" : 10,
+      "orientation"  : "row", // column or row
+      "type"         : "continuous", // continuous or discrete
+      "color_scheme" : "single", // single or multiple (NOTE: multiple only available for type discrete)
+      "color"        :
+        {
+          "background" : "#A7A7A7", // this color shows through holes in cover plate
+          "indicator"  : "#2255ff", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container; only black or white will provide full opacity
+        },
+      "transition_time" : 1000 // indicator transition time in seconds
+    };
+
+  // Instance
+  var meter_horz = new IndicatorMeter("meter-horz-segmented-container", meter_horz_content);
+
+  //==================================================================================
+  $(document).ready(function() {
+
+    $("#button-progress-horz-continuous-increment").click( function() {
+      let percent = $("#percent_horz_continuous_progress").val();
+      percent = (percent < 3) ? 3 : percent;
+      percent = (percent > 100) ? 100 : percent;
+      progress_horz_continuous.linear_increment( percent );
+    });
+
+    $("#button-progress-horz-continuous-reset").click( function() {
+      progress_horz_continuous.linear_increment( 0 );
+    });
+
+    $("#button-meter-horz-increment").click( function() {
+      let percent = $("#percent_horz_meter").val();
+      percent = (percent < 3) ? 3 : percent;
+      percent = (percent > 100) ? 100 : percent;
+      meter_horz.linear_increment( percent );
+    });
+
+    $("#button-meter-horz-reset").click( function() {
+      meter_horz.linear_increment( 0 );
+    });
+
+    $("#button-meter-vert-ice").click( function() { meter_vert.set_multiple_position_to(1,  2000); });
+    $("#button-meter-vert-cold").click( function() { meter_vert.set_multiple_position_to(3, 2000); });
+    $("#button-meter-vert-cool").click( function() { meter_vert.set_multiple_position_to(5, 2000); });
+    $("#button-meter-vert-warm").click( function() { meter_vert.set_multiple_position_to(7, 2000); });
+    $("#button-meter-vert-hot").click( function() { meter_vert.set_multiple_position_to(9,  2000); });
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+Created by Steven M. Lyles for 4-I Designs
+-->
+<html>
+  <head>
+    <title>Horizontal Indicator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      body { 
+        background: black; 
+        font: 400 22px/1.5 "Roboto", sans-serif;
+        color     : #88ccff;
+        margin    : 15px;
+        overflow  : hidden;
+      }
+      .size-button-container {
+        display: flex;
+        flex-direction: row;
+      }
+      .control-button {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        background: #5588ff;
+        text-align: center;
+        margin-right: 5px;
+        font-size: 0.6em;
+        cursor: pointer;
+        color: black;
+      }
+      
+      .row {
+        width: 600px; 
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .column {
+        width: 660px;
+        height: auto;
+        margin-left: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      #row {
+        width: auto;
+        height: 400px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;      
+        justify-content: flex-start;  
+        overflow:hidden;
+        position: relative;
+        padding: 20px;
+      }
+      .slide-container {
+        width: 600px;
+        height: 400px;
+        border-radius: 10px;
+/*        margin-left: 15px;*/
+        display: flex;
+        flex-direction: row;
+        align-content: flex-start;
+        justify-content: flex-start;
+        overflow:hidden;
+        position: relative;
+        padding: 20px;
+      }
+      .slide {
+        width: 600px;
+        height: 400px;
+        border-radius: 10px;
+        background: #97B3B8;
+        margin-left: 10px;
+        margin-right: 10px;
+        flex-basis: 290px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+      
+      .arrow-horz {
+        height: 26px;
+        cursor: pointer;
+      }
+ 
+      #right { }
+      #left { }
+      
+
+      #slide-0 {
+        margin-left: 0px;
+      }
+      #slide-1 {
+        
+      }
+      #slide-2 {
+        
+      }
+      #slide-3 {
+        
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="size-button-container">
+      <div class="control-button" id="lrg-horz">LRG</div>
+      <div class="control-button" id="med-horz">MED</div>
+      <div class="control-button" id="sml-horz">SML</div>
+    </div>
+    <br>
+    
+    
+    <div class='column'>
+      
+
+      <div id='row'>
+        <img id="left" class="arrow-horz" src='../assets/choose-left.svg' alt='&#10094;'/>
+        <div class='slide-container'>
+          <img id="slide-0" class="slide" src="../assets/ship-enterprise-nx01.jpg" alt="NX-01"/>
+          <img id="slide-1" class="slide" src="../assets/ship-enterprise.jpg" alt="Enterprise"/>
+          <img id="slide-2" class="slide" src="../assets/ship-voyager.jpg" alt="Voyager"/>
+          <img id="slide-3" class="slide" src="../assets/ship-delta-flyer.jpg" alt="Delta Flyer"/>
+        </div>
+        <img id="right" class="arrow-horz" src='../assets/choose-right.svg' alt='&#10095;'/>
+      </div>
+
+      
+      <!-- Create the container for the vertical widget -->
+      <div id="indicator-container-horz"></div>
+  
+    </div>
+    
+    <!-- Include the indicator widget script -->
+    <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+    <script>
+      var transition_time = 500;
+      
+      var current_slide = 0;
+      
+      // -------------------------------------------------
+      // Define the horizontal indicator widget attributes
+      // -------------------------------------------------
+      var indicator_horz_content = 
+      {
+        // make width_px & height_px match to get round indicators
+        "width_px"     : 10, // horizontal dimension
+        "height_px"    : 10, // vertical dimension
+        "spacer_px"    : 5,  // distance between indicators (height for vertical, width for horizontal)
+        "num_sections" : 4,
+        "orientation"  : "row", // column or row
+        "color"        :
+        {
+          "background" : "#444a77", // this color shows through holes in cover plate
+          "indicator"  : "#99dd66", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container
+        },
+        "transition_time" : transition_time // indicator transition time in seconds
+      };
+      
+      // -------------------------------------------------------------------------
+      // Create an instance of the widget passing container id and attributes json
+      // -------------------------------------------------------------------------
+      var horz_widget = new IndicatorPosition("indicator-container-horz", indicator_horz_content);
+      
+      //==================================================================================
+      $(document).ready(function() {
+        
+        //================================================================================
+        // Move horizontal indicator with arrows
+        $(".arrow-horz").click( function() {
+          if (this.id === "left") {
+            if (current_slide > 0) {
+              horz_widget.decrement_position();
+              current_slide -= 1;
+            }
+          } else {
+            if (current_slide < 3) {
+              horz_widget.increment_position();
+              current_slide += 1;
+            }
+          }
+          $("#slide-0").animate( {'margin-left' : -(current_slide*620)}, 500);
+        });
+        
+        //================================================================================
+        // Move horizontal indicator by clicking on position
+        $(horz_widget.hole_class).click( function() {
+          index = parseInt(this.id.split("-").slice(-1)[0]);
+          horz_widget.set_position_to(index);         
+          $("#slide-0").animate( {'margin-left' : -(index*620)}, 500);
+          current_slide = index;
+        });
+        
+        $("#left").hover(function() {
+          $(this).attr('src', '../assets/choose-left-hover.svg');
+        }, function(){
+          $(this).attr('src', '../assets/choose-left.svg');
+        });
+        
+        $("#right").hover(function() {
+          $(this).attr('src', '../assets/choose-right-hover.svg');
+        }, function(){
+          $(this).attr('src', '../assets/choose-right.svg');
+        });
+
+      });
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Cylon Eye</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      body { 
+        background: black; 
+        font: 400 22px/1.5 "Roboto", sans-serif;
+        color     : #88ccff;
+        margin    : 5px;
+        overflow  : hidden;
+      }
+      .size-button-container {
+        display: flex;
+        flex-direction: row;
+      }
+      .control-button {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        background: #5588ff;
+        text-align: center;
+        margin-top: 5px;
+        margin-right: 5px;
+        margin-bottom: 20px;
+        font-size: 0.6em;
+        cursor: pointer;
+        color: black;
+      }
+      
+      .eye_container {
+        width: auto; 
+        height: 100px; /* this must match the height of the widget container */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-right: 20px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      
+      <div class='eye_container'>
+        <div id="cylon-eye-activate" class="control-button">ACTIVATE</div>
+        <!-- Create the container for the vertical widget -->
+        <div id="cylon-eye-container"></div>
+      </div>
+    
+    </div>
+    
+    <!-- Include the indicator widget script -->
+    <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+    <script>
+      const ON = true;
+      const OFF = false;
+      
+      var transition_time = 500;
+      var cylon_activated = false;
+      
+      // Horizontal Attributes
+      var cylon_eye_content = 
+      {
+        "width_px"     : 50,  // horizontal dimension
+        "height_px"    : 10, // vertical dimension
+        "spacer_px"    : 0, // distance between indicators (height for vertical, width for horizontal)
+        "num_sections" : 8,
+        "orientation"  : "row", // column or row
+        "type"         : "position", // position or meter
+        "color"        :
+        {
+          "background" : "#101010", // this color shows through holes in cover plate
+          "indicator"  : "#7C1212", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container
+        },
+        "transition_time" : transition_time // indicator transition time in seconds
+      };
+      
+      // Instance (TurboList Aft/Forward)
+      var cylon_eye = new IndicatorPulse("cylon-eye-container", cylon_eye_content);
+      
+      //==================================================================================
+      $(document).ready(function() {
+        
+        $("#cylon-eye-activate").click( function() {       
+          if (cylon_activated) {
+            $(this).text("ACTIVATE");
+            $(this).css("color", "black");
+            cylon_eye.bounce(OFF, ON, "red");
+            cylon_activated = false;
+          } else {
+            $(this).text("DEACTIVATE");
+            $(this).css("color", "#99dd66");
+            cylon_eye.bounce(ON, ON, "red");
+            cylon_activated = true;
+          }
+        });
+        
+      });
+      
+    </script>
+  </body>
+</html>

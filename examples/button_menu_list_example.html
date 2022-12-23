@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Web Widgets: Button Menu List Demo
+-->
+<html>
+<head>
+  <title>Web Widgets</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          font: 400 22px/1.5 "Roboto", sans-serif;
+          /*margin : 15px;*/
+          margin-left: 20px;
+          color: #88bbff;
+      }
+      .title {
+          margin-left: 10px;
+      }
+  </style>
+</head>
+<body>
+  <!--| ------------------------------------------- |-->
+  <!--| 1: Create a container to hold the menu list |-->
+  <!--| ------------------------------------------- |-->
+  <div id="menu-box" class="menu-box">
+  </div>
+
+  <!--| -----------------------------|-->
+  <!--| 2: Source the menu list code |-->
+  <!--| -----------------------------|-->
+  <script type="text/javascript" src="../ww_js/web_widget_button_menu.js"></script>
+  <script>
+    //----------------------------------------------
+    // 3: Create the configuration json for the menu
+    //----------------------------------------------
+    let config = {
+        "background_color" : "black",
+        "width" : "800px",
+        "font_size" : "0.7em",
+        "description_font_color" : "#88bbff",
+        "button" : {
+            "background_color" : "#5588ff",
+            "font_color" : "black",
+            "hover_text_color" : "white",
+            "width" : "180px",
+            "height" : "35px"
+        },
+        "description" : {
+            "font_color" : "#88bbff",
+            "hover_text_color" : "white",
+            "font_size" : "0.6em",
+            "width" : "550px",
+            "height": "35px"
+        },
+        "items" : [
+            {
+                "name" : "My Color Collection",
+                "desc" : "A listing of color palettes with RGB and hex values that I use for reference.",
+                "link" : "https://www.stevenlyles.net/playground/colors/index.html"
+            },
+            {
+                "name" : "Imagine Colors",
+                "desc" : "A simple web app for analyzing the most common colors in an image.",
+                "link" : "https://www.stevenlyles.net/playground/imagine/index.html"
+            },
+            {
+                "name" : "A.N.N.A.",
+                "desc" : "Auto-associative Neural Network Analyzer - visually shows weights as a network trains.",
+                "link" : "https://www.stevenlyles.net/playground/anna/index.html"
+            },
+            {
+                "name" : "Slide Show",
+                "desc" : "A full-screen slide show app of some of my photography.",
+                "link" : "https://www.stevenlyles.net/playground/slideshow/index.html"
+            }
+        ]
+    }
+
+    // --------------------------------------------------------------------------
+    // 4: Create an instance of the widget passing container id and configuration
+    // --------------------------------------------------------------------------
+    let menu_widget = new WebWidgetMenuList("menu-box", config);
+
+    $(document).ready(function() {
+        //----------------------------
+        // Handle button hover changes
+        $( ".choice" ).hover( function() {
+            menu_widget.hover_in(this.id);
+        }, function() {
+            menu_widget.hover_out(this.id);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--
+Created by Steven M. Lyles for 4-I Designs
+-->
+<html>
+  <head>
+    <title>Vertical Indicator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      body { 
+        background: black; 
+        font: 400 22px/1.5 "Roboto", sans-serif;
+        color     : #88ccff;
+        margin    : 15px;
+        overflow  : hidden;
+      }
+      .size-button-container {
+        display: flex;
+        flex-direction: row;
+      }
+      .control-button {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        background: #5588ff;
+        text-align: center;
+        margin-right: 5px;
+        font-size: 0.6em;
+        cursor: pointer;
+        color: black;
+      }
+      .arrow-vert {
+        width        : 30px;
+        cursor       : pointer;
+        margin-bottom: 5px;
+        color        : #A9A9A9;
+        font-size    : 1.2em;
+        text-align: center;
+      }
+      .arrow-vert:hover { color: #99dd66; }
+      #up {}
+      #down {}
+      
+      .column {
+        width: 10px; /* this should match the width of the widget container */
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .row {
+        width: 580px;
+        height: 360px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        background: black;
+        border-radius: 20px;
+        padding-left: 20px;
+        border: 2px solid #5588ff;
+
+      }
+      .page-container {
+        width: 495px;
+        height: 290px;
+        background: #F7F3E8;
+        border-radius: 10px;
+        margin-left: 15px;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        justify-content: flex-start;
+        overflow:hidden;
+        position: relative;
+        padding: 20px;
+      }
+      .page {
+        width: 480px;
+        height: 280px;
+        padding-top: 5px;
+        margin-left: 10px;
+        margin-bottom: 25px;
+        font-size: 0.7em;
+        color: black;
+        background: #F7F3E8;
+        /*position: absolute;*/
+        flex-basis: 280px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+      #page-0 {  margin-top: 0px;  }
+      #page-1 {  } 
+      #page-2 { font-size: 0.6em; }
+      #page-3 {  }
+      #instance-txt { font-size: 0.8em; color: blue; font-family: courier;}
+      .code-html { font-size: 0.9em; color: blue; font-family: courier; }
+      .code-json { font-size: 0.9em; color: black; font-family: courier; }
+      .code-javascript { font-size: 0.9em; color: black; font-family: courier;}
+    </style>
+  </head>
+  <body>
+    
+    <div class="size-button-container">
+      <div class="control-button" id="lrg-vert">LRG</div>
+      <div class="control-button" id="med-vert">MED</div>
+      <div class="control-button" id="sml-vert">SML</div>
+    </div>
+    <br>
+    <div></div> <!--- Blank div to offset some bug throwing off the page alignment ??? -->
+
+    <div class="row">
+      <div class='column'>
+        <div id="up" class="arrow-vert">&#9650;</div>
+
+        <!-- Create the container for the vertical widget -->
+        <div id="indicator-container-vert"></div>
+
+        <div id="down" class="arrow-vert">&#9660;</div>
+      </div>
+      <div id='page-container' class="page-container">
+        <div id='page-0' class='page'>
+          <h2>Introduction</h2>
+          <b>Web Widgets</b> are a collection of reusable GUI objects built as Javascript classes based on the ES6 standard.
+          <br><br>
+          They can be incorporated into a web page with three steps. Use the indicator web widget to the left to see the steps used to create it.
+          <br><br>
+          Click on the up/down arrows to increment through pages or click on a indicator directly to jump to that page.
+        </div>
+        <div id='page-1' class='page'>
+          <h2>Create the Container</h2>
+          Create a div with a unique id that will be passed to the widget constructor.
+          <p class='code-html'>
+            &lt;div <span style='color:green;'>id</span>=<span style='color:#fd6565'>'indicator-container'</span>&gt;&lt;/div&gt;
+          </p>
+          NOTE:&nbsp; If this div is contained within another parent container, make sure the parent is large enough to hold it.<br><br>
+          Next, create the <b>JSON Attributes Object</b>.
+        </div>
+        <div id='page-2' class='page'>
+          <p class='code-json'>
+            <span style='color:blue;'>var</span> indicator_attr = { <br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"width_px"</span>&nbsp;&nbsp;&nbsp; : 10, <span style='color:#7A826A'>// horizontal dimension</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"height_px"</span>&nbsp;&nbsp; : 60, <span style='color:#7A826A'>// vertical dimension</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"spacer_px"</span>&nbsp;&nbsp; : 5, &nbsp;<span style='color:#7A826A'>// distance between indicators</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"num_sections"</span>: 4, &nbsp;<span style='color:#7A826A'>// number of indicators</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"orientation"</span> : <span style='color:#fd6565'>"column"</span>, <span style='color:#7A826A'>// column or row</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"type"</span>         : <span style='color:#fd6565'>"position"</span>, <span style='color:#7A826A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// position or meter</span><br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"color"</span>        : {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fd6565'>"background"</span> : <span style='color:#fd6565'>"#444a77"</span>, <span style='color:#7A826A'>// bottom layer of indicator</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fd6565'>"indicator"</span>&nbsp; : <span style='color:#fd6565'>"#99dd66"</span>, <span style='color:#7A826A'>// sliding indicator color</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#fd6565'>"cover_plate"</span>: <span style='color:#fd6565'>"black"</span>&nbsp;&nbsp;&nbsp; <span style='color:#7A826A'>// top layer (black or white)</span><br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;<span style='color:#fd6565'>"transition_time"</span> : 500 <span style='color:#7A826A'>// transition time in msecs</span><br>
+            };  <br>          
+          </p>
+        </div>
+        <div id='page-3' class='page'>
+          <h2>Indicator Widget Instance</h2>
+          Finally create an instance of the widget passing the container id and JSON attribute object.
+          <p class='code-javascript'>
+            <span style='color:blue;'>var</span> indicator = <span style='color:blue;'>new</span> IndicatorWidget(<span style='color:#fd6565'>"indicator-container"</span>, indicator_attr);            
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Include the indicator widget script -->
+    <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+    <script>
+      var transition_time = 500;
+      var current_page = 0;
+      
+      // -----------------------------------------------
+      // Define the vertical indicator widget attributes
+      // -----------------------------------------------
+      var indicator_vert_content = 
+      {
+        "width_px"     : 10, // horizontal dimension
+        "height_px"    : 60, // vertical dimension
+        "spacer_px"    : 5,  // distance between indicators 
+        "num_sections" : 4,
+        "orientation"  : "column", // column or row
+        "type"         : "position", // position or meter
+        "color"        :
+        {
+          "background" : "#444a77", // this color shows through holes in cover plate
+          "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
+          "cover_plate": "black"
+        },
+        "transition_time" : transition_time // indicator transition time in milliseconds
+      };
+      
+      // -------------------------------------------------------------------------
+      // Create an instance of the widget passing container id and attributes json
+      // -------------------------------------------------------------------------
+      var vert_widget = new IndicatorPosition("indicator-container-vert", indicator_vert_content);
+      
+      
+      //==================================================================================
+      $(document).ready(function() {
+        
+        //================================================================================
+        // Move vertical indicator with arrows
+        $(".arrow-vert").click( function() {
+          if (this.id === "up") {
+            if (current_page > 0) {
+              vert_widget.decrement_position();
+              current_page -= 1;
+            }
+          } else {
+            if (current_page < 3) {
+              vert_widget.increment_position();
+              current_page += 1;
+            }
+          }
+          $("#page-0").animate( {'margin-top' : -(current_page*310)}, 500);
+        });
+        
+        //================================================================================
+        // Move vertical indicator by clicking on position
+        $(vert_widget.hole_class).click( function() {
+          index = parseInt(this.id.split("-").slice(-1)[0]);
+          vert_widget.set_position_to(index);         
+          $("#page-0").animate( {'margin-top' : -(index*310)}, 500);
+          current_page = index;
+        });
+        
+      });
+      
+    </script>
+  </body>
+</html>
+

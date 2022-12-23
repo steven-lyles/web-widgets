@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+Interface based on the graphics of LCARS from Star Trek:
+L.C.A.R.S - Library Computer Access & Retrieval System
+N.A.N - Nimble Automation Network
+-->
+<html>
+<head>
+  <title>Nimble Automation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/layout_main.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/pui_logo.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="container-main">
+
+  <div class="container-header">
+    <div class="container-frames">
+      <div class="container-frame-left container-frame-left-top">
+        <div class="panel-logo">
+          <a href="" style="font-size: 8px;"></a>
+        </div>
+        <div class="menu-spacer"></div>
+        <div class="panel-time">
+          <div class="time-panel">
+            <span id="time"></span>
+            <div id="time-info" class="time-info">
+              <div id="ampm"></div>
+              <div id="zone"></div>
+            </div>
+          </div>
+          <div id="date"></div>
+        </div>
+      </div>
+      <div class="container-frame-right">
+        <div class="banner">NIMBLE AUTOMATION &#149; STATIONS ONLINE</div>
+        <div class="container-stations">
+          <div class="button-station active">Snoopy</div>
+          <div class="button-station">Woodstock</div>
+          <div class="button-station">Linus</div>
+          <div class="button-station">Charlie Brown</div>
+          <div class="button-station">Sally</div>
+          <div class="button-station">Lucy</div>
+          <div class="button-station">Schroeder</div>
+          <div class="button-station">Marcie</div>
+          <div class="button-station">Pig Pen</div>
+          <div class="button-station inactive">Peppermint Patty</div>
+        </div>
+        <div class="top-corner-bg">
+          <div class="top-corner"></div>
+        </div>
+        <div class="bar-panel">
+          <div class="bar-1"></div>
+          <div class="bar-2"></div>
+          <div class="bar-3"></div>
+          <div class="bar-4"></div>
+          <div class="bar-5"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container-content">
+    <div class="container-frames">
+      <div class="container-frame-left-middle">
+        <div class="panel-home">
+          <div id="button-home" class="button-content-container">
+            <span id="menu-home-txt" class="menu-text">HOME</span>
+            <img id="menu-home-icon" class="menu-icon" src="./assets/home.svg" alt="HOME"/>
+          </div>
+        </div>
+<!--        <div class="menu-spacer"></div>-->
+        <div class="panel-buttons">
+          <div id="button-station" class="button">
+            <div class="button-content-container">
+              <span id="menu-station-txt" class="menu-text">STATION</span>
+              <img id="menu-station-icon" class="menu-icon" src="./assets/stations.svg" alt="STATION"/>
+            </div>
+          </div>
+          <div id="button-automations" class="button">
+            <div class="button-content-container">
+              <span id="menu-automation-txt" class="menu-text">AUTOMATIONS</span>
+              <img id="menu-automation-icon" class="menu-icon" src="./assets/gear.svg" alt="AUTOMATIONS"/>
+            </div>
+          </div>
+          <div id="button-results" class="button">
+            <div class="button-content-container">
+              <span id="menu-results-txt" class="menu-text">RESULTS</span>
+              <img id="menu-results-icon" class="menu-icon" src="./assets/results2.svg" alt="RESULTS"/>
+            </div>
+          </div>
+        </div>
+        <div class="menu-spacer"></div>
+        <div class="panel-spacer"></div>
+      </div>
+      <div class="container-frame-right">
+        <div class="bar-panel">
+          <div class="bar-6"></div>
+          <div class="bar-7"></div>
+          <div class="bar-8"></div>
+          <div class="bar-9"></div>
+          <div class="bar-10"></div>
+        </div>
+        <div class="corner-bg">
+          <div class="corner"></div>
+        </div>
+
+
+        <div id="subject-bar" class="subject-bar">
+          <div class="container-subject-menu-buttons">
+            <div id="subject-menu-button-0" class="subject-menu-button" style="background-color: #99dd66;">WELCOME</div>
+            <div id="subject-menu-button-1" class="subject-menu-button">LOGIN</div>
+            <div id="subject-menu-button-2" class="subject-menu-button">LOGOUT</div>
+          </div>
+          <div class="subject-bar-spacer"></div>
+          <div id="subject-title-container" class="subject-title-container">
+            <div id="subject-title" class="subject-title">WELCOME</div>
+          </div>
+        </div>
+
+
+        <div id="content" class="container-subject">
+<!--          <div class="content">-->
+<!--            <%= yield %>-->
+<!--          </div>-->
+          <div id="welcome-message-info">
+            <p>Welcome User!</p>
+            <p>Nimble Automation Network - Snoopy Station</p>
+            <ul style="font-size: 18px">
+              <li>Targets    : 2</li>
+              <li>Tests      : 3</li>
+              <li>Reports    : 1</li>
+              <li>Collections: 1</li>
+            </ul>
+          </div>
+
+<!--          <iframe src="test_results.html" name="targetframe" frameborder="0" scrolling="auto" width="100%"></iframe>-->
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container-footer">
+    <div class="container-frames">
+      <div class="container-frame-left container-frame-left-bottom">
+      </div>
+      <div class="container-frame-right">
+        <div class="footer-spacer">
+          <div class="powered-by-text">POWERED BY</div>
+          <a class="powered-by-ruby" href="https://www.ruby-lang.org/en/" target="_blank">
+            <img id="ruby-icon" class="powered-by-icon" src="./assets/ruby_logo.png" alt="Ruby" width="22px">
+          </a>
+          <a class="powered-by-sinatra" href="https://sinatrarb.com" target="_blank">
+            <img id="sinatra-icon" class="powered-by-icon" src="./assets/sinatra_logo.png" alt="Sinatra" width="28px">
+          </a>
+          <a class="powered-by-html5" href="https://www.w3schools.com/html/" target="_blank">
+            <img id="html5-icon" class="powered-by-icon" src="./assets/html_5_logo.png" alt="HTML5" width="18px">
+          </a>
+          <a class="powered-by-css3" href="https://en.wikipedia.org/wiki/CSS" target="_blank">
+            <img id="css3-icon" class="powered-by-icon" src="./assets/css_3_logo.png" alt="HTML5" width="18px">
+          </a>
+          <a class="powered-by-jquery" href="https://jquery.com" target="_blank">
+            <img id="jquery-icon" class="powered-by-icon" src="./assets/jquery_logo.png" alt="HTML5" width="20px">
+          </a>
+        </div>
+        <div class="top-corner-bg">
+          <div class="top-corner"></div>
+        </div>
+        <div class="bar-panel">
+          <div class="bar-1"></div>
+          <div class="bar-11"></div>
+          <div class="bar-3"></div>
+          <div class="bar-4"></div>
+          <div class="bar-5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="js/layout_main.js"></script>
+</body>
+</html>

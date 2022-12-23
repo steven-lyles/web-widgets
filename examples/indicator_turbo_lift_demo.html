@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TurboLift</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      body { 
+        background: black; 
+        font: 400 22px/1.5 "Roboto", sans-serif;
+        color     : #88ccff;
+        margin    : 10px;
+        overflow  : hidden;
+      }
+      .control-button-container {
+        margin-top: 10px;
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+        justify-content: center;
+      }
+      .control-button {
+        width:  50px;
+        height: 50px;
+        border-radius: 30px;
+        border: 3px solid #0047AB;
+        box-shadow: none;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;  
+        justify-content: center;
+      }
+      .control-button:hover {cursor: pointer;}
+      .arrow { width: 30px; }
+      
+      .row {
+        width: 800px;
+        height: auto; 
+        display: flex;
+        flex-direction: row;
+        align-items: center;  
+        justify-content: flex-start;  
+      }
+      .column-pulse {
+        width: 120px; /* this must match the width of the widget container */
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 40px;
+      }
+      .row-pulse {
+        width: auto; 
+        height: 100px; /* this must match the height of the widget container */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 40px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    
+    <div class='row'>
+      
+      <div class="control-button-container">
+        <div id="button-1" class="control-button">
+          <img id="arrow-1" class='arrow' src="../assets/choose-up.svg" alt="U"/>
+        </div>
+        <div id="button-2" class="control-button">
+          <img id="arrow-2" class='arrow' src="../assets/choose-down.svg" alt="U"/>
+        </div>
+      </div>
+      
+      <div class='column-pulse'>
+        <div id="indicator-container-vert-pulse"></div>
+      </div>
+      
+    </div>
+    
+    <div class='row'>
+      
+      <div class="control-button-container">
+        <div id="button-3" class="control-button">
+          <img id="arrow-3" class='arrow' src="../assets/choose-left.svg" alt="U"/>
+        </div>
+        <div id="button-4" class="control-button">
+          <img id="arrow-4" class='arrow' src="../assets/choose-right.svg" alt="U"/>
+        </div>
+      </div>
+      
+      <div class='row-pulse'>
+        <div id="indicator-container-horz-pulse"></div>
+      </div>
+      
+    </div>
+
+
+    <!-- Include the indicator widget script -->
+    <script type="text/javascript" src="../ww_js/indicator_widget.js"></script>
+    <script>
+      const ON = true;
+      const OFF = false;
+      
+      var transition_time = 500;
+      var pulsing_vert = false;
+      var pulsing_horz = false;
+      
+      var buttons = { 
+        "button-0" : 
+        {
+          "id"         : 0, 
+          "active"     : true,
+          "name"       : "none",
+          "icon"       : "na",
+          "icon_hover" : "na"
+        },
+        "button-1" : 
+        {
+          "id"         : 1, 
+          "active"     : false,
+          "name"       : "up",
+          "icon"       : "../assets/choose-up.svg",
+          "icon_hover" : "../assets/choose-up-hover.svg"
+        },
+        "button-2" : 
+        {
+          "id"         : 2, 
+          "active"     : false,
+          "name"       : "down",
+          "icon"       : "../assets/choose-down.svg",
+          "icon_hover" : "../assets/choose-down-hover.svg"
+        },
+        "button-3" : 
+        {
+          "id"         : 3, 
+          "active"     : false,
+          "name"       : "left",
+          "icon"       : "../assets/choose-left.svg",
+          "icon_hover" : "../assets/choose-left-hover.svg"
+        },
+        "button-4" : 
+        {
+          "id"         : 1, 
+          "active"     : false,
+          "name"       : "right",
+          "icon"       : "../assets/choose-right.svg",
+          "icon_hover" : "../assets/choose-right-hover.svg"
+        }
+      };
+
+      var active = "button-0";
+      
+      // ------------------------------------
+      // Define the pulsing indicator widgets
+      // ------------------------------------
+     
+      // Pulse Vertical Attributes (aka TurboLift Deck)
+      var indicator_vert_pulse_content = 
+      {
+        "width_px"     : 120, // horizontal dimension
+        "height_px"    : 10, // vertical dimension
+        "spacer_px"    : 8, // distance between indicators (height for vertical, width for horizontal)
+        "num_sections" : 7,
+        "orientation"  : "column", // column or row
+        "type"         : "position", // position or meter
+        "color"        :
+        {
+          "background" : "#444a77", // this color shows through holes in cover plate
+          "indicator"  : "#99dd66", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container
+        },
+        "transition_time" : transition_time // indicator transition time in seconds
+      };
+      
+      // Instance (TurboLift Deck)
+      var vert_widget_pulse = new IndicatorWidget("indicator-container-vert-pulse", indicator_vert_pulse_content);
+      
+      // Pulse Horizontal Attributes (aka TurboList Aft/Forward)
+      var indicator_horz_pulse_content = 
+      {
+        "width_px"     : 10,  // horizontal dimension
+        "height_px"    : 117, // vertical dimension
+        "spacer_px"    : 8, // distance between indicators (height for vertical, width for horizontal)
+        "num_sections" : 7,
+        "orientation"  : "row", // column or row
+        "type"         : "position", // position or meter
+        "color"        :
+        {
+          "background" : "#444a77", // this color shows through holes in cover plate
+          "indicator"  : "#99dd66", // color of indicator that slides between bacground & cover plate
+          "cover_plate": "black"    // This should match the background of parent container
+        },
+        "transition_time" : transition_time // indicator transition time in seconds
+      };
+      
+      // Instance (TurboList Aft/Forward)
+      var horz_widget_pulse = new IndicatorWidget("indicator-container-horz-pulse", indicator_horz_pulse_content);
+      
+
+      function activate_button(id) {
+   //     console.log("Activating: " + id);
+        let index = id.split("-")[1];
+        $("#arrow-" + index).attr("src", buttons[id].icon_hover);
+        $("#" + id).css("border", "3px solid #5EACE9");
+        $("#" + id).css("box-shadow", "0px 0 15px #5EACE9");
+        buttons[id].active = true;
+      }
+      
+      function deactivate_button(id) {
+   //     console.log("Deactivating: " + id);
+        let index = id.split("-")[1];
+        $("#arrow-" + index).attr("src", buttons[id].icon);
+        $("#" + id).css("border", "3px solid #0047AB");
+        $("#" + id).css("box-shadow", "none");
+        buttons[id].active = false;
+      }
+      
+      //==================================================================================
+      $(document).ready(function() {
+        
+        $(".control-button").click( function() {
+
+          // Vertical indicator (Turbo Lift Deck)
+          if ( (this.id === "button-1") || (this.id === "button-2") ) {
+            
+            if (this.id === "button-1") {
+              if (buttons["button-1"].active) {
+                deactivate_button("button-1");    
+                vert_widget_pulse.pulse_down(OFF, "#99dd66");
+              } else {
+                vert_widget_pulse.pulse_down(ON, "#99dd66");
+                activate_button("button-1");
+                deactivate_button("button-2");
+              }
+            } else {
+              if (buttons["button-2"].active) {
+                deactivate_button("button-2");
+                vert_widget_pulse.pulse_back(OFF, "#99dd66");
+              } else {
+                vert_widget_pulse.pulse_back(ON, "#99dd66");
+                activate_button("button-2");
+                deactivate_button("button-1");
+              }
+            }
+
+          }
+          
+          // Horizontal indicator (Turbo Lift Forward/Aft)
+          if ( (this.id === "button-3") || (this.id === "button-4") ) {
+            
+            if (this.id === "button-3") {
+              if (buttons["button-3"].active) {
+                deactivate_button("button-3"); 
+                horz_widget_pulse.pulse_down(OFF, "#99dd66");
+              } else {
+                horz_widget_pulse.pulse_down(ON, "#99dd66");
+                activate_button("button-3");
+                deactivate_button("button-4");
+              }
+            } else {
+              if (buttons["button-4"].active) {
+                deactivate_button("button-4");
+                horz_widget_pulse.pulse_back(OFF, "#99dd66");
+              } else {
+                horz_widget_pulse.pulse_back(ON, "#99dd66");
+                activate_button("button-4");
+                deactivate_button("button-3");
+              }
+            }
+            
+          }
+
+        });
+        
+      });
+      
+    </script>
+  </body>
+</html>
