@@ -109,7 +109,7 @@ and open the template in the editor.
 
 
     <!-- Include the indicator widget script -->
-    <script type="text/javascript" src="../ww_js/indicator_widget.js"></script>
+    <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
     <script>
       const ON = true;
       const OFF = false;
@@ -186,7 +186,7 @@ and open the template in the editor.
       };
       
       // Instance (TurboLift Deck)
-      var vert_widget_pulse = new IndicatorWidget("indicator-container-vert-pulse", indicator_vert_pulse_content);
+      var vert_widget_pulse = new IndicatorPulse("indicator-container-vert-pulse", indicator_vert_pulse_content);
       
       // Pulse Horizontal Attributes (aka TurboList Aft/Forward)
       var indicator_horz_pulse_content = 
@@ -207,7 +207,7 @@ and open the template in the editor.
       };
       
       // Instance (TurboList Aft/Forward)
-      var horz_widget_pulse = new IndicatorWidget("indicator-container-horz-pulse", indicator_horz_pulse_content);
+      var horz_widget_pulse = new IndicatorPulse("indicator-container-horz-pulse", indicator_horz_pulse_content);
       
 
       function activate_button(id) {

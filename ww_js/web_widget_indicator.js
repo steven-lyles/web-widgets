@@ -403,6 +403,7 @@ class IndicatorMeter extends WebWidgetIndicator {
   }
 } // class IndicatorMeter
 
+
 //========================================================================================
 // Inherits from WebWidgetIndicator and extends functionality to create a widget that
 // implements a basic slider
