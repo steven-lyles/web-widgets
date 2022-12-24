@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Web Widgets: Button Menu List Demo
+-->
+<html>
+<head>
+  <title>Accordion Widget Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          font: 400 22px/1.5 "Roboto", sans-serif;
+          /*margin : 15px;*/
+          margin-left: 20px;
+          color: #88bbff;
+      }
+
+      /* Widget Specific Styles */
+
+      a {
+          text-decoration: none;
+          outline: 0;
+      }
+      .menu-box {
+          background-color: black;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          height: auto;
+          width: 100%;
+          padding-top: 10px;
+      }
+      .choice {
+          display: flex;
+          flex-direction: row;
+          background: black;
+          width: 1000px;
+          height: 34px;
+          float: left;
+          cursor: pointer;
+      }
+      .choice:hover { cursor, pointer; }
+      .button {
+          background-color: #ff8833;
+          color: black;
+          width: 30%;
+          height: 30px;
+          font-size: 0.7em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-top: 2px solid #ff8833;
+          border-bottom: 2px solid #ff8833;
+          border-left: 2px solid #ff8833;
+          border-radius: 25px 0px 0px 25px;
+      }
+      .desc {
+          background-color: #444a77;
+          color: #88bbff;
+          width: 70%;
+          height: 30px;
+          font-size: 0.6em;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          border-top: 2px solid #444a77;
+          border-bottom: 2px solid #444a77;
+          border-right: 2px solid #444a77;
+          border-radius: 0px 25px 25px 0px;
+          padding-left: 20px;
+      }
+      .selection-content-container {
+          background-color: black;
+          margin-left: 15px;
+          display: none;
+          width: 970px;
+          height: auto;
+      }
+  </style>
+</head>
+<body>
+<!--| ------------------------------------------- |-->
+<!--| 1: Create a container to hold the menu list |-->
+<!--| ------------------------------------------- |-->
+<div id="menu-box" class="menu-box">
+  <div id="selection_0" class="choice">
+    <div id="selection_0_button" class="button page-button">Vertical Indicator</div>
+    <div id="selection_0_desc" class="desc">Sliding indicator in vertical configuration</div>
+  </div>
+  <div id="selection-content-container_0" class="selection-content-container">
+    <embed id="demo_page_0" type="text/html" src="indicator_vertical_demo.html" width="680" height="450" style="background: black;">
+  </div>
+
+  <div id="selection_1" class="choice">
+    <div id="selection_1_button" class="button page-button">Horizonal Indicator</div>
+    <div id="selection_1_desc" class="desc">Sliding indicator in horizontal configuration</div>
+  </div>
+  <div id="selection-content-container_1" class="selection-content-container">
+    <embed id="demo_page_1" type="text/html" src="indicator_horizontal_demo.html" width="780" height="550" style="background: black;">
+  </div>
+
+  <div id="selection_2" class="choice">
+    <div id="selection_2_button" class="button page-button">Turbo Lift</div>
+    <div id="selection_2_desc" class="desc">Demonstrates repeating pulse configuration</div>
+  </div>
+  <div id="selection-content-container_2" class="selection-content-container">
+    <embed id="demo_page_2" type="text/html" src="indicator_turbo_lift_demo.html" width="680" height="300" style="background: black;">
+  </div>
+
+  <div id="selection_3" class="choice">
+    <div id="selection_3_button" class="button page-button">Meter</div>
+    <div id="selection_3_desc" class="desc">Examples configured as a meter</div>
+  </div>
+  <div id="selection-content-container_3" class="selection-content-container">
+    <embed id="demo_page_3" type="text/html" src="indicator_meter_demo.html" width="680" height="550" style="background: black;">
+  </div>
+
+  <div id="selection_4" class="choice">
+    <div id="selection_4_button" class="button page-button">Progress Bar</div>
+    <div id="selection_4_desc" class="desc">Examples configured as a progress bar</div>
+  </div>
+  <div id="selection-content-container_4" class="selection-content-container">
+    <embed id="demo_page_4" type="text/html" src="indicator_progress_demo.html" width="680" height="260" style="background: black;">
+  </div>
+
+  <div id="selection_5" class="choice">
+    <div id="selection_5_button" class="button page-button">Cylon Eye</div>
+    <div id="selection_5_desc" class="desc">Demonstrates bouncing pulse configuration</div>
+  </div>
+  <div id="selection-content-container_5" class="selection-content-container">
+    <embed id="demo_page_5" type="text/html" src="indicator_cylon_eye_demo.html" width="680" height="60" style="background: black;">
+  </div>
+
+</div>
+
+<!--| -----------------------------|-->
+<!--| 2: Source the menu list code |-->
+<!--| -----------------------------|-->
+<!--<script type="text/javascript" src="../ww_js/web_widget_button_list.js"></script>-->
+<script>
+    //----------------------------------------------
+    // 3: Create the configuration json for the menu
+    //----------------------------------------------
+    let config = {
+        "accordion" : true,
+        "accordion-content": {
+        },
+        "background_color" : "black",
+        "width" : "1000px",
+        "description_font_color" : "#88bbff",
+        "button" : {
+            "background_color" : "#ff8833",
+            "font_color" : "black",
+            "font_size" : "0.7em",
+            "hover_text_color" : "white",
+            "width" : "250px",
+            "height" : "30px"
+        },
+        "description" : {
+            "background_color" : "#444a77",
+            "font_color" : "#88bbff",
+            "font_size" : "0.6em",
+            "hover_text_color" : "white",
+            "width" : "550px",
+            "height": "30px",
+            "outline_color" : "#444a77"
+        },
+        "items" : [
+            {
+                "name" : "My Color Collection",
+                "desc" : "A listing of color palettes with RGB and hex values that I use for reference.",
+                "link" : "https://www.stevenlyles.net/playground/colors/index.html"
+            },
+            {
+                "name" : "Imagine Colors",
+                "desc" : "A simple web app for analyzing the most common colors in an image.",
+                "link" : "https://www.stevenlyles.net/playground/imagine/index.html"
+            },
+            {
+                "name" : "A.N.N.A.",
+                "desc" : "Auto-associative Neural Network Analyzer - visually shows weights as a network trains.",
+                "link" : "https://www.stevenlyles.net/playground/anna/index.html"
+            },
+            {
+                "name" : "Slide Show",
+                "desc" : "A full-screen slide show app of some of my photography.",
+                "link" : "https://www.stevenlyles.net/playground/slideshow/index.html"
+            }
+        ]
+    }
+
+    // --------------------------------------------------------------------------
+    // 4: Create an instance of the widget passing container id and configuration
+    // --------------------------------------------------------------------------
+    // let menu_widget = new WebWidgetMenuList("menu-box", config);
+
+    $(document).ready(function() {
+
+        var transition_time = 500;
+        var expanded = [ false, false, false, false, false ];
+
+        //----------------------------
+        // Handle button hover changes
+        $( ".choice" ).hover( function() {
+            // menu_widget.hover_in(this.id);
+            $("#" + this.id + "_button").css( "color", config["button"]["hover_text_color"] );
+            $("#" + this.id + "_desc").css( "color", config["description"]["hover_text_color"] );
+        }, function() {
+            // menu_widget.hover_out(this.id);
+            $("#" + this.id + "_button").css( "color", config["button"]["font_color"] );
+            $("#" + this.id + "_desc").css( "color", config["description"]["font_color"] );
+        });
+
+        //--------------------------------------------------------------------------------
+        $( ".choice" ).click( function() {
+            let index = parseInt(this.id.split("_")[1]);
+            let count = $('.selection-content-container').length;
+
+            for (let i = 0; i < count; i++) {
+                if (i == index) {
+                    $("#selection-content-container_" + i).slideToggle("slow");
+                }
+                else {
+                    $("#selection-content-container_" + i).slideUp("medium");
+                }
+            }
+
+        });
+    });
+</script>
+</body>
+</html>
