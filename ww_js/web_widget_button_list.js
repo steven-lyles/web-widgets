@@ -1,5 +1,5 @@
 /*
- * Web Widgets - Button Menu List
+ * Web Widgets - Button List
  * Created by Steven M. Lyles
  */
 'use strict';
@@ -11,39 +11,35 @@ class WebWidgetMenuList {
     //===================================================================================
     constructor(container_id, config) {
         this.set_css(config);
-        // this.setup_list(container_id, config);
-        // this.set_css(config);
+        this.setup_list(container_id, config);
+        this.set_css(config);
     }
 
     //===================================================================================
     // Iterate over item content list and populate container
     setup_list(container_id, config) {
         $.each(config["items"], function( index, value ) {
-            // $("#" + container_id).append("<a id='link_" + index + "' href='" + value["link"] + "'></a>");
-            $("#" + container_id).append("<div id='selection_" + index + "' class='choice'></div>");
-            $("#selection_" + index).append("<div id='selection_" + index + "_button' class='button'>" + value["name"] + "</div>");
-            $("#selection_" + index).append("<div id='selection_" + index + "_desc' class='desc'>" + value["desc"] + "</div>");
+            if (config["accordion"]) {
+                $("#" + container_id).append("<div id='selection_" + index + "' class='choice'></div>");
+                $("#selection_" + index).append("<div id='selection_" + index + "_button' class='button'>" + value["name"] + "</div>");
+                $("#selection_" + index).append("<div id='selection_" + index + "_desc' class='desc'>" + value["desc"] + "</div>");
 
-            $("#" + container_id).append("<div id='selection-content-container_" + index + "' className='selection-content-container'></div>");
-            $("#selection-content-container_" + index).append("<embed id='demo_page_" + index + "' type='text/html' src='indicator_vertical_demo.html' width='680px' height='450px'>");
+                $("#" + container_id).append("<div id='selection-content-container_" + index + "' class='selection-content-container'></div>");
+                let embedded_page = "";
+                embedded_page += "<embed id='selection_page_" + index;
+                embedded_page += "' type='text/html' ";
+                embedded_page += "src='" + value["link"] + "' ";
+                embedded_page += "width='" + value["width"] + "' height='" + value["height"] + "'>";
+                console.log(embedded_page);
+                $("#selection-content-container_" + index).append(embedded_page);
 
+            } else {
+                $("#" + container_id).append("<a id='link_" + index + "' href='" + value["link"] + "'></a>");
+                $("#" + container_id).append("<div id='selection_" + index + "' class='choice'></div>");
+                $("#selection_" + index).append("<div id='selection_" + index + "_button' class='button'>" + value["name"] + "</div>");
+                $("#selection_" + index).append("<div id='selection_" + index + "_desc' class='desc'>" + value["desc"] + "</div>");
 
-            // let txt = "";
-            // // txt += "<a id='link_" + index + "' href='" + value["link"] + "'>\n";
-            // txt += "  <div id='selection_" + index + "' class='choice'>\n";
-            // txt += "    <div id='selection_" + index + "_button' class='button'>" + value["name"] + "</div>\n";
-            // txt += "    <div id='selection_" + index + "_desc' class='desc'>" + value["desc"] + "</div>\n";
-            // txt += "  </div>\n";
-            // // txt += "</a>\n";
-            // console.log(txt);
-            //
-            // txt = "";
-            // txt += "<div id='selection-content-container_" + index + "' className='selection-content-container'>\n";
-            // txt += "  <embed id='demo_page_" + index + "' type='text/html' src='indicator_vertical_demo.html'>\n";
-            // txt += "</div>\n";
-            // console.log(txt);
-            //
-            // console.log("");
+            }
         });
     }
 
@@ -113,6 +109,7 @@ class WebWidgetMenuList {
 
 //========================================================================================
 $(document).ready(function() {
+
     //----------------------------
     // Handle button hover changes
     $( ".choice" ).hover( function() {
