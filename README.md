@@ -3,6 +3,6 @@ A collection of JavaScript objects for easily creating web page interface widget
 
 ## Description
 
-This project is the results of another project (not yet in GitHub) that is an [LCARS](https://en.wikipedia.org/wiki/LCARS) based web interface. These widgets are done in the LCARS style and meant to be components of that interface.
+This project is the results of another project (not yet in GitHub) that is an [LCARS](https://en.wikipedia.org/wiki/LCARS) based web interface. These widgets are done in the LCARS style and are meant to be components of that interface.
 
-This is work in progress. Some of the code submitted still needs refactoring and there is more code to add.
+This is work in progress. There is still much work to be done, but you can preview a live demo online of the progress so far at: [Web-Widgets](https://www.stevenlyles.net/playground/web_widgets/)
