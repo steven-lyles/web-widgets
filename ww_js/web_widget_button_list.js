@@ -34,8 +34,8 @@ class WebWidgetMenuList {
                 $("#selection-content-container_" + index).append(embedded_page);
 
             } else {
-                $("#" + container_id).append("<a id='link_" + index + "' href='" + value["link"] + "'></a>");
-                $("#" + container_id).append("<div id='selection_" + index + "' class='choice'></div>");
+                $("#" + container_id).append("<a id='link_" + index + "' href='" + value["link"] + "' target='_blank'></a>");
+                $("#link_" + index).append("<div id='selection_" + index + "' class='choice'></div>");
                 $("#selection_" + index).append("<div id='selection_" + index + "_button' class='button'>" + value["name"] + "</div>");
                 $("#selection_" + index).append("<div id='selection_" + index + "_desc' class='desc'>" + value["desc"] + "</div>");
 
