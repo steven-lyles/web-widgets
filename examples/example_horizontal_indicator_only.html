@@ -24,20 +24,20 @@ https://www.stevenlyles.net
 </head>
 <body>
 
-<!-- ---------------------------------------------------- -->
-<!-- Step 1: Create the container for the vertical widget -->
-<!-- ---------------------------------------------------- -->
-<div id="indicator-container-vert"></div>
+<!-- -----------------------------------------------==----- -->
+<!-- Step 1: Create the container for the horizontal widget -->
+<!-- ------------------------------------------------------ -->
+<div id="indicator-container-horz"></div>
 
 <!-- ------------------------------------------- -->
 <!-- Step 2: Include the indicator widget script -->
 <!-- ------------------------------------------- -->
 <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
 <script>
-    // -------------------------------------------------------
-    // Step 3: Define the vertical indicator widget attributes
-    // -------------------------------------------------------
-    var indicator_vert_content =
+    // ----------------------------------------------------------
+    // Step 3: Define the horizontal indicator widget attributes
+    // ----------------------------------------------------------
+    var indicator_horz_content =
         {
             // make width_px & height_px match to get round indicators
             "width_px"     : 20, // horizontal dimension
@@ -57,7 +57,7 @@ https://www.stevenlyles.net
     // ---------------------------------------------------------------------------------
     // Step 4: Create an instance of the widget passing container id and attributes json
     // ---------------------------------------------------------------------------------
-    let indicator_widget = new IndicatorPositionOnly("indicator-container-vert", indicator_vert_content);
+    let indicator_widget = new IndicatorPositionOnly("indicator-container-horz", indicator_horz_content);
 
 </script>
 </body>

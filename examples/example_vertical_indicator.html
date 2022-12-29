@@ -39,13 +39,19 @@ https://www.stevenlyles.net
     // -------------------------------------------------------
     let indicator_vert_content =
         {
-            "width_px"     : 15, // horizontal dimension
+            "width_px"     : 10, // horizontal dimension
             "height_px"    : 60, // vertical dimension
             "spacer_px"    : 5,  // distance between indicators
             "num_sections" : 4,
             "orientation"  : "column", // column or row
             "type"         : "position", // position or meter
-            "arrow_ratio"  : 1.5, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+            "arrow"  :  {
+                "aspect" : 2,  // how much the arrow length is greater than width
+                "ratio" : 0.8, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+                "rounded" : false, // true - base of arrow will be rounded; false - square
+                "color" : "#A9A9A9", // color of arrow (background is same as container)
+                "hover" : "#99dd66"
+            },
             "color"        :
                 {
                     "background" : "#444a77", // this color shows through holes in cover plate

@@ -7,6 +7,18 @@
 let orientation = "";
 let num_sections = 0;
 
+let vert_arrow_size = 0;
+let vert_arrow_color = "blue";
+let vert_arrow_hover = "green";
+let vert_arrow_ratio = 1;
+let vert_arrow_aspect = 1;
+
+let horz_arrow_size = 0;
+let horz_arrow_color = "blue";
+let horz_arrow_hover = "green";
+let horz_arrow_ratio = 1;
+let horz_arrow_aspect = 1;
+
 //======================================================================================
 function gen_unique_id_from(str) {
   var hash = Math.random() * (10 - 0) + 0;
@@ -62,22 +74,6 @@ class WebWidgetIndicator {
     // this.build_widget(container_id);
     this.hole_class = ".hole-" + this.widget_id; 
   }
-  
-  //======================================================================================
-  // gen_unique_id_from(str) {
-  //   var hash = Math.random() * (10 - 0) + 0;
-  //   var i = 0;
-  //   var char = "";
-  //
-  //   if (str.length !== 0) {
-  //     for (i = 0; i < str.length; i++) {
-  //         char = str.charCodeAt(i);
-  //         hash = ((hash << 5) - hash) + char;
-  //         hash = hash & hash;
-  //     }
-  //   }
-  //   return Math.abs(hash);
-  // }
   
   //======================================================================================
   // Allow user to dynamically update to new widget attributes
@@ -264,42 +260,75 @@ class IndicatorPosition extends WebWidgetIndicator {
   constructor(container_id, content) {
     super(container_id, content);
     this.widget_id = gen_unique_id_from(container_id);
+
+    vert_arrow_size = content.width_px * content.arrow.ratio;
+    vert_arrow_color = content.arrow.color;
+    vert_arrow_hover = content.arrow.hover;
+    vert_arrow_ratio = content.arrow.ratio;
+    vert_arrow_aspect = content.arrow.aspect
+
+    horz_arrow_size = (content.width_px/2) * content.arrow.ratio;
+    horz_arrow_color = content.arrow.color;
+    horz_arrow_hover = content.arrow.hover;
+    horz_arrow_ratio = content.arrow.ratio;
+    horz_arrow_aspect = content.arrow.aspect
+
     this.build_widget(container_id, content)
   }
 
-  set_css_for_container(id) {
-    if (this.content.orientation == "column") {
-      $("#" + id).css("width", this.content.width_px * this.content.arrow_ratio + "px");
-      $("#" + id).css("height", "auto");
-    } else {
-      $("#" + id).css("width", "200px");
-      $("#" + id).css("height", this.content.height_px + "px");
-    }
+  //======================================================================================
+  // set_css_for_container(id) {
+  //   if (this.content.orientation == "column") {
+  //     $("#" + id).css("width", `${this.content.width_px}px`);
+  //     $("#" + id).css("height", "auto");
+  //   } else {
+  //     $("#" + id).css("width", "auto");
+  //     $("#" + id).css("height", this.content.height_px + "px");
+  //   }
+  //
+  //   $("#" + id).css("background", this.content.color.cover_plate);
+  //   $("#" + id).css("display", "flex");
+  //   $("#" + id).css("flex-direction", this.content["orientation"]);
+  //   $("#" + id).css("align-items", "center");
+  //   $("#" + id).css("justify-content", "center");
+  // }
 
-    $("#" + id).css("background", this.content.color.cover_plate);
-    $("#" + id).css("display", "flex");
-    $("#" + id).css("flex-direction", this.content["orientation"]);
-    $("#" + id).css("align-items", "center");
-    $("#" + id).css("justify-content", "center");
+  //======================================================================================
+  set_css_vert() {
+    $(".nav-arrow-up").css("border-left", `${vert_arrow_size}px solid transparent`);
+    $(".nav-arrow-up").css("border-right", `${vert_arrow_size}px solid transparent`);
+    $(".nav-arrow-up").css("border-bottom", `${vert_arrow_size*this.content.arrow.aspect*1.5}px solid ${vert_arrow_color}`);
+    $(".nav-arrow-up").css("margin-bottom", `${this.content.spacer_px*2}px`);
+    if (this.content.arrow.rounded) { $(".nav-arrow-up").css("border-radius", "50%"); }
 
-    if (this.content.orientation == "column") {
-      $(".arrow-vert").css("width", this.content.width_px * this.content.arrow_ratio + "px");
-      $(".arrow-vert").css("cursor", "pointer");
-      $(".arrow-vert").css("color", "#A9A9A9");
-      $(".arrow-vert").css("font-size", "0.9em");
-      $(".arrow-vert").css("text-align", "center");
-    } else {
-      $(".arrow-horz").css("height", "26px");
-      $(".arrow-horz").css("cursor", "pointer");
-    }
-
+    $(".nav-arrow-down").css("border-left", `${vert_arrow_size}px solid transparent`);
+    $(".nav-arrow-down").css("border-right",`${vert_arrow_size}px solid transparent`);
+    $(".nav-arrow-down").css("border-top", `${vert_arrow_size*this.content.arrow.aspect*1.5}px solid ${vert_arrow_color}`); // cadet blue: #32557f
+    $(".nav-arrow-down").css("margin-top", `${this.content.spacer_px*2}px`);
+    if (this.content.arrow.rounded) { $(".nav-arrow-down").css("border-radius", "50%"); }
   }
 
+  //======================================================================================
+  set_css_horz() {
+    $(".nav-arrow-left").css("border-top", `${horz_arrow_size}px solid transparent`);
+    $(".nav-arrow-left").css("border-bottom", `${horz_arrow_size}px solid transparent`);
+    $(".nav-arrow-left").css("border-right", `${horz_arrow_size*this.content.arrow.aspect*1.5}px solid ${horz_arrow_color}`);
+    $(".nav-arrow-left").css("margin-right", `${this.content.spacer_px*2}px`);
+    if (this.content.arrow.rounded) { $(".nav-arrow-left").css("border-radius", "50%"); }
+
+    $(".nav-arrow-right").css("border-top", `${horz_arrow_size}px solid transparent`);
+    $(".nav-arrow-right").css("border-bottom",`${horz_arrow_size}px solid transparent`);
+    $(".nav-arrow-right").css("border-left", `${horz_arrow_size*this.content.arrow.aspect*1.5}px solid ${horz_arrow_color}`); // cadet blue: #32557f
+    $(".nav-arrow-right").css("margin-left", `${this.content.spacer_px*2}px`);
+    if (this.content.arrow.rounded) { $(".nav-arrow-right").css("border-radius", "50%"); }
+  }
+
+  //======================================================================================
   build_widget(container_id, content) {
     if (this.content.orientation == "column") {
-      $("#" + container_id).append("<div id='up' class='arrow-vert'><img src='../assets/choose-up.svg' alt='&#9650;'></div>");
+      $("#" + container_id).append("<div id='up-" + this.widget_id + "' class='nav-arrow-up'></div>");
     } else {
-      $("#" + container_id).append("<div id='left' class='arrow-horz'>&#10094;</div>");
+      $("#" + container_id).append("<div id='left-" + this.widget_id + "' class='nav-arrow-left'></div>");
     }
 
     // Build & style the background
@@ -324,13 +353,29 @@ class IndicatorPosition extends WebWidgetIndicator {
     this.set_css_for_holes();
 
     if (this.content.orientation == "column") {
-      $("#" + container_id).append("<div id='down' class='arrow-vert'>&#9660;</div>");
+      $("#" + container_id).append("<div id=down-" + this.widget_id + "' class='nav-arrow-down'></div>");
+      this.set_css_vert();
     } else {
-      $("#" + container_id).append("<div id='right' class='arrow-horz'>&#10095;</div>");
+      $("#" + container_id).append("<div id=right-" + this.widget_id + "' class='nav-arrow-right'></div>");
+      this.set_css_horz();
     }
 
+    if (this.content.orientation === "column") {
+      this.container_height = (content.height_px * content.num_sections) +
+          ((content.num_sections-1) * content.spacer_px) +
+          (vert_arrow_size*this.content.arrow.aspect*1.5)*2 +
+          this.content.spacer_px*4;
 
-    this.set_css_for_container(container_id);
+      $("#" + container_id).css("height", this.container_height + "px");
+
+    } else {
+      this.container_width = (content.width_px * content.num_sections) +
+          ((content.num_sections-1) * content.spacer_px)+
+          (horz_arrow_size*this.content.arrow.aspect*1.5)*2 +
+          this.content.spacer_px*4;
+
+      $("#" + container_id).css("width", this.container_width + "px");
+    }
   }
   
 } // class IndicatorPosition
@@ -537,7 +582,6 @@ class IndicatorMeter extends WebWidgetIndicator {
   }
 } // class IndicatorMeter
 
-
 //========================================================================================
 // Inherits from WebWidgetIndicator and extends functionality to create a widget that
 // implements a basic slider
@@ -546,7 +590,6 @@ class IndicatorSlider extends WebWidgetIndicator {
   //======================================================================================
   constructor(container_id, content) {
     super(container_id, content); // call the super class constructor and pass in parameters
-
   }
 
 } // class IndicatorSlider
@@ -557,7 +600,7 @@ $(document).ready(function() {
 
   let current_index = 0;
 
-  //================================================================================
+  //======================================================================================
   // Move vertical indicator by clicking on position
   $(".hole").click( function() {
     let index = parseInt(this.id.split("-")[2]);
@@ -608,36 +651,71 @@ $(document).ready(function() {
 
   //================================================================================
   // Move vertical indicator with arrows
-  $(".arrow-vert").click( function() {
-    if (this.id === "up") {
-      if (current_index > 0) {
-        indicator_widget.decrement_position();
-        current_index -= 1;
-      }
-    } else {
-      if (current_index < num_sections-1) {
-        indicator_widget.increment_position();
-        current_index += 1;
-      }
+  $(".nav-arrow-up").click( function() {
+    if (current_index > 0) {
+      indicator_widget.decrement_position();
+      current_index -= 1;
     }
-    // $("#page-0").animate( {'margin-top' : -(current_index*310)}, 500);
+
+    // callback from parent page here
+  });
+
+  $(".nav-arrow-down").click( function() {
+    if (current_index < num_sections-1) {
+      indicator_widget.increment_position();
+      current_index += 1;
+    }
+    // callback from parent page here
   });
 
   //================================================================================
   // Move horizontal indicator with arrows
-  $(".arrow-horz").click( function() {
-    if (this.id === "left") {
-      if (current_index > 0) {
-        indicator_widget.decrement_position();
-        current_index -= 1;
-      }
-    } else {
-      if (current_index < num_sections-1) {
-        indicator_widget.increment_position();
-        current_index += 1;
-      }
+  $(".nav-arrow-left").click( function() {
+    if (current_index > 0) {
+      indicator_widget.decrement_position();
+      current_index -= 1;
     }
-    // $("#slide-0").animate( {'margin-left' : -(current_index*620)}, 500);
+    // callback from parent page here
+  });
+
+  $(".nav-arrow-right").click( function() {
+    if (current_index < num_sections-1) {
+      indicator_widget.increment_position();
+      current_index += 1;
+    }
+    // callback from parent page here
+  });
+
+  $(".nav-arrow-up").hover(function(){
+    $(this).css("border-bottom", `${vert_arrow_size*vert_arrow_aspect*1.5}px solid ${vert_arrow_hover}`);
+    $(this).css("cursor", "pointer");
+  }, function(){
+    $(this).css("border-bottom", `${vert_arrow_size*vert_arrow_aspect*1.5}px solid ${vert_arrow_color}`);
+    $(this).css("cursor", "default");
+  });
+
+  $(".nav-arrow-down").hover(function(){
+    $(this).css("border-top", `${vert_arrow_size*vert_arrow_aspect*1.5}px solid ${vert_arrow_hover}`);
+    $(this).css("cursor", "pointer");
+  }, function(){
+    $(this).css("border-top", `${vert_arrow_size*vert_arrow_aspect*1.5}px solid ${vert_arrow_color}`);
+    $(this).css("cursor", "default");
+  });
+
+  $(".nav-arrow-left").hover(function(){
+    $(this).css("border-right", `${horz_arrow_size*vert_arrow_aspect*1.5}px solid ${horz_arrow_hover}`);
+    $(this).css("cursor", "pointer");
+  }, function(){
+    $(this).css("border-right", `${horz_arrow_size*vert_arrow_aspect*1.5}px solid ${horz_arrow_color}`);
+    $(this).css("cursor", "default");
+  });
+
+  $(".nav-arrow-right").hover(function(){
+    $(this).css("border-left", `${horz_arrow_size*vert_arrow_aspect*1.5}px solid ${horz_arrow_hover}`);
+    $(this).css("cursor", "pointer");
+  }, function(){
+    $(this).css("border-left", `${horz_arrow_size*vert_arrow_aspect*1.5}px solid ${horz_arrow_color}`);
+    $(this).css("cursor", "default");
   });
 
 });
