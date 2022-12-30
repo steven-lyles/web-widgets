@@ -1,4 +1,13 @@
-<html>
+<!--
+ * ======================================================================================
+ * Web Widgets: Demo - Navigation Arrows Example
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Nav Arrow Demo</title>
   <meta charset="UTF-8">
@@ -20,7 +29,19 @@
           font-size: 0.6em;
           width: 200px;
       }
-      #txt_0 { color: yellow; } /* initialize sample selection */
+      .list {
+          background-color: darkslateblue;
+          width: 40px;
+          text-align: center;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          font-size: 1.2em;
+      }
+      p {  }
+      #txt_0 {
+          background-color: yellow;
+          color: red;
+      } /* initialize sample selection */
 
       .horz-list {
           display: flex;
@@ -48,10 +69,12 @@
   <!-- This list of strings is a sample target; The nav arrows -->
   <!-- will be placed before (up) and after (down) this target -->
   <!-- ------------------------------------------------------- -->
-  <p id="txt_0">This is the first choice</p>
-  <p id="txt_1">This is the second choice</p>
-  <p id="txt_2">This is the third choice</p>
-  <p id="txt_3">This is the fourth choice</p>
+  <div class="list">
+    <div id="txt_0">A</div>
+    <div id="txt_1">B</div>
+    <div id="txt_2">C</div>
+    <div id="txt_3">D</div>
+  </div>
 </div>
 <br>
 <hr>
@@ -119,8 +142,10 @@
         if (change) {
             for (let i = 0; i < 4; i++) {
                 if (vert_index == i) {
-                    $("#txt_" + i).css("color", "yellow");
+                    $("#txt_" + i).css("background-color", "yellow");
+                    $("#txt_" + i).css("color", "red");
                 } else {
+                    $("#txt_" + i).css("background-color", "darkslateblue");
                     $("#txt_" + i).css("color", "#88ccff");
                 }
             }
@@ -156,6 +181,46 @@
     let up_arrow = new NavArrowsVertical("vert-nav", config_vert, change_vert_selection);
     let down_arrow = new NavArrowsHorizontal("horz-nav", config_horz, change_horz_selection);
 
+    //=======================================================================================
+    $(document).ready(function() {
+
+        $(".nav-arrow-up").click( function() { change_vert_selection("up") });
+        $(".nav-arrow-down").click( function() { callchange_vert_selectionbackVert("down") });
+        $(".nav-arrow-left").click( function() { change_horz_selection("left") });
+        $(".nav-arrow-right").click( function() { change_horz_selection("right") });
+
+        $(".nav-arrow-up").hover(function(){
+            $(this).css("border-bottom", `${size_vert*3}px solid ${hover_vert}`);
+            $(this).css("cursor", "pointer");
+        }, function(){
+            $(this).css("border-bottom", `${size_vert*3}px solid ${color_vert}`);
+            $(this).css("cursor", "default");
+        });
+
+        $(".nav-arrow-down").hover(function(){
+            $(this).css("border-top", `${size_vert*3}px solid ${hover_vert}`);
+            $(this).css("cursor", "pointer");
+        }, function(){
+            $(this).css("border-top", `${size_vert*3}px solid ${color_vert}`);
+            $(this).css("cursor", "default");
+        });
+
+        $(".nav-arrow-left").hover(function(){
+            $(this).css("border-right", `${size_horz*3}px solid ${hover_horz}`);
+            $(this).css("cursor", "pointer");
+        }, function(){
+            $(this).css("border-right", `${size_horz*3}px solid ${color_horz}`);
+            $(this).css("cursor", "default");
+        });
+
+        $(".nav-arrow-right").hover(function(){
+            $(this).css("border-left", `${size_horz*3}px solid ${hover_horz}`);
+            $(this).css("cursor", "pointer");
+        }, function(){
+            $(this).css("border-left", `${size_horz*3}px solid ${color_horz}`);
+            $(this).css("cursor", "default");
+        });
+    });
 </script>
 </body>
 </html>

@@ -1,0 +1,109 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Navigation Arrows - Demo
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nav Arrow Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+      body {
+          background: black;
+          margin: 20px;
+      }
+      .target {
+          width: 25px;
+          height: 25px;
+          background-color: #7788ff;
+          border-radius: 50%;
+      }
+  </style>
+</head>
+<body>
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- Step 1: Create a container that will hold the nav arrows and the target -->
+<!-- ----------------------------------------------------------------------- -->
+<div id="vert-nav" class="vert-nav">
+  <!-- Up arrow div will be placed here -->
+  <div class="target">
+    <!-- ----------------------------------------------- -->
+    <!-- Target of the nav arrows. The arrows will be    -->
+    <!-- placed before (up) and after (down) this target -->
+    <!-- ----------------------------------------------- -->
+  </div>
+  <!-- Down arrow div will be place here -->
+</div>
+<br>
+<hr>
+<br>
+<div id="horz-nav" class="horz-nav">
+  <!-- Left arrow div will be placed here -->
+  <div class="target">
+    <!-- -------------------------------------------------- -->
+    <!-- Target of the nav arrows. The arrows will be       -->
+    <!-- placed before (left) and after (right) this target -->
+    <!-- -------------------------------------------------- -->
+  </div>
+  <!-- Right arrow div will be place here -->
+</div>
+
+<!-- -------------------------------------------- -->
+<!-- Step 2: Include the nav arrows widget script -->
+<!-- -------------------------------------------- -->
+<script type="text/javascript" src="../ww_js/web_widget_nav_arrows.js"></script>
+<script>
+
+    //-------------------------------------------------------
+    // Step 3: Create an attributes config for the nav arrows
+    //-------------------------------------------------------
+    let config_vert = {
+        "aspect"  : 3,         // how much the arrow length is greater than width
+        "rounded" : false,     // true - base of arrow will be rounded; false - straight
+        "size"    : 20,        // the smallest dimension (px); the longest will be "aspect" x "size"
+        "gap"     : 10,        // gap between arrows and target (px)
+        "color"   : "#32557f", // cadet blue; color of arrow (background is same as container)
+        "hover"   : "#99dd66"  // color on hover
+    }
+
+    let config_horz = {
+        "aspect"  : 3,         // how much the arrow length is greater than width
+        "rounded" : true,      // true - base of arrow will be rounded; false - straight
+        "size"    : 15,        // the smallest dimension (px); the longest will be "aspect" x "size"
+        "gap"     : 5,         // gap between arrows and target (px)
+        "color"   : "#A9A9A9", // color of arrow (background is same as container)
+        "hover"   : "#99dd66"  // color on hover
+    }
+
+    //---------------------------------------------------------------
+    // Step 4: Create callback to be applied upon click; Will always
+    //         pass the arrow type ("up", "down", "left", "right")
+    //         and the instance id; You can retrieve the instance id
+    //         with InstanceName.get_id();
+    //----------------------------------------------------------------
+    function on_clicked(arrow, id) {
+        if (id == vert_arrow.get_id()) {
+            alert(`${arrow} Arrow clicked from vert_arrow`);
+        }
+        if (id == horz_arrow.get_id()) {
+            alert(`${arrow} Arrow clicked from horz_arrow`);
+        }
+    }
+
+    //---------------------------------------------------------------
+    // Step 5: Create an instance of the desire nav arrows object;
+    //         Pass the container id, config json and callback
+    //----------------------------------------------------------------
+    let vert_arrow = new NavArrowsVertical("vert-nav", config_vert, on_clicked);
+    let horz_arrow = new NavArrowsHorizontal("horz-nav", config_horz, on_clicked);
+
+</script>
+</body>
+</html>
