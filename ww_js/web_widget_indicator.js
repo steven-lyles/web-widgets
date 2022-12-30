@@ -42,12 +42,12 @@ function gen_unique_id_from(str) {
 // See individual child classes for specific configurations
 //----------------------------------------------------------------------------------------
 class WebWidgetIndicator {
-  length = [30, 40, 50];
+  // length = [30, 40, 50];
   
-  current_position = 0;
-  offset = 0;
+  // current_position = 0;
+  // offset = 0;
   
-  hole_class = ".hole";
+  // hole_class = ".hole";
   
   //======================================================================================
   constructor(container_id, content) {

@@ -1,14 +1,22 @@
+<!--
+* ======================================================================================
+ * Web Widgets: Example - Vertical Indicator
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <!--
-Demonstrates usage of Indicator Web Widget : Vertical Indicator only
+Demonstrates usage of Indicator Web Widget : Vertical Orientation
 Copyright® Steven M. Lyles
 https://github.com/steven-lyles/web-widgets
 https://www.stevenlyles.net
 -->
 <html>
 <head>
-  <title>Vertical Indicator Example</title>
+  <title>Vertical Indicator Demo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -37,7 +45,7 @@ https://www.stevenlyles.net
     // -------------------------------------------------------
     // Step 3: Define the vertical indicator widget attributes
     // -------------------------------------------------------
-    var indicator_vert_content =
+    let indicator_vert_content =
         {
             "width_px"     : 10, // horizontal dimension
             "height_px"    : 60, // vertical dimension
@@ -45,6 +53,13 @@ https://www.stevenlyles.net
             "num_sections" : 4,
             "orientation"  : "column", // column or row
             "type"         : "position", // position or meter
+            "arrow"  :  {
+                "aspect" : 2,  // how much the arrow length is greater than width
+                "ratio" : 0.8, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+                "rounded" : false, // true - base of arrow will be rounded; false - square
+                "color" : "#A9A9A9", // color of arrow (background is same as container)
+                "hover" : "#99dd66"
+            },
             "color"        :
                 {
                     "background" : "#444a77", // this color shows through holes in cover plate
@@ -57,7 +72,7 @@ https://www.stevenlyles.net
     // ---------------------------------------------------------------------------------
     // Step 4: Create an instance of the widget passing container id and attributes json
     // ---------------------------------------------------------------------------------
-    let indicator_widget = new IndicatorPositionOnly("indicator-container-vert", indicator_vert_content);
+    let indicator_widget = new IndicatorPosition("indicator-container-vert", indicator_vert_content);
 
 </script>
 </body>
