@@ -7,6 +7,11 @@ This project is the results of another project (not yet in GitHub) that is an [L
 
 <span style="color: red;"><b>This is work in progress.</b></span> There is still much work to be done, but you can preview a live demo online of the progress so far at: [Web-Widgets](https://www.stevenlyles.net/playground/web_widgets/)
 
+Working so far:
+- Nav Arrows (Vertical & Horizontal)
+- Indicators (Vertical & Horizontal)
+- Indicator Navigation (Vertical)
+
 ## Demo vs Example
 In the source you will find a "demo" folder and an "example" folder - a clarification is in order. Both of these folders contain html files showing how to use the various widgets. Examples are bare-bones usage demonstrating only what is needed to create and use a widget. Demos go further and show the widget used in a more real context with other UI elements.
 
