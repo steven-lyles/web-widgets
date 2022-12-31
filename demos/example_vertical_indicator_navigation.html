@@ -16,7 +16,7 @@ https://www.stevenlyles.net
 -->
 <html>
 <head>
-  <title>Vertical Indicator Demo</title>
+  <title>Vertical Indicator Navigation Example</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -40,7 +40,7 @@ https://www.stevenlyles.net
 <!-- ------------------------------------------- -->
 <!-- Step 2: Include the indicator widget script -->
 <!-- ------------------------------------------- -->
-<script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+<script type="text/javascript" src="../ww_js/web_widgets.js"></script>
 <script>
     // -------------------------------------------------------
     // Step 3: Define the vertical indicator widget attributes
@@ -53,26 +53,34 @@ https://www.stevenlyles.net
             "num_sections" : 4,
             "orientation"  : "column", // column or row
             "type"         : "position", // position or meter
+            "color"        : {
+                "background" : "#444a77", // this color shows through holes in cover plate
+                "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
+                "cover_plate": "black"
+            },
+            "transition_time" : 500, // indicator transition time in milliseconds
             "arrow"  :  {
-                "aspect" : 2,  // how much the arrow length is greater than width
-                "ratio" : 0.8, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+                "aspect" : 3,  // how much the arrow length is greater than width
+                "ratio" : 1.0, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
                 "rounded" : false, // true - base of arrow will be rounded; false - square
+                "size" : 10,
+                "gap"  : 10,
                 "color" : "#A9A9A9", // color of arrow (background is same as container)
                 "hover" : "#99dd66"
-            },
-            "color"        :
-                {
-                    "background" : "#444a77", // this color shows through holes in cover plate
-                    "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
-                    "cover_plate": "black"
-                },
-            "transition_time" : 500 // indicator transition time in milliseconds
+            }
         };
 
+    // -----------------------------------------------------
+    // Step 4: Define the callback method for the navigation
+    // -----------------------------------------------------
+    function nav_callback(index) {
+        console.log(`Index: ${index} active`);
+    }
+
     // ---------------------------------------------------------------------------------
-    // Step 4: Create an instance of the widget passing container id and attributes json
+    // Step 5: Create an instance of the widget passing container id and attributes json
     // ---------------------------------------------------------------------------------
-    let indicator_widget = new IndicatorPosition("indicator-container-vert", indicator_vert_content);
+    let indicator_widget = new IndicatorNavigation("indicator-container-vert", indicator_vert_content, nav_callback);
 
 </script>
 </body>

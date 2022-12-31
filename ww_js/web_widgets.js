@@ -6,12 +6,14 @@
  * https://www.stevenlyles.net
  * ======================================================================================
  */
+'use strict';
 
 //=======================================================================
 // These dictionaries will be populated by the constructors and will keep
 // track of each instance's configuration for use by the callbacks
 let config_nav_arrows = {};
 let config_indicator = {};
+let config_indicator_nav = {};
 
 //=======================================================================================
 // Collection of utility functions used by widget
@@ -81,6 +83,7 @@ class NavArrowsVertical extends NavArrows {
         $(`#${this.id}`).css("align-items", "center");
         $(`#${this.id}`).css("justify-content", "center");
         $(`#${this.id}`).css("gap", `${this.config.gap}px`);
+        $(`#${this.id}`).css("height", "auto");
     }
 
     //===================================================================================
@@ -172,8 +175,6 @@ class Indicator {
     //======================================================================================
     constructor(container_id, content) {
         this.widget_id = Utils.gen_unique_id_from(container_id);
-        // orientation = content["orientation"];
-        // num_sections = content["num_sections"];
         config_indicator[this.widget_id] = content;
         config_indicator[this.widget_id]["current_index"] = 0;
         config_indicator[this.widget_id]["set_position_to"] = this.set_position_to;
@@ -330,7 +331,6 @@ class Indicator {
 
     //======================================================================================
     set_position_to(pos, duration, id=this.widget_id) {
-        // console.log(config_indicator[id]);
         if (pos >= 0 && pos < config_indicator[id]["num_sections"]) {
 
             if (config_indicator[id].current_position !== pos) {
@@ -341,6 +341,9 @@ class Indicator {
                 } else {
                     $('#indicator-'+ id).animate({ 'margin-left': config_indicator[id].offset*pos + "px"}, d, "swing");
                 }
+                if ("callback" in config_indicator[id] ) {
+                    config_indicator[id].callback.apply(this, [config_indicator[id].current_position]);
+                }
             }
 
         }
@@ -348,21 +351,45 @@ class Indicator {
 
     //======================================================================================
     increment_position() { this.set_position_to(this.current_position+1, 0); }
-    decrement_position() { this.set_position_to(this.current_position-1), 0; }
+    decrement_position() { this.set_position_to(this.current_position-1, 0); }
 
 } /* class Indicator */
 
 
 //=======================================================================================
-class IndicatorNavigation {} /* class IndicatorNavigation */
+class IndicatorNavigation {
+    constructor(container_id, config, callback) {
+        this.widget_id = Utils.gen_unique_id_from(container_id);
+        config_indicator_nav[this.widget_id] = config;
+
+        config_indicator_nav[this.widget_id]["current_index"] = 0;
+
+        this.indicator = new Indicator(container_id, config, callback);
+        this.arrows = new NavArrowsVertical(container_id, config["arrow"], this.arrow_callback);
+        config_nav_arrows[this.arrows.get_id()]["indicator_id"] = this.indicator.get_id();
+        config_indicator[this.indicator.get_id()]["callback"] = callback;
+    }
+
+    // Callback for the nav arrows to use in this widget
+    arrow_callback(arrow, id) {
+        let indicator_id = config_nav_arrows[id]["indicator_id"];
+        if (arrow == "up" || arrow == "left") {
+            increment_indicator(indicator_id);
+        } else if (arrow == "down" || arrow == "right") {
+            decrement_indicator(indicator_id);
+        }
+    }
+
+} /* class IndicatorNavigation */
+
 //=======================================================================================
 class IndicatorPulse {} /* class IndicatorPulse */
 //=======================================================================================
 class IndicatorMeter {} /* class IndicatorMeter */
 
-//---------------
+//----------------
 // Helper Methods
-//---------------
+//----------------
 
 //=======================================================================================
 // Changes the arrows to hover state with mouse in/out
