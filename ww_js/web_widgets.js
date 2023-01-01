@@ -140,6 +140,7 @@ class NavArrowsHorizontal extends NavArrows {
         $(`#${this.id}`).css("align-items", "center");
         $(`#${this.id}`).css("justify-content", "center");
         $(`#${this.id}`).css("gap", `${this.config.gap}px`);
+        $(`#${this.id}`).css("width", "auto");
     }
 
     //===================================================================================
@@ -190,13 +191,13 @@ class Indicator {
                 ((content.num_sections-1) * content.spacer_px);
             this.container_width = content.width_px;
             this.offset = this.content.height_px + this.content.spacer_px;
-            config_indicator[this.widget_id]["offset"] = this.offset;
         } else {
             this.container_height = content.height_px;
             this.container_width = (content.width_px * content.num_sections) +
                 ((content.num_sections-1) * content.spacer_px);
             this.offset = this.content.width_px + this.content.spacer_px;
         }
+        config_indicator[this.widget_id]["offset"] = this.offset;
         this.set_css_for_container(container_id);
 
         this.hole_class = ".hole-" + this.widget_id;
@@ -217,14 +218,6 @@ class Indicator {
 
     //======================================================================================
     set_css_for_container(id) {
-
-        // $(".column").css("width", content["width"]);
-        // $(".column").css("height", content["auto"]);
-        // $(".column").css("display", content["flex"]);
-        // $(".column").css("flex-direction", content["orientation"] );
-        // $(".column").css("align-items", "center");
-        // $(".column").css("justify-content", "center");
-
         $("#" + id).css("width", this.container_width + "px");
         $("#" + id).css("height", this.container_height + "px");
         $("#" + id).css("display", "flex");
@@ -365,7 +358,11 @@ class IndicatorNavigation {
         config_indicator_nav[this.widget_id]["current_index"] = 0;
 
         this.indicator = new Indicator(container_id, config, callback);
-        this.arrows = new NavArrowsVertical(container_id, config["arrow"], this.arrow_callback);
+        if (config.orientation == "column") {
+            this.arrows = new NavArrowsVertical(container_id, config["arrow"], this.arrow_callback);
+        } else {
+            this.arrows = new NavArrowsHorizontal(container_id, config["arrow"], this.arrow_callback);
+        }
         config_nav_arrows[this.arrows.get_id()]["indicator_id"] = this.indicator.get_id();
         config_indicator[this.indicator.get_id()]["callback"] = callback;
     }

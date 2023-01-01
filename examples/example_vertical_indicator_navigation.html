@@ -1,6 +1,6 @@
 <!--
 * ======================================================================================
- * Web Widgets: Example - Vertical Indicator
+ * Web Widgets: Example - Vertical Indicator Navigation
  * Copyright © Steven M. Lyles
  * https://github.com/steven-lyles/web-widgets
  * https://www.stevenlyles.net
@@ -8,12 +8,6 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-<!--
-Demonstrates usage of Indicator Web Widget : Vertical Orientation
-Copyright® Steven M. Lyles
-https://github.com/steven-lyles/web-widgets
-https://www.stevenlyles.net
--->
 <html>
 <head>
   <title>Vertical Indicator Navigation Example</title>
@@ -52,7 +46,6 @@ https://www.stevenlyles.net
             "spacer_px"    : 5,  // distance between indicators
             "num_sections" : 4,
             "orientation"  : "column", // column or row
-            "type"         : "position", // position or meter
             "color"        : {
                 "background" : "#444a77", // this color shows through holes in cover plate
                 "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
@@ -77,9 +70,9 @@ https://www.stevenlyles.net
         console.log(`Index: ${index} active`);
     }
 
-    // ---------------------------------------------------------------------------------
-    // Step 5: Create an instance of the widget passing container id and attributes json
-    // ---------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------
+    // Step 5: Create an instance of the widget passing container id, config json, and callback
+    // ----------------------------------------------------------------------------------------
     let indicator_widget = new IndicatorNavigation("indicator-container-vert", indicator_vert_content, nav_callback);
 
 </script>
