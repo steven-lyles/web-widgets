@@ -39,29 +39,28 @@
     // -------------------------------------------------------
     // Step 3: Define the vertical indicator widget attributes
     // -------------------------------------------------------
-    let indicator_vert_content =
-        {
-            "width_px"     : 10, // horizontal dimension
-            "height_px"    : 60, // vertical dimension
-            "spacer_px"    : 5,  // distance between indicators
-            "num_sections" : 4,
-            "orientation"  : "column", // column or row
-            "color"        : {
-                "background" : "#444a77", // this color shows through holes in cover plate
-                "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
-                "cover_plate": "black"
-            },
-            "transition_time" : 500, // indicator transition time in milliseconds
-            "arrow"  :  {
-                "aspect" : 3,  // how much the arrow length is greater than width
-                "ratio" : 1.0, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
-                "rounded" : false, // true - base of arrow will be rounded; false - square
-                "size" : 10,
-                "gap"  : 10,
-                "color" : "#A9A9A9", // color of arrow (background is same as container)
-                "hover" : "#99dd66"
-            }
-        };
+    let indicator_vert_content = {
+        "width_px"     : 10, // horizontal dimension
+        "height_px"    : 60, // vertical dimension
+        "spacer_px"    : 5,  // distance between indicators
+        "num_sections" : 4,
+        "orientation"  : "column", // column or row
+        "color"        : {
+            "background" : "#444a77", // this color shows through holes in cover plate
+            "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
+            "cover_plate": "black"
+        },
+        "transition_time" : 500, // indicator transition time in milliseconds
+        "arrow"  :  {
+            "aspect" : 3,  // how much the arrow length is greater than width
+            "ratio" : 1.0, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+            "rounded" : false, // true - base of arrow will be rounded; false - square
+            "size" : 10,
+            "gap"  : 10,
+            "color" : "#A9A9A9", // color of arrow (background is same as container)
+            "hover" : "#99dd66"
+        }
+    };
 
     // -----------------------------------------------------
     // Step 4: Define the callback method for the navigation
