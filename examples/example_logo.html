@@ -1,6 +1,6 @@
 <!--
 * ======================================================================================
- * Web Widgets: Example - Now Date-Time
+ * Web Widgets: Example - Logo
  * Copyright © Steven M. Lyles
  * https://github.com/steven-lyles/web-widgets
  * https://www.stevenlyles.net
@@ -10,24 +10,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Now</title>
+  <title>Logo Example</title>
   <style>
       body {
           background: black;
-          margin-left: 5px;
-          margin-right: 10px;
-          margin-bottom: 10px
-      }
-      p {
-          font: 400 12px/1.5 "Arial", sans-serif;
-          text-align: center;
-          padding-top: 10px;
+          margin: 20px;
       }
       .panel {
           background-color: #b3a68b;
           width: 180px;
           height: 280px;
           border-radius: 0 0 0 100px;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: center;
       }
   </style>
 </head>
@@ -36,28 +33,33 @@
 <!-- Step 1: Create the container for the widget -->
 <!-- ------------------------------------------- -->
 <div id="panel" class="panel">
-  <p>"Now" Widget in a Container</p>
+
 </div>
+
 <!-- ------------------------------------------------------------------- -->
 <!-- Step 2: Include the widget script and JQuery if not already sourced -->
 <!-- ------------------------------------------------------------------- -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="../ww_js/now.js"></script>
+<script type="text/javascript" src="../ww_js/logo.js"></script>
 <script>
     // -------------------------------------
     // Step 3: Define the widget attributes
     // -------------------------------------
-    let now_config = {
-        "font_size"        : "28",       // px
-        "font_color"       : "black",
-        "background_color" : "#2255ff", // evening
-        "width"            : "100%",    // % of container or pixel value (e.g. 100px)
-        "border_radius"    : "10"       // curved corners in pixels (0 for square)
+    let logo_config = {
+        "height"           : "120px",                     // widget height
+        "width"            : "100%",                       // % of container or pixel value (e.g. 100px)
+        "logo_image"       : "../assets/rocket-icon.svg", // logo image
+        "logo_size"        : "55%",                       // logo size as percentage of height
+        "background_color" : "#5E7279",                   // dusk
+        "url"              : "https://stevenlyles.net",   // what to open when clicked
+        "spacer_size"      : 5,                           // px border at bottom
+        "spacer_color"     : "black"                      // border at bottom color
     }
-    // -----------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------
     // Step 4: Create an instance of the widget passing container id and config json
-    // -----------------------------------------------------------------------------
-    let now_widget = new Now("panel", now_config);
+    // ----------------------------------------------------------------------------------------
+    let logo_widget = new Logo("panel", logo_config);
 </script>
 </body>
 </html>
