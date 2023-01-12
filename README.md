@@ -13,6 +13,7 @@ Working so far:
 - Position Increment (Vertical & Horizontal)
 - Now (Time-Date Widget)
 - Logo
+- Horizontal Bars Divider
 
 ## Demo vs Example
 In the source you will find a "demo" folder and an "example" folder - a clarification is in order. Both of these folders contain html files showing how to use the various widgets. Examples are bare-bones usage demonstrating only what is needed to create and use a widget. Demos go further and show the widget used in a more real context with other UI elements.
