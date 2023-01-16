@@ -1,0 +1,198 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Demo - Button Group
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nav Arrow Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          font  : 400 22px/1.5 "Roboto", sans-serif;
+          color : #88ccff;
+          margin: 20px;
+      }
+      .container-wide {
+          width: 550px;
+          height: 150px;
+          background-color: #27322c;
+          border-radius: 10px 10px 10px 10px;
+          padding: 10px;
+      }
+      .container-narrow {
+          width: 180px;
+          height: 400px;
+          /*background-color: #0047AB;*/
+          border-radius: 10px 10px 10px 10px;
+          padding: 10px;
+      }
+      .msg {
+          margin-left: 7px;
+
+          color: white;
+      }
+      #narrow-container {
+          display: flex;
+          flex-direction: column;
+      }
+      #txt-row, #control-row {
+          display: flex;
+          flex-direction: row;
+          font-size: 0.7em;
+          color: white;
+
+      }
+      #active-txt { margin-left: 15px; }
+      #active-control {
+          width: 70px;
+          height: 400px;
+          /*background-color: gray;*/
+          display: flex;
+          flex-direction: column;
+          gap: 62px;
+          align-items: center;
+          justify-content: right;
+          padding-top: 40px;
+          padding-right: 10px;
+      }
+      #narrow-txt {
+          width: 190px;
+          /*background-color: pink;*/
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+<h4>Example of wide button group</h4>
+<div id="wide-txt" class="msg">Snoopy Selected</div>
+<div id="container-wide" class="container-wide"></div> <!-- Step 1: Create container to hold widget -->
+<br><hr>
+
+<h4>Example of narrow button group</h4>
+<div id="narrow-container">
+  <div id="txt-row">
+    <div id="narrow-txt" class="msg">Snoopy Selected</div>
+    <div id="active-txt">Active</div>
+  </div>
+  <div id="control-row">
+    <div id="container-narrow" class="container-narrow"></div> <!-- Step 1: Create container to hold widget -->
+    <div id="active-control">
+      <input class="button-check" type="checkbox" id="Snoopy" name="Snoopy" value="0" checked>
+      <input class="button-check" type="checkbox" id="Woodstock" name="Woodstock" value="1" checked>
+      <input class="button-check" type="checkbox" id="Linus" name="Linus" value="2" checked>
+      <input class="button-check" type="checkbox" id="Sally" name="Sally" value="3" checked>
+      <input class="button-check" type="checkbox" id="Lucy" name="Lucy" value="4" checked>
+    </div>
+  </div>
+</div>
+<!-- ------------------------------------------------------------------ -->
+<!-- Step 2: Include the widget script & jquery is not already included -->
+<!-- ------------------------------------------------------------------ -->
+<script type="text/javascript" src="../ww_js/button_group.js"></script>
+<script>
+    //-------------------
+    // Load the color map
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let color = JSON.parse(json.responseText);
+
+    //-------------------------------------------------------------
+    // Step 3: Create the attributes config for each of the widgets
+    //-------------------------------------------------------------
+    let button_group_wide_config = {
+        "font" : "400 20px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+        "font-size" : "1.2em",
+        "font_color" : "black",
+        "background_color" : "parchment",
+        "width" : "150px",
+        "height": "50px",
+        "border_radius": "40px",
+        "hover_color" : "martian",
+        "hover_outline" : "yellow",
+        "active_color" :  "martian",
+        "inactive_color" : "galaxy",
+        "selected_index" : 0,
+        "buttons" : [
+            { "txt": "Snoopy",        "active" : true },
+            { "txt": "Woodstock",     "active" : true },
+            { "txt": "Linus",         "active" : true },
+            { "txt": "Sally",         "active" : true },
+            { "txt": "Lucy",          "active" : true }
+        ]
+    }
+
+    let button_group_narrow_config = {
+        "font" : "400 20px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+        "font-size" : "1.2em",
+        "font_color" : "black",
+        "background_color" : "parchment",
+        "width" : "140px",
+        "height": "50px",
+        "border_radius": "40px",
+        "hover_color" : "martian",
+        "hover_outline" : "yellow",
+        "active_color" :  "martian",
+        "inactive_color" : "galaxy",
+        "selected_index" : 0,
+        "buttons" : [
+            { "txt": "Snoopy",        "active" : true },
+            { "txt": "Woodstock",     "active" : true },
+            { "txt": "Linus",         "active" : true },
+            { "txt": "Sally",         "active" : true },
+            { "txt": "Lucy",          "active" : true }
+        ]
+    }
+
+    //---------------------------------------------------------------
+    // Step 4: Define the callbacks for when the buttons are clicked;
+    //         The call back will take the index of the button from
+    //         the config "buttons" list
+    //---------------------------------------------------------------
+    function button_wide(index) {
+        console.log("wide");
+        $("#wide-txt").text(`${button_group_wide_config.buttons[index].txt} Selected`);
+    }
+
+    function button_narrow(index) {
+        console.log("narrow");
+        $("#narrow-txt").text(`${button_group_narrow_config.buttons[index].txt} Selected`);
+    }
+
+    //-------------------------------------------------------------------
+    // Step 5: Create an instance of each group passing the container id,
+    //         the attribute config, and the callback for that group
+    //-------------------------------------------------------------------
+    let button_group_wide = new ButtonGroup("container-wide", button_group_wide_config, color, button_wide);
+    let button_group_narrow = new ButtonGroup("container-narrow", button_group_narrow_config, color, button_narrow);
+
+    //===================================================================================
+    $(document).ready(function() {
+
+        //---------------------------------------------
+        // Handle enable/disable checkbox button clicks
+        $(".button-check").click( function() {
+            let index = parseInt(this.value);
+            if (index != button_group_narrow.get_selected_button_index()) {
+                if (this.checked) {
+                    button_group_narrow.activate_button(index); // call the api from widget instance
+                } else {
+                    button_group_narrow.deactivate_button(index);
+                }
+            } else {
+                alert("Can't disable selected element");
+                $(`#${this.id}`).prop( "checked", true );
+            }
+        });
+    });
+</script>
+</body>
+</html>

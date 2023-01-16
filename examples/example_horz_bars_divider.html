@@ -37,6 +37,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="../ww_js/horz_bars_divider.js"></script>
 <script>
+    //-------------------
+    // Load the color map
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let color = JSON.parse(json.responseText);
+
     // -------------------------------------
     // Step 3: Define the widget attributes
     // -------------------------------------
@@ -119,8 +124,8 @@
     // ----------------------------------------------------------------------------------------
     // Step 4: Create an instance of the widget passing container id and config json
     // ----------------------------------------------------------------------------------------
-    let horz_divider_top = new HorizontalBarsDivider("horz_divider_top", horz_divider_top_config);
-    let horz_divider_bottom = new HorizontalBarsDivider("horz_divider_bottom", horz_divider_bottom_config);
+    let horz_divider_top = new HorizontalBarsDivider("horz_divider_top", horz_divider_top_config, color);
+    let horz_divider_bottom = new HorizontalBarsDivider("horz_divider_bottom", horz_divider_bottom_config, color);
 </script>
 </body>
 </html>

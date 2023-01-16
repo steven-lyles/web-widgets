@@ -62,7 +62,7 @@
 <script>
 
     //-------------------------------------------------------
-    // Step 2: Create an attributes config for the nav arrows
+    // Step 3: Create an attributes config for the nav arrows
     //-------------------------------------------------------
     let config_vert = {
         "aspect"  : 3,         // how much the arrow length is greater than width
@@ -83,7 +83,7 @@
     }
 
     //---------------------------------------------------------------
-    // Step 3: Create callback to be applied upon click; Will always
+    // Step 4: Create callback to be applied upon click; Will always
     //         pass the arrow type ("up", "down", "left", "right")
     //         and the instance id; You can retrieve the instance id
     //         with InstanceName.get_id();
@@ -98,7 +98,7 @@
     }
 
     //---------------------------------------------------------------
-    // Step 4: Create an instance of the desire nav arrows object;
+    // Step 5: Create an instance of the desire nav arrows object;
     //         Pass the container id, config json and callback
     //----------------------------------------------------------------
     let vert_arrow = new NavArrowsVertical("vert-nav", config_vert, on_clicked);
