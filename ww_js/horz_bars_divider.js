@@ -65,8 +65,8 @@ class HorizontalBarsDivider {
 
             }
             $(`#bar-${id}-${index}`).css("width", bar.width);
-            $(`#bar-${id}-${index}`).css("background", `#${local_color[bar.color].hex}`);
-            $(`#bar-${id}-${index}`).css("border-right", `${local_config.gap_size}px solid #${local_color[local_config.gap_color].hex}`);
+            $(`#bar-${id}-${index}`).css("background", `${local_color[bar.color].hex}`);
+            $(`#bar-${id}-${index}`).css("border-right", `${local_config.gap_size}px solid ${local_color[local_config.gap_color].hex}`);
         });
     }
 
