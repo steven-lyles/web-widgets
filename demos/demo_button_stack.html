@@ -1,0 +1,125 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Demo - Button Stack
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nav Arrow Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          font  : 400 22px/1.5 "Roboto", sans-serif;
+          color : #88ccff;
+          margin: 20px;
+      }
+      .container-mixed {
+          width: 180px;
+          height: 230px;
+          background-color: #27322c;
+          border-radius: 10px 10px 10px 10px;
+          padding: 10px;
+      }
+      .container-uniform {
+          width: 180px;
+          height: 230px;
+          /*background-color: #0047AB;*/
+          border-radius: 10px 10px 10px 10px;
+          padding: 10px;
+      }
+      .msg {
+          margin-left: 7px;
+          color: white;
+          font-size: 0.7em;
+      }
+  </style>
+</head>
+<body>
+<h4>Mixed Colors</h4>
+<div id="txt-mixed" class="msg">Select a Button</div>
+<div id="container-mixed" class="container-mixed"></div> <!-- Step 1: Create container to hold widget -->
+<br><hr>
+<h4>Uniform Style</h4>
+<div id="txt-uniform" class="msg">Select a Direction</div>
+<div id="container-uniform" class="container-uniform"></div> <!-- Step 1: Create container to hold widget -->
+
+<!-- ------------------------------------------------------------------ -->
+<!-- Step 2: Include the widget script & jquery is not already included -->
+<!-- ------------------------------------------------------------------ -->
+<script type="text/javascript" src="../ww_js/button_stack.js"></script>
+<script>
+    //-------------------
+    // Load the color map
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let color = JSON.parse(json.responseText);
+
+    //-------------------------------------------------------------
+    // Step 3: Create the attributes config for each of the widgets
+    //-------------------------------------------------------------
+    let button_stack_mixed_config = {
+        "font_size" : 22, // px
+        "font_color": "black",
+        "width" : 180, // px
+        "height" : 70,
+        "border_radius" : "5px",
+        "hover_color" : "martian",
+        "button" : [
+            { "txt" : "NETWORK",  "color" : "pumpkinshade", "icon" : "../assets/stations.svg"},
+            { "txt" : "SETTINGS", "color" : "sunflower",    "icon" : "../assets/gear.svg"},
+            { "txt" : "ARTICLES", "color" : "moonbeam",     "icon" : "../assets/results2.svg"},
+        ]
+    }
+
+    let button_stack_uniform_config = {
+        "font_size" : 20, // px
+        "font_color": "black",
+        "width" : 130, // px
+        "height" : 50,
+        "border_radius" : "80px",
+        "hover_color" : "martian",
+        "button" : [
+            { "txt" : "Up",  "color" : "evening", "icon" : "../assets/arrow-up.svg"},
+            { "txt" : "Right", "color" : "evening", "icon" : "../assets/arrow-right.svg"},
+            { "txt" : "Down", "color" : "evening", "icon" : "../assets/arrow-down.svg"},
+            { "txt" : "Left", "color" : "evening", "icon" : "../assets/arrow-left.svg"}
+        ]
+    }
+
+    //---------------------------------------------------------------
+    // Step 4: Define the callbacks for when the buttons are clicked;
+    //         The call back will take the index of the button from
+    //         the config "buttons" list
+    //---------------------------------------------------------------
+    function button_mixed(index) {
+        console.log("mixed");
+        $("#txt-mixed").text(`${button_stack_mixed_config.button[index].txt} Selected`);
+    }
+
+    function button_uniform(index) {
+        console.log("uniform");
+        $("#txt-uniform").text(`Going ${button_stack_uniform_config.button[index].txt}`);
+    }
+
+    //---------------------------------------------------------------------------------
+    // Step 5: Create an instance of each group passing the container id, the attribute
+    //         config, color map, and the callback for that group
+    //---------------------------------------------------------------------------------
+    let button_stack_mixed = new ButtonStack("container-mixed", button_stack_mixed_config, color, button_mixed);
+    let button_stack_uniform = new ButtonStack("container-uniform", button_stack_uniform_config, color, button_uniform);
+
+    //===================================================================================
+    $(document).ready(function() {
+
+    });
+</script>
+</body>
+</html>
