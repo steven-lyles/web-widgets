@@ -1,0 +1,73 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Demo - Welcome/Home Page
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/LCARS-template
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link id="font-main" href='' rel='stylesheet'>
+  <link rel="icon" href="https://stevenlyles.net/assets/graphics/true-north.png">
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+      html, body {
+          height: 100%;
+          background: black;
+          color: #88bbff; // ghost
+          font: 400 20px/1.5 "Arial Narrow", sans-serif;
+          /*margin-left: 5px;*/
+          /*margin-right: 5px;*/
+          /*margin-bottom: 10px;*/
+
+          overflow: hidden;
+      }
+      a {
+          cursor: pointer;
+          text-decoration: none;
+          color: #2255ff;
+      }
+      .heading_2 {
+          font: 400 28px/1.5  "Arial Narrow", sans-serif;
+      }
+      .msg {
+          padding-right: 10px;
+          /*padding-left: 20px;*/
+          font: 400 18px/1.5  "Arial Narrow", sans-serif;
+      }
+      .info {
+          font: 400 14px/1.5  "Arial Narrow", sans-serif;
+          padding-left: 10px;
+      }
+      .warning {
+          font: 400 14px/1.5  "Arial Narrow", sans-serif;
+          color: #ff8833;
+      }
+  </style>
+</head>
+<body>
+<div id="welcome-message-info">
+<!--  <div class="heading_2">Welcome User!</div>-->
+
+  <p class="msg">Web Widgets is a collection of Javascript class objects that can be used to add controls to an <a href='https://en.wikipedia.org/wiki/LCARS' target="_blank" style="color:#ffcc99">LCARS</a> styled web page.</p>
+  <p class="msg">Choose a category to the left to see examples of the various widgets.</p>
+
+  <div id="os" class="info"></div>
+  <div id="browser" class="info"></div>
+  <div id="os-warning" class="warning"></div>
+</div>
+<script type="text/javascript" src="./ww_js/ww_utils.js"></script>
+<script>
+    $("#os").text(`• ${Utils.get_os()} detected`);
+    $("#browser").text(`• ${Utils.get_browser()} browser detected`)
+    if (Utils.get_os() === "iOS") {
+        $("#os-warning").text("This demo is not yet optimized for mobile! Your experience may be sub-par.");
+    }
+</script>
+</body>
+</html>

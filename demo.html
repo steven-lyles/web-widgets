@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+Demonstration home page for the Web-Widgets project.
+Copyright® Steven M. Lyles
+https://github.com/steven-lyles
+https://www.stevenlyles.net
+-->
+<html>
+<head>
+  <title>Web Widgets</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          /*font: 400 22px/1.5 "Roboto", sans-serif;*/
+          font: 400 22px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
+          color     : #88ccff;
+          margin    : 15px;
+      }
+      a {
+          /* get rid of all the default anchor sh*! */
+          text-decoration: none;
+          color: #88bbff;
+          outline: 0;
+      }
+      p { font-size: 0.7em; }
+      .title-nav {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: flex-start;
+          height: 100%;
+          width: 100%;
+      }
+      .title {
+          display: flex;
+          flex-direction: row;
+          align-items:center;
+          justify-content:flex-start;
+          color: white;
+          margin-right: 15px;
+      }
+      .page-title {
+          font-size: 1.3em;
+          font-weight: bold;
+          margin-right: 15px;
+          /*float: right;*/
+      }
+      .nav-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.7em;
+          float: left;
+          border-radius: 25px 25px 25px 25px;
+          background: #5588ff;
+          width: 150px;
+          height: 30px;
+          color: black;
+          margin-right: 10px;
+          margin-top: 5px;
+      }
+      .nav-button:hover {
+          background: lightgreen;
+          cursor: pointer;
+      }
+      .active-button {
+          background: #ff8833;
+      }
+      .desc-name-container {
+          display: flex;
+          flex-direction: row;
+      }
+      #page-description {
+          width: 70%;
+          margin-left: 20px;
+          font: 400 22px/1.5 "Roboto", sans-serif;
+      }
+      #widget-name {
+          width: 30%;
+          text-align: right;
+          margin-right: 20px;
+          font-size: 55px;
+          font-weight: lighter;
+      }
+      .widget-container {
+          margin-right: 20px;
+          width: auto;
+          height: 1000px;
+      }
+  </style>
+</head>
+<body>
+
+  <div class="title-nav">
+    <div class="page-title">Web-Widgets</div>
+    <div class="title">
+      <div id="nav_home" class="nav-button">Home</div>
+      <div id="nav_arrows" class="nav-button">Navigation Buttons</div>
+      <div id="nav_menu" class="nav-button">Button Menu List</div>
+      <div id="nav_indicator" class="nav-button">Indicator</div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="desc-name-container">
+    <div id='page-description'>
+      <p id="txt_1">Web Widgets is a collection of Javascript class objects that can be used to add controls to an <a href='https://en.wikipedia.org/wiki/LCARS' target="_blank" style="color:#ffcc99">LCARS</a> styled web page.</p>
+      <p id="txt_2">Click on the navigation buttons above to see examples of a particular widget.</p>
+    </div>
+    <div id="widget-name">WELCOME</div>
+  </div>
+
+  <!--| -------------------------------------------- |-->
+  <!--| 1: Create a container to hold the web widget |-->
+  <!--| -------------------------------------------- |-->
+  <div id="widget-container" class="widget-container">
+    <embed id="widget_demo" type="text/html" src="" width="100%" height="100%" style="background: black;">
+  </div>
+  <script>
+      let config = {
+          "nav_home" : {
+              "txt_1" : "Web Widgets is a collection of Javascript class objects that can be used to add controls to an LCARS styled web page.",
+              "txt_2" : "Click on the navigation buttons above to see examples of a particular widget.",
+              "name" : "WELCOME",
+              "src" : ""
+          },
+          "nav_arrows" : {
+              "txt_1" : "This widget creates vertical or horizontal navigation arrow groups.",
+              "txt_2" : "Styling is handled by a JSON config and the user passes a callback function to be called upon clicking.",
+              "name" : "NAVIGATION ARROWS",
+              "src" : "./demos/demo_nav_arrows.html"
+          },
+          "nav_menu" : {
+              "txt_1" : "This widget creates a vertically stacked menu list of buttons with descriptions",
+              "txt_2" : "Each button is a link.",
+              "name" : "BUTTON MENU LIST",
+              "src" : "./examples/demo_button_list_links.html"
+          },
+          "nav_indicator" : {
+              "txt_1" : "This widget implements a highly configurable indicator that can show position or progress.",
+              "txt_2" : "Below are some example configurations using the accordion widget as a container.",
+              "name" : "INDICATOR",
+              "src" : "./examples/demo_accordion.html"
+          }
+      }
+
+      $("#nav_home").css("background", "#ff8833");
+
+      $(document).ready(function() {
+
+          $(".nav-button").click( function() {
+              let id = this.id;
+              $.each(Object.keys(config), function(index, value) {
+                 if (value == id) {
+                     $("#" + value).css("background", "#ff8833");
+                 } else {
+                     $("#" + value).css("background", "#5588ff");
+                 }
+              });
+              $("#txt_1").text(config[id]["txt_1"]);
+              $("#txt_2").text(config[id]["txt_2"]);
+              $("#widget-name").text(config[id]["name"]);
+              $('embed').replaceWith($('embed').clone().attr('src',config[id]["src"]));
+          });
+
+      });
+  </script>
+</body>
+</html>

@@ -14,35 +14,35 @@ Created by Steven M. Lyles
         background: black;
         font: 400 22px/1.5 "Roboto", sans-serif;
         color     : #88ccff;
-        margin    : 10px 0px 0px 10px;
+        margin    : 0px 0px 0px 10px;
         overflow  : hidden;
       }
-      .size-button-container {
-        display: flex;
-        flex-direction: row;
-      }
-      .control-button {
-        height: 20px;
-        width: 80px;
-        border-radius: 5px;
-        background: #5588ff;
-        text-align: center;
-        margin-right: 5px;
-        font-size: 0.6em;
-        cursor: pointer;
-        color: black;
-      }
-      .arrow-vert {
-        width        : 30px;
-        cursor       : pointer;
-        margin-bottom: 5px;
-        color        : #A9A9A9;
-        font-size    : 1.2em;
-        text-align: center;
-      }
-      .arrow-vert:hover { color: #99dd66; }
-      #up {}
-      #down {}
+      /*.size-button-container {*/
+      /*  display: flex;*/
+      /*  flex-direction: row;*/
+      /*}*/
+      /*.control-button {*/
+      /*  height: 20px;*/
+      /*  width: 80px;*/
+      /*  border-radius: 5px;*/
+      /*  background: #5588ff;*/
+      /*  text-align: center;*/
+      /*  margin-right: 5px;*/
+      /*  font-size: 0.6em;*/
+      /*  cursor: pointer;*/
+      /*  color: black;*/
+      /*}*/
+      /*.arrow-vert {*/
+      /*  width        : 30px;*/
+      /*  cursor       : pointer;*/
+      /*  margin-bottom: 5px;*/
+      /*  color        : #A9A9A9;*/
+      /*  font-size    : 1.2em;*/
+      /*  text-align: center;*/
+      /*}*/
+      /*.arrow-vert:hover { color: #99dd66; }*/
+      /*#up {}*/
+      /*#down {}*/
       
       .column {
         width: 10px; /* this should match the width of the widget container */
@@ -115,12 +115,8 @@ Created by Steven M. Lyles
 
     <div class="row">
       <div class='column'>
-        <div id="up" class="arrow-vert">&#9650;</div>
-
         <!-- Create the container for the vertical widget -->
         <div id="indicator-container-vert"></div>
-
-        <div id="down" class="arrow-vert">&#9660;</div>
       </div>
       <div id='page-container' class="page-container">
         <div id='page-0' class='page'>
@@ -169,7 +165,7 @@ Created by Steven M. Lyles
     </div>
     
     <!-- Include the indicator widget script -->
-    <script type="text/javascript" src="../ww_js/web_widget_indicator.js"></script>
+    <script type="text/javascript" src="../ww_js/web_widgets.js"></script>
 
     <script>
       var transition_time = 500;
@@ -192,43 +188,30 @@ Created by Steven M. Lyles
           "indicator"  : "#99dd66", // color of indicator that slides between background & cover plate
           "cover_plate": "black"
         },
-        "transition_time" : transition_time // indicator transition time in milliseconds
+        "transition_time" : transition_time, // indicator transition time in milliseconds
+          "arrow"  :  {
+              "aspect" : 3,  // how much the arrow length is greater than width
+              "ratio" : 1.0, // how much the arrow is wider than the indicators (arrow_ratio * width_px)
+              "rounded" : false, // true - base of arrow will be rounded; false - square
+              "size" : 10,
+              "gap"  : 10,
+              "color" : "#A9A9A9", // color of arrow (background is same as container)
+              "hover" : "#99dd66"
+          }
       };
       
       // -------------------------------------------------------------------------
       // Create an instance of the widget passing container id and attributes json
       // -------------------------------------------------------------------------
-      var vert_widget = new IndicatorPosition("indicator-container-vert", indicator_vert_content);
-      
-      
+      var vert_widget = new IndicatorNavigation("indicator-container-vert", indicator_vert_content, nav_callback);
+
+      function nav_callback(index) {
+          console.log(`Index: ${index} active`);
+          $("#page-0").animate( {'margin-top' : -(index*310)}, 500);
+      }
+
       //==================================================================================
       $(document).ready(function() {
-        
-        //================================================================================
-        // Move vertical indicator with arrows
-        $(".arrow-vert").click( function() {
-          if (this.id === "up") {
-            if (current_page > 0) {
-              vert_widget.decrement_position();
-              current_page -= 1;
-            }
-          } else {
-            if (current_page < 3) {
-              vert_widget.increment_position();
-              current_page += 1;
-            }
-          }
-          $("#page-0").animate( {'margin-top' : -(current_page*310)}, 500);
-        });
-        
-        //================================================================================
-        // Move vertical indicator by clicking on position
-        $(vert_widget.hole_class).click( function() {
-          index = parseInt(this.id.split("-").slice(-1)[0]);
-          vert_widget.set_position_to(index);         
-          $("#page-0").animate( {'margin-top' : -(index*310)}, 500);
-          current_page = index;
-        });
         
       });
       

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Widgets Testing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <style>
+      html, body {
+          height: 100%;
+          background: black;
+          color: #88bbff;
+          font: 400 20px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
+          margin-left: 5px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          overflow: hidden;
+          padding-left: 10px;
+      }
+      .msg {
+          text-align: left;
+          padding-right: 10px;
+          font-size: 0.8em;
+      }
+      .button-test {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 150px;
+          height: 30px;
+          border-radius: 0px 20px 20px 0px;
+          background-color: #2255ff;
+          font-size: 0.8em;
+          color: white;
+          margin-bottom: 10px;
+      }
+      .button-test:hover {
+          cursor: pointer;
+          background-color: #00bb00;
+          color: black;
+      }
+      .container-utils {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 5px;
+      }
+      .table-result-utils {
+          font: 400 16px/1.5 "Roboto", sans-serif;
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: center;
+          padding-right: 20px;
+      }
+      .table-result-utils th, td {
+          padding-right: 20px;
+      }
+      .led {
+          width: 15px;
+          height: 15px;
+          border-radius: 10px;
+          margin: 5px 15px 5px 5px;
+          background-color: #444a77;
+      }
+      .title {
+      }
+      .result {
+          width: 100%;
+          margin-left: 10px;
+      }
+  </style>
+
+</head>
+<body>
+<h2>Web Widgets Unit Testing</h2>
+<p class="msg">Mockup for testing various web widget constructs</p>
+<hr>
+
+<!--
+------------------------------------------------------------------------------------
+Test Utils class
+------------------------------------------------------------------------------------
+-->
+<h3>Utils Class</h3>
+<!--<div id="button-test-utils" class="button-test">TEST</div>-->
+<div class="container-utils">
+  <table class="table-result-utils">
+    <tr>
+      <td><div id="led-utils-0" class="led"></div></td>
+      <td id="title-utils-0" class="title">Utils.os</td>
+      <td id="result-utils-0" class="result"></td>
+    </tr>
+    <tr>
+      <td><div id="led-utils-1" class="led"></div></td>
+      <td id="title-utils-1" class="title">Utils.browser</td>
+      <td id="result-utils-1" class="result"></td>
+    </tr>
+    <tr>
+      <td><div id="led-utils-2" class="led"></div></td>
+      <td id="title-utils-2" class="title">Utils.gen_unique_id</td>
+      <td id="result-utils-2" class="result"></td>
+    </tr>
+  </table>
+
+</div>
+
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+<script type="text/javascript" src="../ww_js/ww_test.js"></script>
+<script>
+
+    let test = new Test("foobar");
+
+    console.log(test.speak());
+    console.log(test.test_utils())
+
+    let os = Utils.get_os();
+    $("#result-utils-0").text(os);
+    if (os == "macOS") {
+        $("#led-utils-0").css("background-color", "green");
+    } else {
+        $("#led-utils-0").css("background-color", "red");
+    }
+
+    let browser = Utils.get_browser();
+    $("#result-utils-1").text(browser);
+    if (browser == "Safari") {
+        $("#led-utils-1").css("background-color", "green");
+    } else {
+        $("#led-utils-1").css("background-color", "red");
+    }
+
+    let utils_id = Utils.gen_unique_id("foobar");
+    $("#result-utils-2").text(utils_id);
+    if (Number.isFinite(utils_id)) {
+        $("#led-utils-2").css("background-color", "green");
+    } else {
+        $("#led-utils-2").css("background-color", "red");
+    }
+
+    //===================================================================================
+    $(document).ready(function() {
+        // $("#button-test-utils").click( function() {
+        //    console.log("Test utils");
+        // });
+    });
+</script>
+</body>
+</html>
