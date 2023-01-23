@@ -18,67 +18,74 @@
   <style>
       body {
           background: black;
-          font  : 400 22px/1.5 "Roboto", sans-serif;
+          font  : 400 18px/1.5 "Roboto", sans-serif;
           color : #88ccff;
           margin: 20px;
       }
       .container-wide {
-          width: 550px;
-          height: 150px;
+          width: 450px;
+          height: 120px;
           background-color: #27322c;
           border-radius: 10px 10px 10px 10px;
           padding: 10px;
+          margin-top: 5px;
       }
       .container-narrow {
           width: 180px;
-          height: 400px;
+          height: 200px;
           /*background-color: #0047AB;*/
           border-radius: 10px 10px 10px 10px;
           padding: 10px;
       }
       .msg {
           margin-left: 7px;
-
           color: white;
       }
       #narrow-container {
           display: flex;
           flex-direction: column;
+          width: 210px
       }
       #txt-row, #control-row {
           display: flex;
           flex-direction: row;
-          font-size: 0.7em;
+          font-size: 0.8em;
           color: white;
 
       }
       #active-txt { margin-left: 15px; }
       #active-control {
           width: 70px;
-          height: 400px;
+          height: 200px;
           /*background-color: gray;*/
           display: flex;
           flex-direction: column;
-          gap: 62px;
+          gap: 22px;
           align-items: center;
           justify-content: right;
-          padding-top: 40px;
+          padding-top: 20px;
           padding-right: 10px;
+      }
+      #wide-txt {
+          font-size: 0.8em;
+          width: 455px;
+          text-align: right;
       }
       #narrow-txt {
           width: 190px;
           /*background-color: pink;*/
-          text-align: center;
+          text-align: right;
+          padding-right: 10px;
       }
   </style>
 </head>
 <body>
-<h4>Example of wide button group</h4>
+<h5>Example of wide button group</h5>
 <div id="wide-txt" class="msg">Snoopy Selected</div>
 <div id="container-wide" class="container-wide"></div> <!-- Step 1: Create container to hold widget -->
 <br><hr>
 
-<h4>Example of narrow button group</h4>
+<h5>Example of narrow button group</h5>
 <div id="narrow-container">
   <div id="txt-row">
     <div id="narrow-txt" class="msg">Snoopy Selected</div>
@@ -109,14 +116,14 @@
     // Step 3: Create the attributes config for each of the widgets
     //-------------------------------------------------------------
     let button_group_wide_config = {
-        "font" : "400 20px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+        "font" : "400 15px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
         "font-size" : "1.2em",
         "font_color" : "black",
         "background_color" : "parchment",
-        "width" : "150px",
-        "height": "50px",
+        "width" : "120px",
+        "height": "40px",
         "justify_content" : "right",
-        "border_radius": "40px",
+        "border_radius": "30px",
         "hover_color" : "martian",
         "hover_outline" : "yellow",
         "active_color" :  "martian",
@@ -132,14 +139,14 @@
     }
 
     let button_group_narrow_config = {
-        "font" : "400 20px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+        "font" : "400 16px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
         "font-size" : "1.2em",
         "font_color" : "black",
         "background_color" : "parchment",
-        "width" : "140px",
-        "height": "50px",
+        "width" : "120px",
+        "height": "30px",
         "justify_content" : "right",
-        "border_radius": "40px",
+        "border_radius": "20px",
         "hover_color" : "martian",
         "hover_outline" : "yellow",
         "active_color" :  "martian",

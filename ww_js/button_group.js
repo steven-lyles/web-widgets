@@ -17,9 +17,24 @@ class ButtonGroup {
         config["color_map"] = color;
         this.widget_id = this.gen_unique_id_from(container_id);
         this.config = config;
+
         global_config[this.widget_id] = this.config;
         global_config[this.widget_id]["callback"] = callback;
         this.id = container_id;
+
+        this.gen_widget();
+        this.gen_css();
+    }
+
+    //===================================================================================
+    // Reconstructs the widget with a new config and callback
+    reconstruct_widget(config, color, callback) {
+        $(`#${this.id}`).empty();
+        global_config[this.widget_id] = {};
+        config["color_map"] = color;
+        this.config = config;
+        global_config[this.widget_id] = this.config;
+        global_config[this.widget_id]["callback"] = callback;
 
         this.gen_widget();
         this.gen_css();
@@ -70,6 +85,7 @@ class ButtonGroup {
         $(`.button-group-${this.widget_id}`).css("border-radius", this.config.border_radius);
         $(`.button-group-${this.widget_id}`).css("color", this.config.font_color);
 
+
         let bg_color = global_config[this.widget_id]["color_map"][this.config.background_color].hex;
         let active_color = global_config[this.widget_id]["color_map"] [this.config.active_color].hex;
         let inactive_color = global_config[this.widget_id]["color_map"] [this.config.inactive_color].hex;
@@ -109,7 +125,7 @@ class ButtonGroup {
         if (!this.config.buttons[index].active) {
             let button_id = `#button-group-${index}-${this.widget_id}`;
             this.config.buttons[index].active = true;
-            console.log();
+
             $(button_id).css("background-color", `${this.config.color_map[this.config.background_color].hex}`);
             $(button_id).css("box-shadow", `0px 0px 0px 3px ${this.config.color_map[this.config.background_color].hex} inset`);
             $(button_id).css("color", `${this.config.color_map[this.config.font_color].hex} `);
@@ -146,12 +162,13 @@ $(document).ready(function() {
 
     //--------------------------
     // Handle hover over buttons
-    $(".button-group").hover( function() {
+    $(document).on('mouseenter', '.button-group', function(){
         let id = `${this.id}`.split("-")[3]
         $(`#${this.id}`).css("cursor", "pointer");
         $(`#${this.id}`).css("background-color", `${global_config[id]["color_map"][global_config[id].hover_color].hex}`);
         $(`#${this.id}`).css("box-shadow", `0px 0px 0px 3px ${global_config[id]["color_map"][global_config[id].hover_outline].hex} inset`);
-    }, function() {
+    });
+    $(document).on('mouseleave', '.button-group', function(){
         let id = `${this.id}`.split("-")[3]
         $(`#${this.id}`).css("cursor", "default");
         let index = parseInt(this.id.split("-")[2]);
@@ -169,7 +186,7 @@ $(document).ready(function() {
 
     //------------------------------------
     // Handle callback when button clicked
-    $(".button-group").click( function() {
+    $(document).on('click', '.button-group', function(){
         let index = parseInt(`${this.id}`.split("-")[2]);
         let id = `${this.id}`.split("-")[3]
         if (global_config[id].buttons[index].active) {
@@ -186,6 +203,6 @@ $(document).ready(function() {
         } else {
             console.log(`${global_config[id].buttons[index].txt} is not active.`);
         }
-
     });
+
 });
