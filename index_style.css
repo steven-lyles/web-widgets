@@ -1,8 +1,8 @@
 html, body {
     height: 100%;
     background: black;
-    color: #88bbff; // ghost
-font: 400 20px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
+    color: #88bbff; /*ghost*/
+    font: 400 20px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
@@ -254,7 +254,7 @@ iframe {
 
 
 
-.horz_divider_subject {
+.horz-divider-subject {
     width: auto;
     height: 40px;
     display: flex;
@@ -262,13 +262,13 @@ iframe {
     align-items: flex-end;
     justify-content: flex-start;
 }
-.horz_divider_subject_spacer {
+.horz-divider-subject-spacer {
     background-color: #2255ff;
     height: 40px;
     flex: 1;
 }
-.horz_divider_subject_text {
-    font: 400 36px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
+.horz-divider-subject-text {
+    font: 400 36px/1 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
     color: #ccdeff;
 
     align-self: center;
@@ -277,8 +277,8 @@ iframe {
     width: auto;
     margin-bottom: 5px;
 }
-.horz_divider_subject_ender {
-    border-radius: 0px 30px 30px 0px;
+.horz-divider-subject-ender {
+    border-radius: 0px 20px 20px 0px;
     background-color: #2255ff;
     height: 40px;
     width: 40px;

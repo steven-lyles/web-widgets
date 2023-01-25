@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Subject Divider</title>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+      body {
+          background: black;
+          margin-right: 10px;
+          margin-top: 20px;
+          font  : 400 10px/1.5 "Roboto", sans-serif;
+          color : #88ccff;
+      }
+      .sample-image {
+          width: 100%;
+          margin-bottom: 50px;
+      }
+      .msg {
+          margin-top: 20px;
+      }
+  </style>
+</head>
+<body>
+
+<!-- ------------------------------------------- -->
+<!-- STEP 1: Create the container for the widget -->
+<!-- ------------------------------------------- -->
+<div id="science-div" class="science-div"></div>
+
+<div class="msg">Science Display Mockup</div>
+<img class="sample-image" src="../assets/system.jpg" alt="Planetary System">
+<div id="eng-div" class="eng-div"></div>
+
+<div class="msg">Engineering Display Mockup</div>
+<img class="sample-image" src="../assets/ship.jpg" alt="Planetary System">
+
+
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+<script type="text/javascript" src="../ww_js/ww_subject_divider.js"></script>
+<script>
+
+    //-------------------
+    // Load the color map
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let colors = JSON.parse(json.responseText);
+
+    let science_div_config = {
+        "color": "evening",
+        "txt_primary" : "SCIENCE STATION 1",
+        "txt_secondary" : "ONLINE",
+        "height" : 40, // px
+        "font" : "Antonio",
+        "font_color" : "moonbeam"
+    }
+    let science_div = new SubjectDivider("science-div", science_div_config, colors);
+
+    let eng_div_config = {
+        "color": "autumn",
+        "txt_primary" : "ENGINEERING STATION",
+        "txt_secondary" : "SYSTEMS",
+        "height" : 40, // px
+        "font" : "Antonio",
+        "font_color" : "moonbeam"
+    }
+    let eng_div = new SubjectDivider("eng-div", eng_div_config, colors);
+</script>
+</body>
+</html>

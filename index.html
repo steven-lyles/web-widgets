@@ -52,11 +52,11 @@
       <!-- Right content container -->
       <div class="container-frame-right">
         <!-- Container for header divider -->
-        <div id="horz_divider_subject" class="horz_divider_subject">
+        <div id="horz-divider-subject" class="horz-divider-subject">
           <!-- Horizontal Subject Bar Divider Widget will appear here; TBD: make this widget-->
-          <div class="horz_divider_subject_spacer"></div>
-          <div class="horz_divider_subject_text">WEB WIDGETS &#149; ONLINE</div>
-          <div class="horz_divider_subject_ender"></div>
+<!--          <div class="horz-divider-subject-spacer"></div>-->
+<!--          <div class="horz-divider-subject-text">WEB WIDGETS &#149; ONLINE</div>-->
+<!--          <div class="horz-divider-subject-ender"></div>-->
         </div>
         <div class="corner-bg">
           <div class="corner"></div>
@@ -114,10 +114,10 @@
 <script type="text/javascript" src="./ww_js/ww_utils.js"></script>
 
 <!-- Load the widget objects -->
-<script type="text/javascript" src="./ww_js/horz_bars_divider.js"></script>
-<script type="text/javascript" src="./ww_js/button_group.js"></script>
-<script type="text/javascript" src="./ww_js/button_stack.js"></script>
-
+<script type="text/javascript" src="./ww_js/ww_subject_divider.js"></script>
+<script type="text/javascript" src="./ww_js/ww_horz_bars_divider.js"></script>
+<script type="text/javascript" src="./ww_js/ww_button_group.js"></script>
+<script type="text/javascript" src="./ww_js/ww_button_stack.js"></script>
 
 <script>
     let current_page_index = -1;
@@ -152,12 +152,17 @@
                     page_button_buttons_callback(button_group.get_selected_button_index());
                     break;
                 case Category.Dividers:
+                    button_group.reconstruct_widget(button_group_dividers_config, colors, page_button_dividers_callback);
+                    page_button_dividers_callback(button_group.get_selected_button_index());
                     break;
                 case Category.Indicators:
+                    tbd();
                     break;
                 case Category.Selection:
+                    tbd();
                     break;
                 case Category.Misc:
+                    tbd();
                     break;
                 default:
                     break;
@@ -201,10 +206,27 @@
         }
     }
 
+    //========================================================================================
+    // Callback for when one of the DIVIDERS subject group buttons is clicked; these buttons
+    // change the page contents
+    function page_button_dividers_callback(index) {
+        switch(index) {
+            case 0:
+                $("#page-content").attr("src", "./demos/demo_subject_divider.html");
+                break;
+            case 1:
+                $("#page-content").attr("src", "./demos/demo_horz_bars_divider.html");
+                break;
+            default:
+                break;
+        }
+    }
+
     //----------------
     // Widget Creation
     //----------------
 
+    let web_widgets_div = new SubjectDivider("horz-divider-subject", web_widgets_div_config, colors);
     // "Horizontal Bars Divider" widget for the footer
     let horz_divider_footer = new HorizontalBarsDivider("horz_divider_footer", horz_divider_footer_config, colors);
     // "Button Stack" widget for category buttons in left column
@@ -221,6 +243,11 @@
     function set_home_back() {
         $("#menu-home-txt").css("color", "black");
         $("#menu-home-icon").attr("src", "./assets/home.svg");
+    }
+
+    function tbd() {
+        $("#container-subject-menu-buttons").empty();
+        $("#page-content").attr("src", "tbd.html");
     }
 
     //===================================================================================

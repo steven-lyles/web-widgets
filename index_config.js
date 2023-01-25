@@ -47,6 +47,16 @@ let colors = {
     "yellow"       : { "hex" : "#ffff00", "rgb" : "255,255,0" }
 }
 
+// Configuration for the top subject divider
+let web_widgets_div_config = {
+    "color": "evening",
+    "txt_primary" : "WEB WIDGETS",
+    "txt_secondary" : "ONLINE",
+    "height" : 40, // px
+    "font" : "Antonio",
+    "font_color" : "moonbeam"
+}
+
 //-----------------------------------------
 // Configuration for horizontal footer bars
 let horz_divider_footer_config = {
@@ -148,5 +158,27 @@ let button_group_buttons_config = {
         { "txt": "Group", "active" : true },
         { "txt": "Stack",   "active" : true },
         { "txt": "List",   "active" : true }
+    ]
+}
+
+//------------------------------------------------
+// Configuration for the DIVIDER type button group
+let button_group_dividers_config = {
+    "font" : "400 15px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+    "font-size" : "1.0em",
+    "font_color" : "black",
+    "background_color" : "evening",
+    "width" : "100px",
+    "height": "25px",
+    "justify_content" : "left",
+    "border_radius": "20px",
+    "hover_color" : "martian",
+    "hover_outline" : "martian",
+    "active_color" :  "martian",
+    "inactive_color" : "galaxy",
+    "selected_index" : 0,
+    "buttons" : [
+        { "txt": "Subject", "active" : true },
+        { "txt": "Bars",   "active" : true }
     ]
 }
