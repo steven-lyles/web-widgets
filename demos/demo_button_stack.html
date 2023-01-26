@@ -22,6 +22,11 @@
           color : #88ccff;
           margin: 20px;
       }
+      .uniform-demo-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+      }
       .container-mixed {
           width: 150px;
           height: 170px;
@@ -43,6 +48,10 @@
           color: white;
           font-size: 0.7em;
       }
+      #mustang-view {
+          width: 20%;
+      }
+      #container-uniform { margin-top: 25px; }
   </style>
 </head>
 <body>
@@ -51,8 +60,12 @@
 <div id="container-mixed" class="container-mixed"></div> <!-- Step 1: Create container to hold widget -->
 <br><hr>
 <div>Uniform Style</div>
-<div id="txt-uniform" class="msg">Select a Direction</div>
-<div id="container-uniform" class="container-uniform"></div> <!-- Step 1: Create container to hold widget -->
+<div id="txt-uniform" class="msg">North American P-51 Mustang</div>
+<div class="uniform-demo-container">
+  <div id="container-uniform" class="container-uniform"></div> <!-- Step 1: Create container to hold widget -->
+  <img id="mustang-view" src="../assets/mustang-top.jpg">
+</div>
+
 
 <!-- ------------------------------------------------------------------ -->
 <!-- Step 2: Include the widget script & jquery is not already included -->
@@ -83,16 +96,15 @@
 
     let button_stack_uniform_config = {
         "font_size" : 16, // px
-        "font_color": "black",
+        "font_color": "white",
         "width" : 110, // px
         "height" : 30,
-        "border_radius" : "80px",
-        "hover_color" : "martian",
+        "border_radius" : "5px",
+        "hover_color" : "parrishblue",
         "button" : [
-            { "txt" : "Up",  "color" : "evening", "icon" : "../assets/arrow-up.svg"},
-            { "txt" : "Right", "color" : "evening", "icon" : "../assets/arrow-right.svg"},
-            { "txt" : "Down", "color" : "evening", "icon" : "../assets/arrow-down.svg"},
-            { "txt" : "Left", "color" : "evening", "icon" : "../assets/arrow-left.svg"}
+            { "txt" : "Top", "color" : "galaxy", "icon" : "../assets/arrow-down.svg"},
+            { "txt" : "Front", "color" : "galaxy", "icon" : "../assets/arrow-right.svg"},
+            { "txt" : "Side", "color" : "galaxy", "icon" : "../assets/arrow-left.svg"}
         ]
     }
 
@@ -107,8 +119,22 @@
     }
 
     function button_uniform(index) {
-        console.log("uniform");
-        $("#txt-uniform").text(`Going ${button_stack_uniform_config.button[index].txt}`);
+
+        // $("#txt-uniform").text(`Going ${button_stack_uniform_config.button[index].txt}`);
+        switch(index) {
+            case 0:
+                console.log("Top View");
+                $("#mustang-view").attr("src", "../assets/mustang-top.jpg");
+                break;
+            case 1:
+                console.log("Front View");
+                $("#mustang-view").attr("src", "../assets/mustang-front.jpg");
+                break;
+            case 2:
+                console.log("Side View");
+                $("#mustang-view").attr("src", "../assets/mustang-side.jpg");
+                break;
+        }
     }
 
     //---------------------------------------------------------------------------------

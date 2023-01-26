@@ -4,7 +4,7 @@ html, body {
     color: #88bbff; /*ghost*/
     font: 400 20px/1.5 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 15px;
     margin-bottom: 10px;
 
     overflow: hidden;
@@ -254,32 +254,32 @@ iframe {
 
 
 
-.horz-divider-subject {
-    width: auto;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-start;
-}
-.horz-divider-subject-spacer {
-    background-color: #2255ff;
-    height: 40px;
-    flex: 1;
-}
-.horz-divider-subject-text {
-    font: 400 36px/1 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;
-    color: #ccdeff;
+/*.horz-divider-subject {*/
+/*    width: auto;*/
+/*    height: 40px;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    align-items: flex-end;*/
+/*    justify-content: flex-start;*/
+/*}*/
+/*.horz-divider-subject-spacer {*/
+/*    background-color: #2255ff;*/
+/*    height: 40px;*/
+/*    flex: 1;*/
+/*}*/
+/*.horz-divider-subject-text {*/
+/*    font: 400 36px/1 "Antonio", "Arial Narrow", "Avenir Next Condensed", sans-serif;*/
+/*    color: #ccdeff;*/
 
-    align-self: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: auto;
-    margin-bottom: 5px;
-}
-.horz-divider-subject-ender {
-    border-radius: 0px 20px 20px 0px;
-    background-color: #2255ff;
-    height: 40px;
-    width: 40px;
-}
+/*    align-self: center;*/
+/*    padding-left: 20px;*/
+/*    padding-right: 20px;*/
+/*    width: auto;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+/*.horz-divider-subject-ender {*/
+/*    border-radius: 0px 20px 20px 0px;*/
+/*    background-color: #2255ff;*/
+/*    height: 40px;*/
+/*    width: 40px;*/
+/*}*/

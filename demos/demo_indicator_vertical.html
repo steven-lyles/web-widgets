@@ -10,12 +10,26 @@ Created by Steven M. Lyles
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-      body { 
-        background: black;
-        font: 400 22px/1.5 "Roboto", sans-serif;
-        color     : #88ccff;
-        margin    : 0px 0px 0px 10px;
-        overflow  : hidden;
+        html, body {
+            height: 100%;
+            background: black;
+            font: 400 22px/1.5 "Roboto", sans-serif;
+            color     : #88ccff;
+            margin    : 0px 0px 0px 10px;
+            overflow  : hidden;
+      }
+      .bg {
+          /*font: 400 16px/1.5 "Arial Narrow", sans-serif;*/
+          /* The image used */
+          background-image: url("../assets/night-planet.jpg");
+
+          /* Full height */
+          height: 100%;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
       }
       .msg-note {
           text-align: left;
@@ -110,12 +124,8 @@ Created by Steven M. Lyles
     </style>
   </head>
   <body>
-    
-<!--    <div class="size-button-container">-->
-<!--      <div class="control-button" id="lrg-vert">LRG</div>-->
-<!--      <div class="control-button" id="med-vert">MED</div>-->
-<!--      <div class="control-button" id="sml-vert">SML</div>-->
-<!--    </div>-->
+
+  <div class="bg">
     <br>
     <div></div> <!--- Blank div to offset some bug throwing off the page alignment ??? -->
 
@@ -170,7 +180,7 @@ Created by Steven M. Lyles
       </div>
     </div>
     <p class="msg-note"><span style="color: #ccdeff">NOTE:</span> This demonstrates the Vertical Navigation Indicator Widget</p>
-    
+  </div>
     <!-- Include the indicator widget script -->
     <script type="text/javascript" src="../ww_js/web_widgets.js"></script>
 

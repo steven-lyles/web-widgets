@@ -155,9 +155,9 @@ let button_group_buttons_config = {
     "inactive_color" : "galaxy",
     "selected_index" : 0,
     "buttons" : [
-        { "txt": "Group", "active" : true },
-        { "txt": "Stack",   "active" : true },
-        { "txt": "List",   "active" : true }
+        { "txt": "Accordion", "active" : true },
+        { "txt": "List",   "active" : true },
+        { "txt": "Group",   "active" : true }
     ]
 }
 

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Button Accordion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../index_style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    .column-width { width: 50px; min-width: 50px; }
+    .panel-curved {
+        height: 100px;
+        /*width: 170px;*/
+        align-self: flex-start;
+        background: #E78D34;
+        border-radius: 90px 0 0 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+    .container-main { margin-top: 20px; }
+    .panel-spacer {
+        background-color: #E78D34;
+
+        /*width: 170px;*/
+        height: auto;
+        flex: 1 1 auto;
+    }
+    .corner-bg {
+        width: 50px;
+        height: 20px;
+        background: #E78D34;
+    }
+    .corner {
+        width: 50px;
+        height: 20px;
+        /*background: #000;*/
+        /*background-color: green;*/
+        border-radius: 20px 0 0 0;
+    }
+    .subject-txt {
+        width: 95%;
+        height: 150px;
+        font-size: 0.8em;
+        margin-left: 20px;
+        /*background-color: pink;*/
+    }
+
+  </style>
+</head>
+<body>
+<div id="container-main" class="container-main">
+  <div class="container-frames">
+    <div class="container-frame-left-middle column-width">
+
+      <div class="panel-curved column-width">
+      </div>
+      <div class="panel-spacer column-width"></div> <!-- this fills the remaining space after button stack -->
+    </div>
+
+    <!-- Right content container -->
+    <div class="container-frame-right">
+      <!-- Container for header divider -->
+      <div id="accordion-subject" class="accordion-subject">
+
+      </div>
+      <div class="corner-bg">
+        <div class="corner"></div>
+      </div>
+
+      <div id="subject-txt" class="subject-txt">
+        <h3 style="color:#ccdeff">North American P-51 Mustang</h3>
+        <p>The P-51 Mustang was a highly successful and versatile long-range single-seat
+          fighter aircraft that served with the United States Army Air Forces, the British
+          Royal Air Force, and other Allied air forces during World War II and the Korean
+          War, among other conflicts.
+        </p>
+        <p>Choose a subject below to learn more and demonstrate the "Accordion Button" selection widget.
+          P-51 précis courtesy of <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>.</p>
+      </div>
+
+      <!-- Category subject content will appear here -->
+      <div id="content" class="container-subject">
+        <div id="menu-box" class="menu-box">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Load the utilities - this is required by the widgets!!! -->
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+
+<!-- Load the widget objects -->
+<script type="text/javascript" src="../ww_js/ww_subject_divider.js"></script>
+<script type="text/javascript" src="../ww_js/ww_button_list.js"></script>
+<script>
+    //-------------------
+    // Load the color map
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let colors = JSON.parse(json.responseText);
+
+    let accordion_div_config = {
+        "color": "autumn",
+        "txt_primary" : "ARCHIVES",
+        "txt_secondary" : "AVIATION",
+        "height" : 30, // px
+        "font" : "Antonio",
+        "font_color" : "moonbeam"
+    }
+    let web_widgets_div = new SubjectDivider("accordion-subject", accordion_div_config, colors);
+
+    let accordion_config = {
+        "background_color" : "black",
+        "width" : "90%",
+        "height" : "30px",
+        "button" : {
+            "background_color" : "autumn",
+            "font_color" : "black",
+            "font_size" : "0.7em",
+            "hover_text_color" : "white",
+            "width" : "30%",
+            "border_radius": "25px"
+        },
+        "description" : {
+            "background_color" : "galaxy",
+            "font_color" : "ice",
+            "font_size" : "0.6em",
+            "hover_text_color" : "white",
+            "width" : "70%",
+            "outline_color" : "galaxy",
+            "border_radius": "25px"
+        },
+        "accordion" : true,
+        "accordion-content": {
+            "background_color" : "black",
+            "margin_left" : "15px"
+        },
+        "items" : [
+            {
+                "name"  : "Description",
+                "desc"  : "General information about the aircraft",
+                "link"  : "../doc/mustang_desc.html",
+                "width" : 1000,
+                "height": 320
+            },
+            {
+                "name" : "World War II",
+                "desc" : "Highlights of the aircraft's service during WWII",
+                "link" : "../tbd.html",
+                "width" : 780,
+                "height": 550
+            },
+            {
+                "name" : "Post World War II",
+                "desc" : "Continued service after the war",
+                "link" : "../tbd.html",
+                "width" : 680,
+                "height": 300
+            },
+            {
+                "name" : "Views",
+                "desc" : "Demonstrating the 'Button Stack' widget",
+                "link" : "../tbd.html",
+                "width" : 680,
+                "height": 550
+            },
+            {
+                "name" : "Summary",
+                "desc" : "In conclusion...",
+                "link" : "../tbd.html",
+                "width" : 680,
+                "height": 60
+            }
+        ]
+    }
+
+    // --------------------------------------------------------------------------
+    // 4: Create an instance of the widget passing container id and configuration
+    // --------------------------------------------------------------------------
+    let menu_widget = new WebWidgetMenuList("menu-box", accordion_config, colors);
+
+</script>
+</body>
+</html>
