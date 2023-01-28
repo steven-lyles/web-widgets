@@ -1,0 +1,102 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Button List - Links - Demo
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Web Widgets</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: black;
+          font: 400 22px/1.5 "Roboto", sans-serif;
+          margin-left: 20px;
+          color: #88bbff;
+      }
+  </style>
+</head>
+<body>
+  <!--| ------------------------------------------- |-->
+  <!--| 1: Create a container to hold the menu list |-->
+  <!--| ------------------------------------------- |-->
+  <div id="menu-box" class="menu-box">
+  </div>
+
+  <!--| -----------------------------|-->
+  <!--| 2: Source the menu list code |-->
+  <!--| -----------------------------|-->
+  <script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+  <script type="text/javascript" src="../ww_js/ww_button_list.js"></script>
+  <script>
+      //--------------------------------
+      // 3a: Load the color map if using
+      //--------------------------------
+      let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+      let colors = JSON.parse(json.responseText);
+
+      //-----------------------------------------------
+      // 3b: Create the configuration json for the menu
+      //-----------------------------------------------
+      let config = {
+          "accordion" : false,
+          "background_color" : "black",
+          "width" : "100%",
+          "height" : "30px",
+          "gap" : "3px",
+          "description_font_color" : "ghost",
+          "button" : {
+              "background_color" : "cool",
+              "font_color" : "black",
+              "font_size" : "0.7em",
+              "hover_text_color" : "white",
+              "width" : "30%",
+              "border_radius": "25px"
+          },
+          "description" : {
+              "background_color" : "black",
+              "font_color" : "ice",
+              "font_size" : "0.6em",
+              "hover_text_color" : "white",
+              "width" : "70%",
+              "outline_color" : "galaxy",
+              "border_radius": "25px"
+          },
+          "items" : [
+              {
+                  "name" : "My Color Collection",
+                  "desc" : "A listing of color palettes with RGB and hex values that I use for reference.",
+                  "link" : "https://www.stevenlyles.net/playground/colors/index.html"
+              },
+              {
+                  "name" : "Imagine Colors",
+                  "desc" : "A simple web app for analyzing the most common colors in an image.",
+                  "link" : "https://www.stevenlyles.net/playground/imagine/index.html"
+              },
+              {
+                  "name" : "A.N.N.A.",
+                  "desc" : "Auto-associative Neural Network Analyzer - visually shows weights as a network trains.",
+                  "link" : "https://www.stevenlyles.net/playground/anna/index.html"
+              },
+              {
+                  "name" : "Slide Show",
+                  "desc" : "A full-screen slide show app of some of my photography.",
+                  "link" : "https://www.stevenlyles.net/playground/slideshow/index.html"
+              }
+          ]
+      }
+
+      // --------------------------------------------------------------------------
+      // 4: Create an instance of the widget passing container id and configuration
+      // --------------------------------------------------------------------------
+      let menu_widget = new WebWidgetMenuList("menu-box", config, colors);
+  </script>
+</body>
+</html>

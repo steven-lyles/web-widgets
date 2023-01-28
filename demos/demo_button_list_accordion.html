@@ -1,8 +1,16 @@
+<!--
+ * ======================================================================================
+ * Web Widgets: Button List - Accordion - Demo
+ * Copyright © Steven M. Lyles
+ * https://github.com/steven-lyles/web-widgets
+ * https://www.stevenlyles.net
+ * =====================================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Demo Button Accordion</title>
+  <title>Button Accordion Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="../index_style.css">
@@ -24,8 +32,6 @@
     .container-main { margin-top: 20px; }
     .panel-spacer {
         background-color: #E78D34;
-
-        /*width: 170px;*/
         height: auto;
         flex: 1 1 auto;
     }
@@ -43,34 +49,12 @@
     }
     .subject-txt {
         width: 95%;
-        height: 150px;
+        height: 190px;
         font-size: 0.8em;
         margin-left: 20px;
         /*background-color: pink;*/
     }
-    .page-content {
-        flex-grow: 1;
-        border: none;
-        /*border-style: solid;*/
-        /*border-width: 1px;*/
-        /*border-color: #2d2d2d;*/
-        margin: 0;
-        padding: 0;
-    }
     .menu-box { margin-left: 10px; }
-
-
-    .selection-content {
-        flex-grow: 1;
-        flex-shrink: 1;
-        border: none;
-        /*border-style: solid;*/
-        /*border-width: 1px;*/
-        /*border-color: #2d2d2d;*/
-        /*margin: 0;*/
-        /*padding: 0;*/
-    }
-
   </style>
 </head>
 <body>
@@ -136,9 +120,12 @@
     let web_widgets_div = new SubjectDivider("accordion-subject", accordion_div_config, colors);
 
     let accordion_config = {
+        "accordion" : true,
         "background_color" : "black",
-        "width" : "800px",
+        "width" : "100%",
         "height" : "30px",
+        "gap" : "3px",
+        "description_font_color" : "ghost",
         "button" : {
             "background_color" : "autumn",
             "font_color" : "black",
@@ -156,46 +143,36 @@
             "outline_color" : "galaxy",
             "border_radius": "25px"
         },
-        "accordion" : true,
-        "accordion-content": {
-            "background_color" : "black",
-            "margin_left" : "15px"
-        },
         "items" : [
             {
                 "name"  : "Description",
                 "desc"  : "General information about the aircraft",
                 "link"  : "../doc/mustang_desc.html",
-                "width" : 900,
-                "height": 320
+                "size": 320
             },
             {
                 "name" : "World War II",
                 "desc" : "Highlights of the aircraft's service during WWII",
-                "link" : "../tbd.html",
-                "width" : 780,
-                "height": 550
+                "link" : "../doc/mustang_ww2.html",
+                "size": 320
             },
             {
                 "name" : "Post World War II",
                 "desc" : "Continued service after the war",
-                "link" : "../tbd.html",
-                "width" : 680,
-                "height": 300
+                "link" : "../doc/mustang_post_ww2.html",
+                "size": 300
             },
             {
                 "name" : "Views",
                 "desc" : "Demonstrating the 'Button Stack' widget",
-                "link" : "../tbd.html",
-                "width" : 680,
-                "height": 550
+                "link" : "../demos/demo_button_stack.html",
+                "size": 270
             },
             {
                 "name" : "Summary",
                 "desc" : "In conclusion...",
-                "link" : "../tbd.html",
-                "width" : 680,
-                "height": 60
+                "link" : "../doc/mustang_summary.html",
+                "size": 300
             }
         ]
     }

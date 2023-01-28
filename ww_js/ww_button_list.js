@@ -43,9 +43,9 @@ class WebWidgetMenuList {
 
             } else {
                 $(`#${container_id}`).append(`<a id='link-${index}-${widget_id}' href='${value["link"]}' target='_blank'></a>`);
-                $(`#link-${index}-${widget_id}`).append(`<div id='selection-${index}-${widget_id}' class='choice'></div>`);
-                $(`#selection-${index}-${widget_id}`).append(`<div id='selection-${index}-button-${widget_id} class='button'>${value["name"]}</div>`);
-                $(`#selection-${index}-${widget_id}`).append(`<div id='selection-${index}-desc-${widget_id} class='desc'>${value["desc"]}</div>`);
+                $(`#link-${index}-${widget_id}`).append(`<div id='selection-${index}-${widget_id}' class='choice-${widget_id} choice'></div>`);
+                $(`#selection-${index}-${widget_id}`).append(`<div id='selection-${index}-button-${widget_id}' class='button-${widget_id}'>${value["name"]}</div>`);
+                $(`#selection-${index}-${widget_id}`).append(`<div id='selection-${index}-desc-${widget_id}' class='desc-${widget_id}'>${value["desc"]}</div>`);
             }
         });
     }
@@ -61,7 +61,7 @@ class WebWidgetMenuList {
         $(`#${this.id}`).css("flex-direction", "column");
         $(`#${this.id}`).css("gap", config.gap);
         $(`#${this.id}`).css("height", "auto");
-        $(`#${this.id}`).css("width", "99%");
+        $(`#${this.id}`).css("width", "90%");
         $(`#${this.id}`).css("padding", "10px");
 
         $(`.choice-${this.widget_id}`).css("display", "flex");
@@ -106,7 +106,7 @@ class WebWidgetMenuList {
             $(`.content-${this.widget_id}`).css("display", "flex");
             $(`.content-${this.widget_id}`).css("flex-direction", "column");
             $(`.content-${this.widget_id}`).css("justify-content", "center");
-            $(`.content-${this.widget_id}`).css("background-color", "white");
+            $(`.content-${this.widget_id}`).css("background-color", config.color_map[ config["background_color"] ].hex);
             $(`.content-${this.widget_id}`).css("width", "100%");
             $(`.content-${this.widget_id}`).css("height", "100%");
             $(`.content-${this.widget_id}`).css("float", "left");

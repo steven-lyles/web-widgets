@@ -105,6 +105,7 @@ let button_stack_config = {
     "font_color": "black",
     "width" : 160, // px
     "height" : 50,
+    "spacing" : "5px",
     "border_radius" : "5px",
     "hover_color" : "martian",
     "button" : [
@@ -156,7 +157,7 @@ let button_group_buttons_config = {
     "selected_index" : 0,
     "buttons" : [
         { "txt": "Accordion", "active" : true },
-        { "txt": "List",   "active" : true },
+        { "txt": "Links",   "active" : true },
         { "txt": "Group",   "active" : true }
     ]
 }

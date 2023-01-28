@@ -25,6 +25,7 @@ a {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
 }
 .container-content {
     flex: 1 1 auto;
@@ -48,9 +49,11 @@ a {
 .container-frames {
     display: flex;
     height: 100%;
+    width: 100%;
     flex-direction: row;
     margin: 0 auto;
     overflow: hidden;
+    align-self: flex-start;
 }
 container-frame-left {
     display: flex;
