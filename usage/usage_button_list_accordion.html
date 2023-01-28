@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Web Widgets: Button Menu List Demo
+-->
+<html>
+<head>
+  <title>Accordion Widget Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background: white;
+          font: 400 22px/1.5 "Roboto", sans-serif;
+          margin: 20px;
+          color: #88bbff;
+      }
+
+      /* Widget Specific Styles */
+
+      /*a {*/
+      /*    text-decoration: none;*/
+      /*    outline: 0;*/
+      /*}*/
+      /*.menu-box {*/
+      /*    background-color: white;*/
+      /*    display: flex;*/
+      /*    flex-direction: column;*/
+      /*    gap: 10px;*/
+      /*    height: auto;*/
+      /*    width: 99%;*/
+      /*    padding: 10px;*/
+      /*}*/
+      /*.choice {*/
+      /*    display: flex;*/
+      /*    flex-direction: row;*/
+      /*    background: white;*/
+      /*    width: 100%;*/
+      /*    height: 34px;*/
+      /*    float: left;*/
+      /*    cursor: pointer;*/
+      /*    margin-right: 20px;*/
+      /*}*/
+      /*.choice:hover { cursor: pointer; }*/
+      /*.button {*/
+      /*    background-color: #97B3B8;*/
+      /*    color: black;*/
+      /*    width: 30%;*/
+      /*    height: 30px;*/
+      /*    font-size: 0.7em;*/
+      /*    display: flex;*/
+      /*    align-items: center;*/
+      /*    justify-content: center;*/
+      /*    border-top: 2px solid #97B3B8;*/
+      /*    border-bottom: 2px solid #97B3B8;*/
+      /*    border-left: 2px solid #97B3B8;*/
+      /*    border-radius: 25px 0px 0px 25px;*/
+      /*}*/
+      /*.desc {*/
+      /*    background-color: #444a77;*/
+      /*    color: #88bbff;*/
+      /*    width: 70%;*/
+      /*    height: 30px;*/
+      /*    font-size: 0.6em;*/
+      /*    display: flex;*/
+      /*    align-items: center;*/
+      /*    justify-content: flex-start;*/
+      /*    border-top: 2px solid #444a77;*/
+      /*    border-bottom: 2px solid #444a77;*/
+      /*    border-right: 2px solid #444a77;*/
+      /*    border-radius: 0px 25px 25px 0px;*/
+      /*    padding-left: 20px;*/
+      /*    text-decoration: none;*/
+      /*}*/
+      /*.content {*/
+      /*    display: flex;*/
+      /*    flex-direction: column;*/
+      /*    justify-content: center;*/
+      /*    background-color: white;*/
+      /*    width: 100%;*/
+      /*    height: 100%;*/
+      /*    float: left;*/
+      /*    cursor: pointer;*/
+      /*}*/
+
+      /*.page-content {*/
+      /*    overflow-y: scroll;*/
+      /*    border: none;*/
+      /*    height: 100%;*/
+      /*    margin-bottom: 15px;*/
+      /*}*/
+      /*.hidden {*/
+      /*    display: none;*/
+      /*    margin-left: 10px;*/
+      /*    margin-right: 10px;*/
+      /*}*/
+      /*#content-0-container { height: 130px; }*/
+      /*#content-1-container { height: 130px; }*/
+      /*#content-2-container { height: 130px; }*/
+      /*#content-3-container { height: 130px; }*/
+  </style>
+</head>
+<body>
+<!--| ------------------------------------------- |-->
+<!--| 1: Create a container to hold the menu list |-->
+<!--| ------------------------------------------- |-->
+<div id="menu-box" class="menu-box">
+
+<!--  <div id="selection-0" class="choice">-->
+<!--    <div id="selection-0-button" class="button page-button">AIR Element</div>-->
+<!--    <div id="selection-0-desc" class="desc">Inspiration</div>-->
+<!--  </div>-->
+<!--  <div id="content-0-container" class="hidden">-->
+<!--    <div id="content-0" class="content">-->
+<!--      <iframe id="content-0-src" src="../doc/element_air.html" class="page-content" scrolling="auto"></iframe>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div id="selection-1" class="choice">-->
+<!--    <div id="selection-1-button" class="button page-button">WATER Element</div>-->
+<!--    <div id="selection-1-desc" class="desc">Imagination</div>-->
+<!--  </div>-->
+<!--  <div id="content-1-container" class="hidden">-->
+<!--    <div id="content-1" class="content">-->
+<!--      <iframe id="content-1-src" src="../doc/element_water.html" class="page-content" scrolling="auto"></iframe>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div id="selection-2" class="choice">-->
+<!--    <div id="selection-2-button" class="button page-button">EARTH Element</div>-->
+<!--    <div id="selection-2-desc" class="desc">Illustration</div>-->
+<!--  </div>-->
+<!--  <div id="content-2-container" class="hidden">-->
+<!--    <div id="content-2" class="content">-->
+<!--      <iframe id="content-2-src" src="../doc/element_earth.html" class="page-content" scrolling="auto"></iframe>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div id="selection-3" class="choice">-->
+<!--    <div id="selection-3-button" class="button page-button">FIRE Element</div>-->
+<!--    <div id="selection-3-desc" class="desc">Illumination</div>-->
+<!--  </div>-->
+<!--  <div id="content-3-container" class="hidden">-->
+<!--    <div id="content-3" class="content">-->
+<!--      <iframe id="content-3-src" src="../doc/element_fire.html" class="page-content" scrolling="auto"></iframe>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</div>
+
+<!--| -----------------------------------------------|-->
+<!--| 2: Source the utils module and any widget file |-->
+<!--| -----------------------------------------------|-->
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+<script type="text/javascript" src="../ww_js/ww_button_list.js"></script>
+<script>
+    //--------------------------------
+    // 3a: Load the color map if using
+    //--------------------------------
+    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    let colors = JSON.parse(json.responseText);
+
+    //-------------------------------------------------
+    // 3b: Create the configuration json for the widget
+    //-------------------------------------------------
+    let config = {
+        "accordion" : true,
+        "background_color" : "white",
+        "width" : "100%",
+        "height": "30px",
+        "gap" : "10px",
+        "description_font_color" : "ghost",
+        "button" : {
+            "background_color" : "shore",
+            "font_color" : "black",
+            "font_size" : "0.7em",
+            "hover_text_color" : "white",
+            "width" : "30%",
+            "border_radius" : "25px"
+        },
+        "description" : {
+            "background_color" : "galaxy",
+            "font_color" : "ghost",
+            "font_size" : "0.6em",
+            "hover_text_color" : "white",
+            "width" : "70%",
+            "outline_color" : "galaxy",
+            "border_radius" : "25px"
+        },
+        "items" : [
+            {
+                "name" : "AIR",
+                "desc" : "Inspiration",
+                "link" : "../doc/element_air.html",
+                "size" : 100 // height in pixels
+            },
+            {
+                "name" : "WATER",
+                "desc" : "Imagination",
+                "link" : "../doc/element_water.html",
+                "size" : 100 // height in pixels
+            },
+            {
+                "name" : "EARTH",
+                "desc" : "Illustration",
+                "link" : "../doc/element_earth.html",
+                "size" : 100 // height in pixels
+            },
+            {
+                "name" : "FIRE",
+                "desc" : "Illumination",
+                "link" : "../doc/element_fire.html",
+                "size" : 100 // height in pixels
+            }
+        ]
+    }
+
+    // -------------------------------------------------------------------------------------
+    // 4: Create an instance of the widget passing container id, configuration and color map
+    // -------------------------------------------------------------------------------------
+    let menu_widget = new WebWidgetMenuList("menu-box", config, colors);
+</script>
+</body>
+</html>

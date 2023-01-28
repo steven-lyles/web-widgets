@@ -12,10 +12,10 @@ Web Widgets: Button Menu List Demo
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
       body {
-          background: black;
+          background: white;
           font: 400 22px/1.5 "Roboto", sans-serif;
           /*margin : 15px;*/
-          margin-left: 20px;
+          margin: 20px;
           color: #88bbff;
       }
 
@@ -26,26 +26,29 @@ Web Widgets: Button Menu List Demo
           outline: 0;
       }
       .menu-box {
-          background-color: black;
+          /*background-color: pink;*/
           display: flex;
           flex-direction: column;
           gap: 10px;
           height: auto;
-          width: 100%;
-          padding-top: 10px;
+          width: 99%;
+          padding: 10px;
+          /*margin-right: 200px;*/
+          /*border: 1px solid #88ccff;*/
       }
       .choice {
           display: flex;
           flex-direction: row;
-          background: black;
-          width: 1000px;
+          background: white;
+          width: 100%;
           height: 34px;
           float: left;
           cursor: pointer;
+          margin-right: 20px;
       }
-      .choice:hover { cursor, pointer; }
+      .choice:hover { cursor: pointer; }
       .button {
-          background-color: #ff8833;
+          background-color: #97B3B8;
           color: black;
           width: 30%;
           height: 30px;
@@ -53,9 +56,9 @@ Web Widgets: Button Menu List Demo
           display: flex;
           align-items: center;
           justify-content: center;
-          border-top: 2px solid #ff8833;
-          border-bottom: 2px solid #ff8833;
-          border-left: 2px solid #ff8833;
+          border-top: 2px solid #97B3B8;
+          border-bottom: 2px solid #97B3B8;
+          border-left: 2px solid #97B3B8;
           border-radius: 25px 0px 0px 25px;
       }
       .desc {
@@ -72,14 +75,44 @@ Web Widgets: Button Menu List Demo
           border-right: 2px solid #444a77;
           border-radius: 0px 25px 25px 0px;
           padding-left: 20px;
+          text-decoration: none;
       }
       .selection-content-container {
-          background-color: black;
-          margin-left: 15px;
-          display: none;
-          width: 970px;
-          height: auto;
+          background-color: green;
+          /*margin: 15px;*/
+          /*display: none;*/
+          /*width: 100%;*/
+          /*height: auto;*/
+          display: flex;
+          /*visibility: hidden;*/
+          flex-direction: column;
+          justify-content: center;
+          /*align-items: stretch;*/
+          background-color: white;
+          width: 100%;
+          height: 100%;
+
+          float: left;
+          cursor: pointer;
+          /*margin-right: 20px;*/
       }
+
+      iframe {
+          overflow-y: scroll;
+          border: none;
+          height: 100%;
+          margin-bottom: 15px;
+      }
+      .hidden {
+          display: none;
+          /*align-self: stretch;*/
+          margin-left: 10px;
+          margin-right: 10px;
+      }
+      #content-0 { height: 130px; }
+      #content-1 { height: 130px; }
+      #content-2 { height: 130px; }
+      #content-3 { height: 130px; }
   </style>
 </head>
 <body>
@@ -87,52 +120,45 @@ Web Widgets: Button Menu List Demo
 <!--| 1: Create a container to hold the menu list |-->
 <!--| ------------------------------------------- |-->
 <div id="menu-box" class="menu-box">
-  <div id="selection_0" class="choice">
-    <div id="selection_0_button" class="button page-button">Vertical Indicator</div>
-    <div id="selection_0_desc" class="desc">Sliding indicator in vertical configuration</div>
+
+  <div id="selection-0" class="choice">
+    <div id="selection-0-button" class="button page-button">AIR Element</div>
+    <div id="selection-0-desc" class="desc">Inspiration</div>
   </div>
-  <div id="selection-content-container_0" class="selection-content-container">
-    <embed id="demo_page_0" type="text/html" src="indicator_vertical_demo.html" width="680" height="450" style="background: black;">
+  <div id="content-0" class="hidden">
+    <div id="selection-content-container-0" class="selection-content-container">
+      <iframe id="page-content-0" src="../doc/element_air.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
+    </div>
   </div>
 
-  <div id="selection_1" class="choice">
-    <div id="selection_1_button" class="button page-button">Horizonal Indicator</div>
-    <div id="selection_1_desc" class="desc">Sliding indicator in horizontal configuration</div>
+  <div id="selection-1" class="choice">
+    <div id="selection-1-button" class="button page-button">WATER Element</div>
+    <div id="selection-1-desc" class="desc">Imagination</div>
   </div>
-  <div id="selection-content-container_1" class="selection-content-container">
-    <embed id="demo_page_1" type="text/html" src="indicator_horizontal_demo.html" width="780" height="550" style="background: black;">
-  </div>
-
-  <div id="selection_2" class="choice">
-    <div id="selection_2_button" class="button page-button">Turbo Lift</div>
-    <div id="selection_2_desc" class="desc">Demonstrates repeating pulse configuration</div>
-  </div>
-  <div id="selection-content-container_2" class="selection-content-container">
-    <embed id="demo_page_2" type="text/html" src="indicator_turbo_lift_demo.html" width="680" height="300" style="background: black;">
+  <div id="content-1" class="hidden">
+    <div id="selection-content-container-1" class="selection-content-container">
+      <iframe id="page-content-1" src="../doc/element_water.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
+    </div>
   </div>
 
-  <div id="selection_3" class="choice">
-    <div id="selection_3_button" class="button page-button">Meter</div>
-    <div id="selection_3_desc" class="desc">Examples configured as a meter</div>
+  <div id="selection-2" class="choice">
+    <div id="selection-2-button" class="button page-button">EARTH Element</div>
+    <div id="selection-2-desc" class="desc">Illustration</div>
   </div>
-  <div id="selection-content-container_3" class="selection-content-container">
-    <embed id="demo_page_3" type="text/html" src="indicator_meter_demo.html" width="680" height="550" style="background: black;">
-  </div>
-
-  <div id="selection_4" class="choice">
-    <div id="selection_4_button" class="button page-button">Progress Bar</div>
-    <div id="selection_4_desc" class="desc">Examples configured as a progress bar</div>
-  </div>
-  <div id="selection-content-container_4" class="selection-content-container">
-    <embed id="demo_page_4" type="text/html" src="indicator_progress_demo.html" width="680" height="260" style="background: black;">
+  <div id="content-2" class="hidden">
+    <div id="selection-content-container-2" class="selection-content-container">
+      <iframe id="page-content-2" src="../doc/element_earth.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
+    </div>
   </div>
 
-  <div id="selection_5" class="choice">
-    <div id="selection_5_button" class="button page-button">Cylon Eye</div>
-    <div id="selection_5_desc" class="desc">Demonstrates bouncing pulse configuration</div>
+  <div id="selection-3" class="choice">
+    <div id="selection-3-button" class="button page-button">FIRE Element</div>
+    <div id="selection-3-desc" class="desc">Illumination</div>
   </div>
-  <div id="selection-content-container_5" class="selection-content-container">
-    <embed id="demo_page_5" type="text/html" src="indicator_cylon_eye_demo.html" width="680" height="60" style="background: black;">
+  <div id="content-3" class="hidden">
+    <div id="selection-content-container-3" class="selection-content-container">
+      <iframe id="page-content-3" src="../doc/element_fire.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
+    </div>
   </div>
 
 </div>
@@ -193,6 +219,15 @@ Web Widgets: Button Menu List Demo
         ]
     }
 
+    // $("#selection-content-container-0").slideUp("fast", function() {
+    //     $("#page-content-0").attr("src", "../doc/mustang_desc.html");
+    //     $("#selection-content-container-0").css("height", "300px");
+    // });
+
+    // $("#selection-content-container-0").css("height", "300px");
+
+    // $("#selection-content-container-0").css("display", "flex");
+
     // --------------------------------------------------------------------------
     // 4: Create an instance of the widget passing container id and configuration
     // --------------------------------------------------------------------------
@@ -200,32 +235,30 @@ Web Widgets: Button Menu List Demo
 
     $(document).ready(function() {
 
-        var transition_time = 500;
-        var expanded = [ false, false, false, false, false ];
-
         //----------------------------
         // Handle button hover changes
-        $( ".choice" ).hover( function() {
+        $(document).on('mouseenter', '.choice', function() {
             // menu_widget.hover_in(this.id);
-            $("#" + this.id + "_button").css( "color", config["button"]["hover_text_color"] );
-            $("#" + this.id + "_desc").css( "color", config["description"]["hover_text_color"] );
-        }, function() {
+            $("#" + this.id + "-button").css( "color", config["button"]["hover_text_color"] );
+            $("#" + this.id + "-desc").css( "color", config["description"]["hover_text_color"] );
+        });
+        $(document).on('mouseleave', '.choice', function() {
             // menu_widget.hover_out(this.id);
-            $("#" + this.id + "_button").css( "color", config["button"]["font_color"] );
-            $("#" + this.id + "_desc").css( "color", config["description"]["font_color"] );
+            $("#" + this.id + "-button").css( "color", config["button"]["font_color"] );
+            $("#" + this.id + "-desc").css( "color", config["description"]["font_color"] );
         });
 
         //--------------------------------------------------------------------------------
-        $( ".choice" ).click( function() {
-            let index = parseInt(this.id.split("_")[1]);
+        $(document).on('click', '.choice', function() {
+            let index = parseInt(this.id.split("-")[1]);
             let count = $('.selection-content-container').length;
 
             for (let i = 0; i < count; i++) {
                 if (i == index) {
-                    $("#selection-content-container_" + i).slideToggle("slow");
+                    $("#content-" + i).slideToggle("slow");
                 }
                 else {
-                    $("#selection-content-container_" + i).slideUp("medium");
+                    $("#content-" + i).slideUp("medium");
                 }
             }
 
