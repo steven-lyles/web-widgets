@@ -34,5 +34,6 @@
     "parrishblue"  : { "hex" : "#0047AB", "rgb" : "0,71,171" },
     "cool"         : { "hex" : "#5588ff", "rgb" : "85,136,255" },
     "yellow"       : { "hex" : "#ffff00", "rgb" : "255,255,0" },
-    "autumn"       : { "hex" : "#E78D34", "rgb" : "231,141,52"}
+    "autumn"       : { "hex" : "#E78D34", "rgb" : "231,141,52"},
+    "glacier"      : { "hex" : "#D5DEE3", "rgb" : "213, 222, 227"}
 }
