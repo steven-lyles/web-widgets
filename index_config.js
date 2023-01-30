@@ -109,11 +109,11 @@ let button_stack_config = {
     "border_radius" : "5px",
     "hover_color" : "martian",
     "button" : [
-        { "txt" : "BUTTONS",  "color" : "pumpkinshade", "icon" : "./assets/stations.svg"},
-        { "txt" : "DIVIDERS", "color" : "sunflower",    "icon" : "./assets/gear.svg"},
-        { "txt" : "INDICATORS", "color" : "cappuccino",     "icon" : "./assets/results2.svg"},
-        { "txt" : "SELECTION", "color" : "calm",     "icon" : "./assets/results2.svg"},
-        { "txt" : "MISC", "color" : "moonbeam",     "icon" : "./assets/results2.svg"}
+        { "txt" : "BUTTONS",  "color" : "pumpkinshade", "icon" : "./assets/buttons.svg"},
+        { "txt" : "DIVIDERS", "color" : "sunflower",    "icon" : "./assets/dividers.svg"},
+        { "txt" : "INDICATORS", "color" : "cappuccino",     "icon" : "./assets/indicators.svg"},
+        { "txt" : "SELECTION", "color" : "calm",     "icon" : "./assets/selection.svg"},
+        { "txt" : "MISC", "color" : "moonbeam",     "icon" : "./assets/misc.svg"}
     ]
 }
 
@@ -181,5 +181,28 @@ let button_group_dividers_config = {
     "buttons" : [
         { "txt": "Subject", "active" : true },
         { "txt": "Bars",   "active" : true }
+    ]
+}
+
+let button_group_indicators_config = {
+    "font" : "400 15px/1.5 \"Antonio\", \"Arial Narrow\", \"Avenir Next Condensed\", sans-serif",
+    "font-size" : "1.0em",
+    "font_color" : "black",
+    "background_color" : "evening",
+    "width" : "100px",
+    "height": "25px",
+    "justify_content" : "left",
+    "border_radius": "20px",
+    "hover_color" : "martian",
+    "hover_outline" : "martian",
+    "active_color" :  "martian",
+    "inactive_color" : "galaxy",
+    "selected_index" : 0,
+    "buttons" : [
+        { "txt": "Vertical", "active" : true },
+        { "txt": "Horizontal",   "active" : true },
+        { "txt": "Meter",   "active" : true },
+        { "txt": "Progress",   "active" : true },
+        { "txt": "Novel",   "active" : true }
     ]
 }

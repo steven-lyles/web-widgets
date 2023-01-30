@@ -74,7 +74,7 @@
 
         <!-- Category subject content will appear here in an iFrame -->
         <div id="content" class="container-subject">
-          <iframe id="page-content" src="welcome.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
+          <iframe id="page-content" src="home_welcome.html" name="targetframe" class="page-content" scrolling="auto"></iframe>
         </div>
 
       </div>
@@ -156,7 +156,8 @@
                     page_button_dividers_callback(button_group.get_selected_button_index());
                     break;
                 case Category.Indicators:
-                    tbd();
+                    button_group.reconstruct_widget(button_group_indicators_config, colors, page_button_indicators_callback);
+                    page_button_indicators_callback(button_group.get_selected_button_index());
                     break;
                 case Category.Selection:
                     tbd();
@@ -177,10 +178,10 @@
         console.log(`Page button ${button_group_home_config.buttons[index].txt} clicked`);
         switch(index) {
             case 0:
-                $("#page-content").attr("src", "welcome.html");
+                $("#page-content").attr("src", "home_welcome.html");
                 break;
             case 1:
-                $("#page-content").attr("src", "./demos/demo_indicator_vertical.html");
+                $("#page-content").attr("src", "home_usage.html");
                 break;
             default:
                 break;
@@ -216,6 +217,28 @@
                 break;
             case 1:
                 $("#page-content").attr("src", "./demos/demo_horz_bars_divider.html");
+                break;
+            default:
+                break;
+        }
+    }
+
+    function page_button_indicators_callback(index) {
+        switch(index) {
+            case 0:
+                $("#page-content").attr("src", "./demos/demo_indicator_vertical.html");
+                break;
+            case 1:
+                $("#page-content").attr("src", "./demos/demo_indicator_horizontal.html");
+                break;
+            case 2:
+                $("#page-content").attr("src", "./demos/demo_indicator_meter.html");
+                break;
+            case 3:
+                $("#page-content").attr("src", "./demos/demo_indicator_progress.html");
+                break;
+            case 4:
+                $("#page-content").attr("src", "./demos/demo_indicator_novel.html");
                 break;
             default:
                 break;
