@@ -93,16 +93,12 @@
           margin-top: 10px;
       }
       .container-subject {
-          font: 400 20px/1.5 "Arial Narrow", sans-serif;
+          font: 400 18px/1.5 "Arial Narrow", sans-serif;
           justify-content: left;
-          margin-left: 0px;
-          margin-right: 20px;
-          height: 100%;
-      }
-      #demo-title {
           margin-left: 20px;
-          color: #D5DEE3;
+          margin-right: 20px;
       }
+
   </style>
 </head>
 <body>
@@ -121,9 +117,9 @@
       <div class="container-frame-right-header height-header">
 
         <div id="demo-desc" class="demo-desc">
-          The accordion button control is a content container that groups information by subject in a compact
-          format of expandable/collapsable sections. The example below gives a brief summary of the P-51 fighter plane.
-          Précis courtesy of <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </div>
 
         <div class="corner-bg-header corner_size">
@@ -159,10 +155,10 @@
         </div>
 
         <div id="content" class="container-subject">
-          <div id="demo-title">North American P-51 Mustang</div>
-          <div id="menu-box" class="menu-box"></div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </div>
-
 
       </div>
     </div>
@@ -177,7 +173,6 @@
 <!-- Load the widget objects -->
 <script type="text/javascript" src="../ww_js/ww_subject_divider.js"></script>
 <script type="text/javascript" src="../ww_js/ww_horz_bars_divider.js"></script>
-<script type="text/javascript" src="../ww_js/ww_button_list.js"></script>
 <script>
 
     // Load the color map
@@ -248,7 +243,7 @@
 
     $(".width-frame-left").css("width", `${subject_div_config['height'] + 10}px`);
     $(".height-header").css("height", `${demo_config['height_header']}px`);
-    let desc_height = demo_config['height_header'] - demo_config['corner_height'] - subject_div_config['height'] - 10;
+    let desc_height = demo_config['height_header'] - demo_config['corner_height'] - subject_div_config['height'] - 10; // 10 is for top margin
     $(".demo-desc").css("height", `${desc_height}px`);
     $(".corner_size").css("width", `${demo_config['corner_width']}px`);
     $(".corner_size").css("height", `${demo_config['corner_height']}px`);
@@ -273,66 +268,6 @@
     $("body").css("background", background_color);
     $("html").css("color", desc_color);
     $("body").css("color", desc_color);
-
-    let accordion_config = {
-        "accordion" : true,
-        "background_color" : "",
-        "width" : "100%",
-        "height" : "30px",
-        "gap" : "3px",
-        "description_font_color" : "ghost",
-        "button" : {
-            "background_color" : "autumn",
-            "font_color" : "black",
-            "font_size" : "0.7em",
-            "hover_text_color" : "white",
-            "width" : "30%",
-            "border_radius": "25px"
-        },
-        "description" : {
-            "background_color" : "galaxy",
-            "font_color" : "ice",
-            "font_size" : "0.6em",
-            "hover_text_color" : "white",
-            "width" : "70%",
-            "outline_color" : "galaxy",
-            "border_radius": "25px"
-        },
-        "items" : [
-            {
-                "name"  : "Description",
-                "desc"  : "General information about the aircraft",
-                "link"  : "../doc/mustang_desc.html",
-                "size": 320
-            },
-            {
-                "name" : "World War II",
-                "desc" : "Highlights of the aircraft's service during WWII",
-                "link" : "../doc/mustang_ww2.html",
-                "size": 320
-            },
-            {
-                "name" : "Post World War II",
-                "desc" : "Continued service after the war",
-                "link" : "../doc/mustang_post_ww2.html",
-                "size": 300
-            },
-            {
-                "name" : "Views",
-                "desc" : "Demonstrating the 'Button Stack' widget",
-                "link" : "../demos/demo_button_stack.html",
-                "size": 270
-            },
-            {
-                "name" : "Summary",
-                "desc" : "In conclusion...",
-                "link" : "../doc/mustang_summary.html",
-                "size": 300
-            }
-        ]
-    }
-    accordion_config.background_color = demo_config.color_background;
-    let menu_widget = new WebWidgetMenuList("menu-box", accordion_config, colors);
 
 </script>
 </body>
