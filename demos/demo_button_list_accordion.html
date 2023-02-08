@@ -181,8 +181,8 @@
 <script>
 
     // Load the color map
-    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
-    let colors = JSON.parse(json.responseText);
+    // let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    // let colors = JSON.parse(json.responseText);
 
     let demo_config = {
         "color_frames"     : "autumn",
@@ -197,8 +197,8 @@
     let subject_div_config = {
         "color": "",
         "txt_primary" : "DEMO",
-        "txt_secondary" : "TEMPLATE",
-        "height" : 30, // px
+        "txt_secondary" : "ACCORDION",
+        "height" : 40, // px
         "font" : "Antonio",
         "font_color" : "moonbeam"
     }
@@ -232,7 +232,7 @@
             {
                 "flex": false,
                 "half": false,
-                "width": "25px",
+                "width": "35px",
                 "color": "galaxy"
             }
         ]

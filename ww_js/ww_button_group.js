@@ -65,6 +65,7 @@ class ButtonGroup {
         $(`#${this.id}`).css("align-items", "center");
         $(`#${this.id}`).css("justify-content", this.config.justify_content);
         $(`#${this.id}`).css("flex-wrap", "wrap");
+        $(`#${this.id}`).css("gap", "20px");
 
         if (this.config.justify_content == "right") {
             $(".button-group").css("margin-left", "10px");

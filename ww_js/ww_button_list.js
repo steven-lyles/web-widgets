@@ -124,7 +124,6 @@ class WebWidgetMenuList {
 
             let id = this.widget_id;
             $.each(config["items"], function( index, value ) {
-                console.log(`#content-${index}-container-${id}`);
                 $(`#content-${index}-container-${id}`).css("height", `${value.size + 30}px`);
             });
         }

@@ -23,7 +23,7 @@ class SubjectDivider {
 
     //===================================================================================
     gen_css() {
-        $(`#${this.id}`).css("width", "auto");
+        // $(`#${this.id}`).css("width", "100%");
         $(`#${this.id}`).css("height", `${this.config.height}px`);
         $(`#${this.id}`).css("display", "flex");
         $(`#${this.id}`).css("flex-direction", "row");

@@ -5,10 +5,38 @@
   <title></title>
   <link rel="stylesheet" href="../index_style.css">
   <style>
+    #subtitle {
+        font-size: 0.8em;
+        color: gray;
+    }
+    #title {
 
+    }
+    .container-doc {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .indicator-vert {
+        width: 10%;
+        height: 400px;
+        background-color: pink;
+    }
+    .doc-usage {
+        width: 90%;
+        height: 400px;
+        background-color: #88ccff;
+    }
   </style>
 </head>
 <body>
-<p>Indicator Vertical: TBD</p>
+<div id="title">Indicator Vertical Demo </div>
+<div id="subtitle">Document by page use case</div>
+<br>
+<div id="container-doc" class="container-doc">
+  <div id="indicator-vert" class="indicator-vert"></div>
+  <div id="doc-usage" class="doc-usage"></div>
+</div>
 </body>
 </html>
