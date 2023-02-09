@@ -44,16 +44,19 @@
   <img id="mustang-view" src="https://www.stevenlyles.net/playground/assets/mustang-top.jpg">
 </div>
 
+<!-- Load the utilities - this is required by the widgets!!! -->
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
 
 <!-- ------------------------------------------------------------------ -->
 <!-- Step 2: Include the widget script & jquery is not already included -->
 <!-- ------------------------------------------------------------------ -->
 <script type="text/javascript" src="../ww_js/ww_button_stack.js"></script>
 <script>
-    //-------------------
-    // Load the color map
-    let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
-    let color = JSON.parse(json.responseText);
+    //---------------------------------------------------------------
+    // Load the color map if not using the one defined in ww_utils.js
+
+    // let json = $.getJSON({'url': "../config/color_map.json", 'async': false});
+    // let color = JSON.parse(json.responseText);
 
     let button_stack_uniform_config = {
         "font_size" : 16, // px
@@ -99,7 +102,7 @@
     // Step 5: Create an instance of each group passing the container id, the attribute
     //         config, color map, and the callback for that group
     //---------------------------------------------------------------------------------
-    let button_stack_uniform = new ButtonStack("container-uniform", button_stack_uniform_config, color, button_uniform);
+    let button_stack_uniform = new ButtonStack("container-uniform", button_stack_uniform_config, colors, button_uniform);
 
     //===================================================================================
     $(document).ready(function() {

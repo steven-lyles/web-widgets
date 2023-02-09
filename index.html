@@ -293,17 +293,7 @@
                 current_page_index = -1;
                 $("#subject-title").text("WELCOME");
                 button_group.reconstruct_widget(button_group_home_config, colors, page_button_home_callback);
-                switch(button_group.get_selected_button_index()) {
-                    case 0:
-                        $("#page-content").attr("src", "welcome.html");
-                        break;
-                    case 1:
-                        $("#page-content").attr("src", "./demos/demo_indicator_vertical.html");
-                        break;
-                    default:
-                        break;
-                }
-
+                page_button_home_callback(button_group.get_selected_button_index());
             }
             setTimeout(function() { set_home_back(); }, 500);
         });
