@@ -42,6 +42,7 @@
           width: 100%;
           flex: 0 0 auto;
           margin-bottom: 5px;
+          margin-top: 5px;
       }
       .container-content {
           flex: 1 1 auto;
@@ -86,11 +87,13 @@
           flex: 1 1 auto;
       }
       .demo-desc {
-          font: 400 16px/1.5 "Arial Narrow", sans-serif;
+          font: 400 14px/1.5 "Arial Narrow", sans-serif;
           justify-content: left;
           margin-left: 20px;
           margin-right: 20px;
           margin-top: 10px;
+          margin-bottom: 10px;
+          overflow: auto;
       }
       .container-subject {
           font: 400 18px/1.5 "Arial Narrow", sans-serif;
@@ -179,7 +182,7 @@
     // let colors = JSON.parse(json.responseText);
 
     let demo_config = {
-        "color_frames"     : "shore",
+        "color_frames"     : "autumn",
         "color_background" : "black",
         "color_desc"       : "ghost",
         "height_header": 140,
@@ -192,7 +195,7 @@
         "color": "",
         "txt_primary" : "DEMO",
         "txt_secondary" : "LINKS",
-        "height" : 40, // px
+        "height" : 30, // px
         "font" : "Antonio",
         "font_color" : "moonbeam"
     }
@@ -215,7 +218,7 @@
                 "half": true,
                 "location" : "top",
                 "width": "120px",
-                "color": "ghost"
+                "color": "moonbeam"
             },
             {
                 "flex": true,
@@ -226,7 +229,7 @@
             {
                 "flex": false,
                 "half": false,
-                "width": "35px",
+                "width": "50px",
                 "color": "galaxy"
             }
         ]
@@ -245,7 +248,7 @@
     let desc_height = demo_config['height_header'] - demo_config['corner_height'] - subject_div_config['height'] - 10; // 10 is for top margin
     $(".demo-desc").css("height", `${desc_height}px`);
     $(".corner_size").css("width", `${demo_config['corner_width']}px`);
-    $(".corner_size").css("height", `${demo_config['corner_height']}px`);
+    $(".corner_size").css("height", `${demo_config['corner_height']-10}px`);
     $(".corner-header").css("border-radius", `0 0 0 ${subject_div_config['height'] - 10}px`);
     $(".corner-content").css("border-radius", `${subject_div_config['height']}px 0 0 0`);
 

@@ -96,12 +96,19 @@
           overflow: auto;
       }
       .container-subject {
-          font: 400 16px/1.5 "Arial Narrow", sans-serif;
+          font: 400 18px/1.5 "Arial Narrow", sans-serif;
           justify-content: left;
           margin-left: 20px;
           margin-right: 20px;
       }
-
+      .periodic {
+          height: 800px;
+          width: 100%;
+          flex-grow: 1;
+          border: none;
+          margin: 0;
+          padding: 0;
+      }
   </style>
 </head>
 <body>
@@ -120,9 +127,9 @@
       <div class="container-frame-right-header height-header">
 
         <div id="demo-desc" class="demo-desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          The subject divider - below - provides a horizontal bar with title for heading a page of information.
+          The primary and secondary title, width and color are all configurable.
+          Demo below generated using the <a href="http://threejs.org" target="_blank">three.js</a> library.
         </div>
 
         <div class="corner-bg-header corner_size">
@@ -158,7 +165,7 @@
         </div>
 
         <div id="content" class="container-subject">
-          TBD
+          <iframe id="periodic" src="../misc/periodictable.html" name="targetframe" class="periodic" scrolling="auto"></iframe>
         </div>
 
       </div>
@@ -181,7 +188,7 @@
     // let colors = JSON.parse(json.responseText);
 
     let demo_config = {
-        "color_frames"     : "mars",
+        "color_frames"     : "cool",
         "color_background" : "black",
         "color_desc"       : "ghost",
         "height_header": 140,
@@ -193,7 +200,7 @@
     let subject_div_config = {
         "color": "",
         "txt_primary" : "DEMO",
-        "txt_secondary" : "METER",
+        "txt_secondary" : "SUBJECT",
         "height" : 30, // px
         "font" : "Antonio",
         "font_color" : "moonbeam"

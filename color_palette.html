@@ -35,10 +35,12 @@
 <h3>LCARS Color Swatches</h3>
 <div id="swatch-container" class="swatch-container">
 </div>
+<script type="text/javascript" src="../ww_js/ww_utils.js"></script>
 <script>
-    let json = $.getJSON({'url': './config/color_map.json', 'async': false});
-    let config = JSON.parse(json.responseText);
-    let colors = [];
+    // let json = $.getJSON({'url': './config/color_map.json', 'async': false});
+    // let config = JSON.parse(json.responseText);
+    // let colors = [];
+    let sorted = [];
     let count = 0;
     let fontColor = "black";
 
@@ -56,7 +58,7 @@
     //===================================================================================
     // Sort the color list by hex value or chrominance from lowest to highest
     function sort_colors_by(sortFactor) {
-        $.each(config, function(key, value) {
+        $.each(colors, function(key, value) {
            count += 1;
            let colorValue = 0;
            if (sortFactor == "hex") {
@@ -67,43 +69,43 @@
                colorValue = chrominance_from(value.rgb);
            }
            let swatch = { "name" : key, "value" : colorValue }
-           if (colors.length > 0) {
-              $.each(colors, function(index, entry) {
+           if (sorted.length > 0) {
+              $.each(sorted, function(index, entry) {
                   let nextIndex = index + 1;
                   let prevIndex = index - 1;
                   if (swatch.value > entry.value) {
-                      if (nextIndex == colors.length) {
-                          colors.push(swatch);
+                      if (nextIndex == sorted.length) {
+                          sorted.push(swatch);
                           return false;
-                      } else if (swatch.value <= colors[nextIndex].value) {
-                          colors.splice(nextIndex, 0, swatch);
+                      } else if (swatch.value <= sorted[nextIndex].value) {
+                          sorted.splice(nextIndex, 0, swatch);
                           return false;
                       }
                   } else if (swatch.value <= entry.value) {
                       if (prevIndex < 0 ) {
-                          colors.splice(0, 0, swatch);
+                          sorted.splice(0, 0, swatch);
                       } else {
-                          colors.splice(prevIndex, 0, swatch);
+                          sorted.splice(prevIndex, 0, swatch);
                       }
                       return false;
                   }
               });
            } else {
-               colors.push(swatch);
+               sorted.push(swatch);
            }
         });
     }
 
     //===================================================================================
     function gen_swatches() {
-        $.each(colors, function(index, entry) {
+        $.each(sorted, function(index, entry) {
             let name = entry.name;
-            let hex_value = config[name].hex.slice(1);
+            let hex_value = colors[name].hex.slice(1);
             fontColor = (parseInt(hex_value, 16) > 8388607) ? "black" : "white";
-            let newSwatch = `<div class='swatch' style='background-color: ${config[name].hex}; color: ${fontColor}'>\n`;
+            let newSwatch = `<div class='swatch' style='background-color: ${colors[name].hex}; color: ${fontColor}'>\n`;
             newSwatch +=    `  <div class='name'>${name}</div>\n`;
-            newSwatch +=     `  <div class='hex'>${config[name].hex}</div>\n`;
-            newSwatch +=     `  <div class='rgb'>${config[name].rgb}</div>\n`;
+            newSwatch +=     `  <div class='hex'>${colors[name].hex}</div>\n`;
+            newSwatch +=     `  <div class='rgb'>${colors[name].rgb}</div>\n`;
             newSwatch +=   `</div>\n`
             $("#swatch-container").append(newSwatch);
         });

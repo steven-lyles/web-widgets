@@ -46,7 +46,17 @@ let colors = {
     "cool"         : { "hex" : "#5588ff", "rgb" : "85,136,255" },
     "yellow"       : { "hex" : "#ffff00", "rgb" : "255,255,0" },
     "autumn"       : { "hex" : "#E78D34", "rgb" : "231,141,52"},
-    "glacier"      : { "hex" : "#D5DEE3", "rgb" : "213, 222, 227"}
+    "glacier"      : { "hex" : "#D5DEE3", "rgb" : "213, 222, 227"},
+    "lilac"        : { "hex" : "#cc33ff", "rgb" : "204,51,255"},
+    "magenta"      : { "hex" : "#cc4499", "rgb" : "204,68,153" },
+    "cyan"         : { "hex" : "#91F0EA", "rgb" : "145,240,234" },
+    "wysteria"     : { "hex" : "#CDA4DE", "rgb" : "205,164,222"},
+    "blush"        : { "hex" : "#ff5555", "rgb" : "255,85,85" },
+    "almond"       : { "hex" : "#ffbbaa", "rgb" : "255,187,170" },
+    "terracotta"   : { "hex" : "#9F4639", "rgb" : "159,70,57" },
+    "green-slate"  : { "hex" : "#A0C092", "rgb" : "160,192,146" },
+    "moss"         : { "hex" : "#8A9A5B", "rgb" : "138,154,91" },
+    "willow"       : { "hex" : "#95C860", "rgb" : "149,200,96" },
 }
 
 

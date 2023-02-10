@@ -69,11 +69,11 @@ let button_stack_config = {
     "border_radius" : "5px",
     "hover_color" : "martian",
     "button" : [
-        { "txt" : "BUTTONS",  "color" : "pumpkinshade", "icon" : "./assets/buttons.svg"},
-        { "txt" : "DIVIDERS", "color" : "sunflower",    "icon" : "./assets/dividers.svg"},
-        { "txt" : "INDICATORS", "color" : "cappuccino",     "icon" : "./assets/indicators.svg"},
-        { "txt" : "SELECTION", "color" : "calm",     "icon" : "./assets/selection.svg"},
-        { "txt" : "MISC", "color" : "moonbeam",     "icon" : "./assets/misc.svg"}
+        { "txt" : "BUTTONS",  "color" : "autumn", "icon" : "./assets/buttons.svg"},
+        { "txt" : "DIVIDERS", "color" : "cool",    "icon" : "./assets/dividers.svg"},
+        { "txt" : "INDICATORS", "color" : "mars",     "icon" : "./assets/indicators.svg"},
+        { "txt" : "SELECTION", "color" : "periwinkle",     "icon" : "./assets/selection.svg"},
+        { "txt" : "MISC", "color" : "shore",     "icon" : "./assets/misc.svg"}
     ]
 }
 
@@ -86,6 +86,7 @@ let button_group_home_config = {
     "background_color" : "evening",
     "width" : "100px",
     "height": "25px",
+    "gap" : "5px",
     "justify_content" : "left",
     "border_radius": "20px",
     "hover_color" : "martian",
@@ -108,6 +109,7 @@ let button_group_buttons_config = {
     "background_color" : "evening",
     "width" : "100px",
     "height": "25px",
+    "gap" : "5px",
     "justify_content" : "left",
     "border_radius": "20px",
     "hover_color" : "martian",
@@ -131,6 +133,7 @@ let button_group_dividers_config = {
     "background_color" : "evening",
     "width" : "100px",
     "height": "25px",
+    "gap" : "5px",
     "justify_content" : "left",
     "border_radius": "20px",
     "hover_color" : "martian",
@@ -149,8 +152,9 @@ let button_group_indicators_config = {
     "font-size" : "1.0em",
     "font_color" : "black",
     "background_color" : "evening",
-    "width" : "100px",
+    "width" : "80px",
     "height": "25px",
+    "gap" : "5px",
     "justify_content" : "left",
     "border_radius": "20px",
     "hover_color" : "martian",
@@ -159,8 +163,7 @@ let button_group_indicators_config = {
     "inactive_color" : "galaxy",
     "selected_index" : 0,
     "buttons" : [
-        { "txt": "Vertical", "active" : true },
-        { "txt": "Horizontal",   "active" : true },
+        { "txt": "Position", "active" : true },
         { "txt": "Meter",   "active" : true },
         { "txt": "Progress",   "active" : true },
         { "txt": "Novel",   "active" : true }
