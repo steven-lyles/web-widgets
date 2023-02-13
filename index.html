@@ -118,6 +118,7 @@
 
 <script>
     let current_page_index = -1;
+    let height_header = $(".panel-home").css("height");
 
     const Category = {
         Buttons:    0,
@@ -191,7 +192,7 @@
     function page_button_buttons_callback(index) {
         switch(index) {
             case 0:
-                $("#page-content").attr("src", "./demos/demo_button_list_accordion.html");
+                $("#page-content").attr("src", `./demos/demo_button_list_accordion.html?header:${height_header}`);
                 break;
             case 1:
                 $("#page-content").attr("src", "./demos/demo_button_list_links.html");
@@ -213,7 +214,7 @@
                 $("#page-content").attr("src", "./demos/demo_divider_subject.html");
                 break;
             case 1:
-                $("#page-content").attr("src", "./demos/demo_divider_bars.html");
+                $("#page-content").attr("src", `./demos/demo_divider_bars.html?header:${height_header}`);
                 break;
             default:
                 break;

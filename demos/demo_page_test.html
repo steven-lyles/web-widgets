@@ -45,6 +45,7 @@
           margin-top: 5px;
       }
       .container-content {
+          width: 100%;
           flex: 1 1 auto;
           margin-bottom: 5px;
       }
@@ -52,10 +53,16 @@
           display: flex;
           height: 100%;
           flex-direction: row;
+          overflow: hidden;
       }
       .container-frame-right-header {
           flex: 1 1 auto;
           width: auto;
+
+          /* dev only remove */
+          /*border-style: solid;*/
+          /*border-width: 1px;*/
+          /*border-color: blue;*/
       }
       .container-frame-right-content {
           flex: 1 1 auto;
@@ -94,21 +101,24 @@
           margin-top: 10px;
           margin-bottom: 10px;
           overflow: auto;
+
+          /* dev only remove */
+          /*border-style: solid;*/
+          /*border-width: 1px;*/
+          /*border-color: pink;*/
       }
-      .content {
-          font: 400 18px/1.5 "Arial Narrow", sans-serif;
+      .container-subject {
+          font: 400 16px/1.5 "Arial Narrow", sans-serif;
           justify-content: left;
           margin-left: 20px;
           margin-right: 20px;
+
+          /* dev only remove */
+          /*border-style: solid;*/
+          /*border-width: 1px;*/
+          /*border-color: green;*/
       }
-      #content {
-          height: 865px;
-          overflow-y: auto;
-      }
-      #demo-title {
-          margin-left: 20px;
-          color: #D5DEE3;
-      }
+
   </style>
 </head>
 <body>
@@ -124,12 +134,12 @@
         <div class="panel-header-frame width-frame-left height-header"></div>
       </div>
 
-      <div id="container-frame-right-header" class="container-frame-right-header height-header">
+      <div class="container-frame-right-header height-header">
 
         <div id="demo-desc" class="demo-desc">
-          The accordion button control is a content container that groups information by subject in a compact
-          format of expandable/collapsable sections. The example below gives a brief summary of the P-51 fighter plane.
-          Précis courtesy of <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </div>
 
         <div class="corner-bg-header corner_size">
@@ -154,21 +164,23 @@
         <div class="panel-spacer width-frame-left"></div>
       </div>
 
-      <div class="container-frame-right-content">
+      <div id="container-frame-right-content" class="container-frame-right-content">
 
         <div id="horz-divider-bars">
           <!-- Horizontal Bars Divider Widget will appear here -->
         </div>
 
-        <div id="corner-bg-content" class="corner-bg-content corner_size">
+        <div class="corner-bg-content corner_size">
           <div class="corner-content corner_size"></div>
         </div>
 
-        <div id="content" class="content">
-          <div id="demo-title">North American P-51 Mustang</div>
-          <div id="menu-box" class="menu-box"></div>
+        <div id="content" class="container-subject">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </div>
-
+        <div id="width"></div>
+        <div id="height"></div>
 
       </div>
     </div>
@@ -183,7 +195,6 @@
 <!-- Load the widget objects -->
 <script type="text/javascript" src="../ww_js/ww_subject_divider.js"></script>
 <script type="text/javascript" src="../ww_js/ww_horz_bars_divider.js"></script>
-<script type="text/javascript" src="../ww_js/ww_button_list.js"></script>
 <script>
 
     // Load the color map
@@ -203,7 +214,7 @@
     let subject_div_config = {
         "color": "",
         "txt_primary" : "DEMO",
-        "txt_secondary" : "ACCORDION",
+        "txt_secondary" : "TEMPLATE",
         "height" : 30, // px
         "font" : "Antonio",
         "font_color" : "moonbeam"
@@ -254,7 +265,7 @@
 
     $(".width-frame-left").css("width", `${subject_div_config['height'] + 10}px`);
     $(".height-header").css("height", `${demo_config['height_header']}px`);
-    let desc_height = demo_config['height_header'] - demo_config['corner_height'] - subject_div_config['height'] - 10;
+    let desc_height = demo_config['height_header'] - demo_config['corner_height'] - subject_div_config['height'] - 10; // 10 is for top margin
     $(".demo-desc").css("height", `${desc_height}px`);
     $(".corner_size").css("width", `${demo_config['corner_width']}px`);
     $(".corner_size").css("height", `${demo_config['corner_height']-10}px`);
@@ -280,102 +291,9 @@
     $("html").css("color", desc_color);
     $("body").css("color", desc_color);
 
-    let accordion_config = {
-        "accordion" : true,
-        "background_color" : "",
-        "width" : "100%",
-        "height" : "30px",
-        "gap" : "3px",
-        "description_font_color" : "ghost",
-        "button" : {
-            "background_color" : "autumn",
-            "font_color" : "black",
-            "font_size" : "0.7em",
-            "hover_text_color" : "white",
-            "width" : "30%",
-            "border_radius": "25px"
-        },
-        "description" : {
-            "background_color" : "galaxy",
-            "font_color" : "ice",
-            "font_size" : "0.6em",
-            "hover_text_color" : "white",
-            "width" : "70%",
-            "outline_color" : "galaxy",
-            "border_radius": "25px"
-        },
-        "items" : [
-            {
-                "name"  : "Description",
-                "desc"  : "General information about the aircraft",
-                "link"  : "../doc/mustang_desc.html",
-                "size": 320
-            },
-            {
-                "name" : "World War II",
-                "desc" : "Highlights of the aircraft's service during WWII",
-                "link" : "../doc/mustang_ww2.html",
-                "size": 320
-            },
-            {
-                "name" : "Post World War II",
-                "desc" : "Continued service after the war",
-                "link" : "../doc/mustang_post_ww2.html",
-                "size": 300
-            },
-            {
-                "name" : "Views",
-                "desc" : "Demonstrating the 'Button Stack' widget",
-                "link" : "../demos/demo_button_stack.html",
-                "size": 270
-            },
-            {
-                "name" : "Summary",
-                "desc" : "In conclusion...",
-                "link" : "../doc/mustang_summary.html",
-                "size": 300
-            }
-        ]
-    }
-    accordion_config.background_color = demo_config.color_background;
-    let menu_widget = new WebWidgetMenuList("menu-box", accordion_config, colors);
-
-    let height_header = get_div_size('container-frame-right-header').height;
-    let height_content = get_div_size('content').height;
-    let height_corner = get_div_size('corner-bg-content').height;
-    let height_div_bars = bar_div_config.height;
-
-    //===================================================================================
-    function get_div_size(div_id) {
-        var element = document.getElementById(div_id);
-        var positionInfo = element.getBoundingClientRect();
-        return { "width" : positionInfo.width, "height" : positionInfo.height }
-    }
-
-    //===================================================================================
-    function calculate_sizes() {
-        let height_window = window.innerHeight - 25; // 25 accounts from margins in divs
-
-        let href = $(location).attr('href');
-        let data = href.split('?')[1]
-        if (data.split(":")[0] === "header") {
-            var h = data.split(":")[1];
-            height_window -= parseInt(h.replace('px', ''));
-        }
-        let other = height_window - height_header - height_div_bars - height_corner;
-        if (other < height_content) {
-            $("#content").css("height", `${other-10}px`);
-        } else {
-            $("#content").css("height", "auto");
-        }
-    }
-
     //===================================================================================
     $(document).ready(function() {
-        calculate_sizes();
-        $(window).resize(function() {
-            calculate_sizes();
-        });
+
     }); // document ready
 
 </script>

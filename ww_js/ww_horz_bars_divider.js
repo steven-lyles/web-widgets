@@ -44,8 +44,9 @@ class HorizontalBarsDivider {
         let local_color = this.config.color_map;
         let id = this.widget_id;
 
-        $(`#${this.id}`).css("display", "flex");
         $(`#${this.id}`).css("height", this.config.height);
+        $(`#${this.id}`).css("display", "flex");
+        $(`#${this.id}`).css("flex", "1");
 
         $(".bar-half").css("display", "flex");
         $(".bar-half").css("flex-direction", "row");

@@ -52,7 +52,6 @@
           display: flex;
           height: 100%;
           flex-direction: row;
-          overflow: hidden;
       }
       .container-frame-right-header {
           flex: 1 1 auto;
@@ -61,6 +60,7 @@
       .container-frame-right-content {
           flex: 1 1 auto;
           width: auto;
+          min-width: 500px;
       }
       .container-frame-left-top {
           display: flex;
@@ -95,11 +95,15 @@
           margin-bottom: 10px;
           overflow: auto;
       }
-      .container-subject {
-          font: 400 16px/1.5 "Arial Narrow", sans-serif;
+      .content {
+          font: 400 18px/1.5 "Arial Narrow", sans-serif;
           justify-content: left;
           margin-left: 20px;
           margin-right: 20px;
+      }
+      #content {
+          height: 865px; /* this needs to set to minimum that holds the content*/
+          overflow-y: auto;
       }
 
   </style>
@@ -117,7 +121,7 @@
         <div class="panel-header-frame width-frame-left height-header"></div>
       </div>
 
-      <div class="container-frame-right-header height-header">
+      <div id="container-frame-right-header" class="container-frame-right-header height-header">
 
         <div id="demo-desc" class="demo-desc">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -147,17 +151,17 @@
         <div class="panel-spacer width-frame-left"></div>
       </div>
 
-      <div class="container-frame-right-content">
+      <div id="container-frame-right-content" class="container-frame-right-content">
 
         <div id="horz-divider-bars">
           <!-- Horizontal Bars Divider Widget will appear here -->
         </div>
 
-        <div class="corner-bg-content corner_size">
+        <div id="corner-bg-content" class="corner-bg-content corner_size">
           <div class="corner-content corner_size"></div>
         </div>
 
-        <div id="content" class="container-subject">
+        <div id="content" class="content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
           nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -271,6 +275,44 @@
     $("body").css("background", background_color);
     $("html").css("color", desc_color);
     $("body").css("color", desc_color);
+
+    let height_header = get_div_size('container-frame-right-header').height;
+    let height_content = get_div_size('content').height;
+    let height_corner = get_div_size('corner-bg-content').height;
+    let height_div_bars = bar_div_config.height;
+
+    //===================================================================================
+    function get_div_size(div_id) {
+        var element = document.getElementById(div_id);
+        var positionInfo = element.getBoundingClientRect();
+        return { "width" : positionInfo.width, "height" : positionInfo.height }
+    }
+
+    //===================================================================================
+    function calculate_sizes() {
+        let height_window = window.innerHeight - 25; // 25 accounts from margins in divs
+
+        let href = $(location).attr('href');
+        let data = href.split('?')[1]
+        if (data.split(":")[0] === "header") {
+            var h = data.split(":")[1];
+            height_window -= parseInt(h.replace('px', ''));
+        }
+        let other = height_window - height_header - height_div_bars - height_corner;
+        if (other < height_content) {
+            $("#content").css("height", `${other-10}px`);
+        } else {
+            $("#content").css("height", "auto");
+        }
+    }
+
+    //===================================================================================
+    $(document).ready(function() {
+        calculate_sizes();
+        $(window).resize(function() {
+            calculate_sizes();
+        });
+    }); // document ready
 
 </script>
 </body>

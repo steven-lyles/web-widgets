@@ -202,7 +202,7 @@ container-frame-left {
     /*background-color: #2d2d2d; */
     height: 70px;
     position: relative;
-    top: -10px;
+    top: -20px;
 }
 .subject-bar-spacer {
     flex: 1 1 auto;
@@ -233,7 +233,7 @@ container-frame-left {
     flex-direction: column;
     /*align-items: top;*/
     justify-content: left;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 5px;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -252,7 +252,8 @@ container-frame-left {
     padding: 0;
 }
 iframe {
-    overflow-y: scroll;
+    height: auto;
+    overflow-y: auto;
 }
 
 
