@@ -1,5 +1,8 @@
 # web-widgets
-A collection of JavaScript objects for easily creating web page interface widgets.
+A collection of JavaScript objects for creating a web page interface widgets in the LCARS style.
+
+This is in an early phase so far, but I am experimenting with create a wiki documentation page in Google Docs using [You need a wiki](https://youneedawiki.com).
+The documentation for this project is here: [Web Widgets Wiki](https://youneedawiki.com/app/page/1BcJDjdNk9Un-K57R-DmUFWOcxR4w_Rh_Owy9meaRJRw?p=1kE0ID3TOkoSepjGj9coDhDs374bVfjZh).
 
 ## Description
 
