@@ -11,6 +11,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Logo Example</title>
+
+  <!-- ------------------------------------------------------------------- -->
+  <!-- Step 1: Include the widget script and JQuery if not already sourced -->
+  <!-- ------------------------------------------------------------------- -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="../ww_js/ww_utils.js"></script>
+  <script type="text/javascript" src="../ww_js/ww_logo.js"></script>
+
   <style>
       body {
           background: black;
@@ -19,7 +27,7 @@
       .panel {
           background-color: #b3a68b;
           width: 180px;
-          height: 280px;
+          height: 250px;
           border-radius: 0 0 0 100px;
           display: flex;
           flex-direction: column;
@@ -30,27 +38,20 @@
 </head>
 <body>
 <!-- ------------------------------------------- -->
-<!-- Step 1: Create the container for the widget -->
+<!-- Step 2: Create the container for the widget -->
 <!-- ------------------------------------------- -->
-<div id="panel" class="panel">
+<div id="panel" class="panel"></div>
 
-</div>
-
-<!-- ------------------------------------------------------------------- -->
-<!-- Step 2: Include the widget script and JQuery if not already sourced -->
-<!-- ------------------------------------------------------------------- -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="../ww_js/ww_logo.js"></script>
 <script>
     // -------------------------------------
     // Step 3: Define the widget attributes
     // -------------------------------------
     let logo_config = {
         "height"           : "120px",                     // widget height
-        "width"            : "100%",                       // % of container or pixel value (e.g. 100px)
+        "width"            : "180px",                      // % of container or pixel value (e.g. 100px)
         "logo_image"       : "../assets/rocket-icon.svg", // logo image
-        "logo_size"        : "55%",                       // logo size as percentage of height
-        "background_color" : "#5E7279",                   // dusk
+        "logo_size"        : "45%",                       // logo size as percentage of height
+        "background_color" : "dusk",                      // dusk
         "url"              : "https://stevenlyles.net",   // what to open when clicked
         "spacer_size"      : 5,                           // px border at bottom
         "spacer_color"     : "black"                      // border at bottom color
@@ -59,7 +60,8 @@
     // ----------------------------------------------------------------------------------------
     // Step 4: Create an instance of the widget passing container id and config json
     // ----------------------------------------------------------------------------------------
-    let logo_widget = new Logo("panel", logo_config);
+    let logo_widget = new Logo("panel", logo_config, colors); // colors is defined in ww_utils.js
+
 </script>
 </body>
 </html>
